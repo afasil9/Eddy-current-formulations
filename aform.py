@@ -25,9 +25,9 @@ from ufl import (
     variable,
 )
 
-from utils import L2_norm
+from utils import L2_norm, par_print
 
-with XDMFFile(MPI.COMM_WORLD, "copper_rod.xdmf", "r") as xdmf:
+with XDMFFile(MPI.COMM_WORLD, "copper_rod2.xdmf", "r") as xdmf:
     domain = xdmf.read_mesh(ghost_mode=GhostMode.none)
     ct = xdmf.read_meshtags(domain, name="ct")
     tdim = domain.topology.dim
@@ -43,7 +43,7 @@ beta_inner = 5.96e4
 copper_tag = 1
 
 alpha_outer = 1e-8
-beta_outer = 1e-5
+beta_outer = 0.0
 outerboxtag = 2
 
 const = fem.functionspace(domain, ("DG", 0))  # Piecewise constant function space
@@ -84,7 +84,7 @@ interior_nodes_array.x.scatter_forward()
 
 ti = 0.0  # Start time
 T = 0.1  # End time
-num_steps = 2  # Number of time steps
+num_steps = 100  # Number of time steps
 d_t = (T - ti) / num_steps  # Time step size
 
 t = variable(fem.Constant(domain, ti))
@@ -97,6 +97,7 @@ A_space = fem.functionspace(domain, nedelec_elem)
 x = SpatialCoordinate(domain)
 a_n = fem.Function(A_space)
 
+a_n_prev = a_n.copy()
 
 f = as_vector((0.0, 0.0, 1.0))
 
@@ -186,7 +187,7 @@ G = discrete_gradient(V_CG._cpp_object, A_space._cpp_object)
 G.assemble()
 pc.setHYPREDiscreteGradient(G)
 
-# pc.setHYPREAMSSetInteriorNodes(interior_nodes_array.x.petsc_vec)
+pc.setHYPREAMSSetInteriorNodes(interior_nodes_array.x.petsc_vec)
 
 if degree == 1:
     cvec_0 = Function(A_space)
@@ -247,6 +248,13 @@ Bexpr = fem.Expression(B, vector_vis.element.interpolation_points)
 B_vis.interpolate(Bexpr)
 B_file.write(t)
 
+da_dt = (a_n - a_n_prev)/ dt
+E = -da_dt
+E_vis = Function(vector_vis)
+Eexpr = fem.Expression(E, vector_vis.element.interpolation_points)
+E_vis.interpolate(Eexpr)
+E_file = VTXWriter(domain.comm, "E_field.bp", E_vis, "BP4")
+E_file.write(t)
 
 target_tags = copper_tag
 cell_mask = np.isin(ct.values, target_tags)
@@ -273,10 +281,6 @@ B_vis_submesh.interpolate(
 B_file_submesh = VTXWriter(domain.comm, "Rod_B.bp", B_vis_submesh, "BP4")
 B_file_submesh.write(t)
 
-print("L2 norm of B:", L2_norm(B_vis))
-print("L2 norm of B (submesh):", L2_norm(B_vis_submesh))
-
-# %%
 
 for n in range(num_steps):
     t.expression().value += d_t
@@ -305,10 +309,14 @@ for n in range(num_steps):
     B_vis.interpolate(Bexpr)
     B_file.write(t)
 
+    E_vis.interpolate(Eexpr)
+    E_file.write(t)
+
     B_vis_submesh.interpolate(
         B_vis, cells0=parent_cell_indices, cells1=submesh_cell_indices
     )
     B_file.write(t)
 
-    print("L2 norm of B:", L2_norm(B_vis))
-    print("L2 norm of B (submesh):", L2_norm(B_vis_submesh))
+    par_print(comm, f"L2 norm of B: {L2_norm(B_vis)}")
+    par_print(comm, f"L2 norm of E: {L2_norm(E_vis)}")
+    par_print(comm, f"L2 norm of B (submesh): {L2_norm(B_vis_submesh)}")
