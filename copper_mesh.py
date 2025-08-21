@@ -1,45 +1,40 @@
-#%%
-
 import gmsh
 from dolfinx.io import XDMFFile, gmshio
 from mpi4py import MPI
 
 comm = MPI.COMM_WORLD
 start = 0.1
-div = 4
+div = 2  # Number of divisions
 h = start / div
 
 # *** Outer Cube Parameters ***
-cube_size = 1.0
+cube_size = 2.0
 height = cube_size
 lc = 1.0
 
 # *** Inner Cylinder Parameters ***
-cyl_center_x, cyl_center_y = 0.5, 0.5      # Centered in cube
-cyl_radius = 0.05                          # Cylinder radius  (adjust as needed)
-cyl_base_z = 0.4                           # Lower face at z=0
-cyl_height = 0.2                           # Full height
+cyl_center_x, cyl_center_y = cube_size / 2, cube_size / 2
+cyl_radius = 0.05  # Cylinder radius
+cyl_height = 0.2  # Full height
+cyl_base_z = (cube_size - cyl_height) / 2
 
 gmsh.initialize()
 gmsh.option.setNumber("General.Terminal", 0)  # Suppress output
 
 # --- Outer Cube ---
-# p1 = gmsh.model.occ.addPoint(0, 0, 0, lc)
-# p2 = gmsh.model.occ.addPoint(1, 0, 0, lc)
-# p3 = gmsh.model.occ.addPoint(1, 1, 0, lc)
-# p4 = gmsh.model.occ.addPoint(0, 1, 0, lc)
-
 p1 = gmsh.model.occ.addPoint(0, 0, 0, lc)
 p2 = gmsh.model.occ.addPoint(cube_size, 0, 0, lc)
 p3 = gmsh.model.occ.addPoint(cube_size, cube_size, 0, lc)
 p4 = gmsh.model.occ.addPoint(0, cube_size, 0, lc)
 
-cl = gmsh.model.occ.addCurveLoop([
-    gmsh.model.occ.addLine(p1, p2),
-    gmsh.model.occ.addLine(p2, p3),
-    gmsh.model.occ.addLine(p3, p4),
-    gmsh.model.occ.addLine(p4, p1)
-])
+cl = gmsh.model.occ.addCurveLoop(
+    [
+        gmsh.model.occ.addLine(p1, p2),
+        gmsh.model.occ.addLine(p2, p3),
+        gmsh.model.occ.addLine(p3, p4),
+        gmsh.model.occ.addLine(p4, p1),
+    ]
+)
 
 
 surface = gmsh.model.occ.addPlaneSurface([cl])
@@ -66,16 +61,16 @@ boundary = gmsh.model.getBoundary([model_dim_tags[0][1]], oriented=False)
 boundary_ids = [b[1] for b in boundary]
 gmsh.model.occ.synchronize()
 # The first 6 faces are typically the inner (cylinder), next 6 are the cube. Adjust if needed!
-gmsh.model.addPhysicalGroup(2, boundary_ids[:1], tag=1)   # Lower face of cylinder
-gmsh.model.addPhysicalGroup(2, boundary_ids[1:2], tag=2)   # Side face of cylinder
-gmsh.model.addPhysicalGroup(2, boundary_ids[2:3], tag=3)   # Upper face of cylinder
-gmsh.model.addPhysicalGroup(2, boundary_ids[3:], tag=4) # Cube boundaries
+gmsh.model.addPhysicalGroup(2, boundary_ids[:1], tag=1)  # Lower face of cylinder
+gmsh.model.addPhysicalGroup(2, boundary_ids[1:2], tag=2)  # Side face of cylinder
+gmsh.model.addPhysicalGroup(2, boundary_ids[2:3], tag=3)  # Upper face of cylinder
+gmsh.model.addPhysicalGroup(2, boundary_ids[3:], tag=4)  # Cube boundaries
 
 
 # --- Mesh settings and generation ---
 gmsh.model.mesh.setSize(gmsh.model.getEntities(0), h)
 gmsh.model.mesh.generate(3)
-gmsh.model.mesh.optimize('Netgen')
+gmsh.model.mesh.optimize("Netgen")
 
 model_rank = 0
 mesh_comm = comm
@@ -86,7 +81,7 @@ ft = mesh_data[2]
 ct.name = "ct"
 ft.name = "ft"
 
-with XDMFFile(mesh.comm, "copper_rod.xdmf", "w") as xdmf:
+with XDMFFile(mesh.comm, "copper_rod2.xdmf", "w") as xdmf:
     xdmf.write_mesh(mesh)
     xdmf.write_meshtags(ct, mesh.geometry)
     xdmf.write_meshtags(ft, mesh.geometry)
