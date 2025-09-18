@@ -1,0 +1,366 @@
+# %%
+from mpi4py import MPI
+import ufl
+from petsc4py import PETSc
+from dolfinx import fem
+from dolfinx.fem import (
+    functionspace,
+    bcs_by_block,
+    extract_function_spaces,
+)
+from dolfinx.fem.petsc import assemble_matrix, assemble_vector, apply_lifting, set_bc
+from ufl import (
+    grad,
+    variable,
+    curl,
+    Measure,
+)
+from dolfinx.fem import Function, dirichletbc, form
+import numpy as np
+from basix.ufl import element
+from dolfinx.cpp.fem.petsc import discrete_gradient, interpolation_matrix
+from utils import par_print
+from dolfinx.io import VTXWriter, XDMFFile
+from dolfinx.mesh import GhostMode
+from utils import my_monitor, interpolate_by_tags, boundary_marker_copper
+from dolfinx import default_scalar_type
+from dolfinx.mesh import locate_entities_boundary
+from dolfinx.fem import locate_dofs_topological
+
+t = 0  # Start time
+T = 0.1  # End time
+num_steps = 5  # Number of time steps
+d_t = (T - t) / num_steps  # Time step size
+
+degree = 1
+
+with XDMFFile(MPI.COMM_WORLD, "em_model2_refined.xdmf", "r") as xdmf:
+    domain = xdmf.read_mesh(name="domains",ghost_mode=GhostMode.none)
+    domain_tags = xdmf.read_meshtags(domain, "domains")
+    tdim = domain.topology.dim
+    domain.topology.create_connectivity(tdim - 1, tdim)
+    domain.topology.create_connectivity(1, tdim)
+    ft = xdmf.read_meshtags(domain, "facets")
+    fdim = tdim - 1
+    domain.topology.create_connectivity(fdim, tdim)
+
+const = fem.functionspace(domain, ("DG", 0)) #Piecewise constant function space
+
+sigma = fem.Function(const)
+nu = fem.Function(const)
+
+
+sigma_air = fem.Constant(domain, default_scalar_type(1e-6))
+sigma_copper = fem.Constant(domain, default_scalar_type(5.96e4))
+nu_value = fem.Constant(domain, default_scalar_type(1e6))
+
+sigma_values = {
+    1: sigma_air,
+    2: sigma_air,
+    3: sigma_copper,
+    4: sigma_air
+}
+
+nu_values = {
+    1: nu_value,
+    2: nu_value,
+    3: nu_value,
+    4: nu_value
+}
+
+interpolate_by_tags(sigma, sigma_values, domain_tags)
+interpolate_by_tags(nu, nu_values, domain_tags)
+
+t = variable(fem.Constant(domain, d_t))
+dt = fem.Constant(domain, d_t)
+
+nedelec_elem = element("N1curl", domain.basix_cell(), degree)
+V = functionspace(domain, nedelec_elem)
+
+lagrange_elem = element("Lagrange", domain.basix_cell(), degree)
+V1 = functionspace(domain, lagrange_elem)
+
+
+
+facets = locate_entities_boundary(
+    domain, dim=(domain.topology.dim - 1), marker=boundary_marker_copper
+)
+
+copper_tag = 3
+
+bdofs0 = locate_dofs_topological(V=V, entity_dim=fdim, entities=facets)
+u_bc_V = Function(V)
+u_bc_V.x.array[:] = 0.0
+bc_ex = dirichletbc(u_bc_V, bdofs0)
+
+bdofs1 = locate_dofs_topological(V=V1, entity_dim=fdim, entities=facets)
+u_bc_V1 = Function(V1)
+u_bc_V1.x.array[:] = 0.0
+bc_ex1 = dirichletbc(u_bc_V1, bdofs1)
+
+# upper_facets = ft.find(10)
+# bdofs2 = fem.locate_dofs_topological(V1, entity_dim=fdim, entities=upper_facets)
+# high_func = Function(V1)
+# high_func.x.array[:] = 10.0
+# bc_ex2 = dirichletbc(high_func, bdofs2)
+
+lower_facets = ft.find(9)
+bdofs3 = fem.locate_dofs_topological(V1, entity_dim=fdim, entities=lower_facets)
+low_func = Function(V1)
+low_func.x.array[:] = 0.0
+bc_ex3 = dirichletbc(low_func, bdofs3)
+
+bc = [bc_ex, bc_ex1, bc_ex3]
+
+
+#%%
+
+u_n = fem.Function(V)
+u_n1 = fem.Function(V1)
+
+u = ufl.TrialFunction(V)
+v = ufl.TestFunction(V)
+u1 = ufl.TrialFunction(V1)
+v1 = ufl.TestFunction(V1)
+
+
+dx = Measure("dx", domain=domain, subdomain_data=domain_tags)
+n = ufl.FacetNormal(domain)
+ds = Measure("ds", domain=domain, subdomain_data=ft)
+
+
+Q = fem.functionspace(domain, ("DG", 0))
+J = fem.Function(Q)
+J.x.array[:] = 0.0
+
+cells_inner = domain_tags.find(copper_tag)
+J.x.array[cells_inner] = 1.0
+
+a00 = dt * ufl.inner(nu * curl(u), curl(v)) * dx + sigma * ufl.inner(u, v) * dx
+
+a01 = dt * ufl.inner(sigma * grad(u1), v) * dx
+a10 = ufl.inner(sigma * grad(v1), u) * dx
+
+a11 = dt * ufl.inner(sigma * ufl.grad(u1), ufl.grad(v1)) * dx
+
+L0 = dt * J * v[2] * dx + ufl.inner(sigma * u_n, v) * dx
+L1 = ufl.inner(grad(v1), sigma * u_n) * dx
+
+
+
+
+a = form([[a00, a01], [a10, a11]])
+
+comm = MPI.COMM_WORLD
+print("about to assemble")
+par_print(comm, "Assembling system matrix...")
+
+A_mat = assemble_matrix(a, bcs=bc)
+A_mat.assemble()
+
+L = form([L0, L1])
+
+b = assemble_vector(L, kind=PETSc.Vec.Type.MPI)
+bcs1 = bcs_by_block(extract_function_spaces(a, 1), bc)
+apply_lifting(b, a, bcs=bcs1)
+b.ghostUpdate(addv=PETSc.InsertMode.ADD, mode=PETSc.ScatterMode.REVERSE)
+bcs0 = bcs_by_block(extract_function_spaces(L), bc)
+set_bc(b, bcs0)
+
+
+a_p = form([[a00, None], [None, a11]])
+
+P = assemble_matrix(a_p, bcs=bc)
+P.assemble()
+
+# Create functions to split A, S
+
+offset = V.dofmap.index_map.size_local * V.dofmap.index_map_bs
+
+u_map = V.dofmap.index_map
+u1_map = V1.dofmap.index_map
+
+offset_u = u_map.local_range[0] * V.dofmap.index_map_bs + u1_map.local_range[0]
+offset_u1 = offset_u + u_map.size_local * V.dofmap.index_map_bs
+
+is_u = PETSc.IS().createStride(
+    u_map.size_local * V.dofmap.index_map_bs, offset_u, 1, comm=PETSc.COMM_SELF
+)
+is_u1 = PETSc.IS().createStride(u1_map.size_local, offset_u1, 1, comm=PETSc.COMM_SELF)
+
+
+ksp = PETSc.KSP().create(domain.comm)
+ksp.setOperators(A_mat, P)
+ksp.setType("gmres")
+ksp.setTolerances(rtol=1e-6, atol=1e-6, max_it=300)
+ksp.setNormType(PETSc.KSP.NormType.PRECONDITIONED)
+# ksp.setNormType(2)
+
+ksp.getPC().setType("fieldsplit")
+ksp.getPC().setFieldSplitType(PETSc.PC.CompositeType.ADDITIVE)
+ksp.getPC().setFieldSplitIS(("u", is_u), ("p", is_u1))
+
+ksp_u, ksp_u1 = ksp.getPC().getFieldSplitSubKSP()
+
+ksp_u.setType("preonly")
+ksp_u.getPC().setType("hypre")
+ksp_u.getPC().setHYPREType("ams")
+
+W = fem.functionspace(domain, ("Lagrange", degree))
+G = discrete_gradient(W._cpp_object, V._cpp_object)
+G.assemble()
+ksp_u.getPC().setHYPREDiscreteGradient(G)
+
+if degree == 1:
+    cvec_0 = Function(V)
+    cvec_0.interpolate(
+        lambda x: np.vstack(
+            (np.ones_like(x[0]), np.zeros_like(x[0]), np.zeros_like(x[0]))
+        )
+    )
+    cvec_1 = Function(V)
+    cvec_1.interpolate(
+        lambda x: np.vstack(
+            (np.zeros_like(x[0]), np.ones_like(x[0]), np.zeros_like(x[0]))
+        )
+    )
+    cvec_2 = Function(V)
+    cvec_2.interpolate(
+        lambda x: np.vstack(
+            (np.zeros_like(x[0]), np.zeros_like(x[0]), np.ones_like(x[0]))
+        )
+    )
+    ksp_u.getPC().setHYPRESetEdgeConstantVectors(
+        cvec_0.x.petsc_vec, cvec_1.x.petsc_vec, cvec_2.x.petsc_vec
+    )
+
+else:
+    shape = (domain.geometry.dim,)
+    Q = fem.functionspace(domain, ("Lagrange", degree, shape))
+    Pi = interpolation_matrix(Q._cpp_object, V._cpp_object)
+    Pi.assemble()
+    ksp_u.getPC().setHYPRESetInterpolations(dim=domain.geometry.dim, ND_Pi_Full=Pi)
+
+
+opts = PETSc.Options()
+opts[f"{ksp_u.prefix}pc_hypre_ams_cycle_type"] = 13
+opts[f"{ksp_u.prefix}pc_hypre_ams_tol"] = 0
+opts[f"{ksp_u.prefix}pc_hypre_ams_max_iter"] = 1
+opts[f"{ksp_u.prefix}pc_hypre_ams_amg_beta_theta"] = 0.25
+opts[f"{ksp_u.prefix}pc_hypre_ams_print_level"] = 1
+opts[f"{ksp_u.prefix}pc_hypre_ams_amg_alpha_options"] = "10,1,6,6,4"
+opts[f"{ksp_u.prefix}pc_hypre_ams_amg_beta_options"] = "10,1,6,6,4"
+opts[f"{ksp_u.prefix}pc_hypre_ams_relax_type"] = 2
+opts[f"{ksp_u.prefix}pc_hypre_ams_relax_weight"] = 1.0
+opts[f"{ksp_u.prefix}pc_hypre_ams_relax_times"] = 1
+opts[f"{ksp_u.prefix}pc_hypre_ams_omega"] = 1.0
+
+ksp_u.setFromOptions()
+
+ksp_u1.setType("preonly")
+ksp_u1.getPC().setType("gamg")
+
+ksp_u1.setFromOptions()
+
+ksp.setUp()
+ksp_u.getPC().setUp()
+ksp_u1.getPC().setUp()
+
+offset = V.dofmap.index_map.size_local * V.dofmap.index_map_bs
+
+ksp.setMonitor(my_monitor)
+
+sol = A_mat.createVecRight()
+
+print("about to solve")
+ksp.solve(b, sol)
+
+res = ksp.getResidualNorm()
+
+u_n.x.array[:] = sol.array[:offset]
+u_n1.x.array[:] = sol.array[offset:]
+
+u_n.x.scatter_forward()
+u_n1.x.scatter_forward()
+
+
+vector_vis = fem.functionspace(
+    domain, ("Discontinuous Lagrange", degree + 1, (domain.geometry.dim,))
+)
+
+A_vis = Function(vector_vis)
+A_file = VTXWriter(domain.comm, "A_field.bp", A_vis, "BP4")
+A_vis.interpolate(u_n)
+A_file.write(t)
+
+B = curl(u_n)
+B_vis = Function(vector_vis)
+B_file = VTXWriter(domain.comm, "B_field.bp", B_vis, "BP4")
+Bexpr = fem.Expression(B, vector_vis.element.interpolation_points)
+B_vis.interpolate(Bexpr)
+B_file.write(t)
+
+u_n_prev = u_n.copy()
+
+da_dt = (u_n - u_n_prev) / dt
+E = -da_dt - grad(u_n1)
+E_vis = Function(vector_vis)
+Eexpr = fem.Expression(E, vector_vis.element.interpolation_points)
+E_vis.interpolate(Eexpr)
+E_file = VTXWriter(domain.comm, "E_field.bp", E_vis, "BP4")
+E_file.write(t)
+
+J_ind = sigma * E
+J_vis = Function(vector_vis)
+Jexpr = fem.Expression(J_ind, vector_vis.element.interpolation_points)
+J_vis.interpolate(Jexpr)
+J_file = VTXWriter(domain.comm, "J_field.bp", J_vis, "BP4")
+J_file.write(t)
+
+u_n1_file = VTXWriter(domain.comm, "u_n1_field.bp", u_n1, "BP4")
+u_n1_file.write(t)
+
+for n in range(num_steps):
+    t.expression().value += d_t
+
+    u_n_prev = u_n.copy()
+
+    reason = ksp.getConvergedReason()
+    print("Converged reason:", reason)
+
+
+    b = assemble_vector(L, kind=PETSc.Vec.Type.MPI)
+    bcs1 = bcs_by_block(extract_function_spaces(a, 1), bc)
+    apply_lifting(b, a, bcs=bcs1)
+    b.ghostUpdate(addv=PETSc.InsertMode.ADD, mode=PETSc.ScatterMode.REVERSE)
+    bcs0 = bcs_by_block(extract_function_spaces(L), bc)
+    set_bc(b, bcs0)
+
+    sol = A_mat.createVecRight()
+    ksp.solve(b, sol)
+
+    u_n.x.array[:] = sol.array[:offset]
+    u_n1.x.array[:] = sol.array[offset:]
+
+    u_n.x.scatter_forward()
+    u_n1.x.scatter_forward()
+
+    A_file.write(t)
+
+    B = curl(u_n)
+    B_vis.interpolate(Bexpr)
+    B_file.write(t)
+
+    da_dt = (u_n - u_n_prev) / dt
+    E = -grad(u_n1) - da_dt
+    E_vis.interpolate(Eexpr)
+    E_file.write(t)
+
+    J_ind = sigma * E
+    J_vis.interpolate(Jexpr)
+    J_file.write(t)
+
+    u_n1_file.write(t)
+
+    iteration_count = ksp.getIterationNumber()
+    print(iteration_count)
