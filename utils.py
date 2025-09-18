@@ -1,17 +1,21 @@
 import sys
+
 import numpy as np
+import ufl
+from dolfinx import mesh
+from dolfinx.cpp.refinement import RefinementOption
 from dolfinx.fem import (
-    assemble_scalar,
-    form,
     Expression,
     Function,
+    assemble_scalar,
+    form,
     functionspace,
 )
+from dolfinx.io import XDMFFile
+from dolfinx.mesh import GhostMode, refine, transfer_meshtag
 from mpi4py import MPI
 from ufl import dx, inner
 from ufl.core.expr import Expr
-import ufl
-from dolfinx import mesh
 
 
 def par_print(comm, string):
@@ -147,3 +151,65 @@ def create_mesh_fenics(comm, n, boundaries):
 
     # print("number of cells is", msh.topology.index_map(tdim).size_local)
     return msh, ft, ct
+
+def refine_mesh(domain, ft, ct, refinement_level):
+    for i in range(refinement_level):
+        domain.topology.create_entities(1)
+
+        fine_mesh, parent_cell, parent_facet = refine(domain, option=RefinementOption.parent_cell_and_facet)
+
+        tdim = fine_mesh.topology.dim - 1
+        fine_mesh.topology.create_connectivity(fine_mesh.topology.dim, tdim)
+
+        ft_ref = transfer_meshtag(ft, fine_mesh, parent_cell, parent_facet)
+        ct_ref = transfer_meshtag(ct, fine_mesh, parent_cell, parent_facet)
+
+        domain, ft, ct = fine_mesh, ft_ref, ct_ref
+
+    domain.topology.create_connectivity(tdim - 1, tdim)
+
+    tdim = domain.topology.dim
+    fdim = tdim - 1
+    domain.topology.create_connectivity(fdim, tdim)
+
+    ct.name = "ct"
+    ft.name = "ft"
+
+    with XDMFFile(domain.comm, "copper_rod_refined.xdmf", "w") as xdmf:
+        xdmf.write_mesh(domain)
+        xdmf.write_meshtags(ct, domain.geometry)
+        xdmf.write_meshtags(ft, domain.geometry)
+
+    return domain, ct, ft
+
+
+def my_monitor(ksp, its, rnorm):
+    print(f"Iter {its}, residual = {rnorm}")
+
+
+def interpolate_by_tags(function, value_dict, domain_tags):
+    for tag, value in value_dict.items():
+        function.interpolate(lambda x: np.full_like(x[0], value), domain_tags.find(tag))
+    function.x.scatter_forward()
+
+
+def boundary_marker_copper(x):
+    tol = 1e-6
+    markers = np.zeros(x.shape[1], dtype=np.int32)
+
+    # X-normal boundaries
+    x_bdy = np.logical_or(np.isclose(x[0], 0.0, atol=tol),
+                          np.isclose(x[0], 1000.0, atol=tol))
+    markers[x_bdy] = 1
+
+    # Y-normal boundaries
+    y_bdy = np.logical_or(np.isclose(x[1], 0.0, atol=tol),
+                          np.isclose(x[1], 1000.0, atol=tol))
+    markers[y_bdy] = 2
+
+    # Z-normal boundaries (note: interval [425, 575])
+    z_bdy = np.logical_or(x[2] <= 425.0 + tol,
+                          x[2] >= 575.0 - tol)
+    markers[z_bdy] = 3
+
+    return markers
