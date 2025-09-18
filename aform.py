@@ -1,3 +1,4 @@
+#%%
 import numpy as np
 from basix.ufl import element
 from dolfinx import fem
@@ -24,67 +25,55 @@ from ufl import (
     inner,
     variable,
 )
+from dolfinx import default_scalar_type
 
-from utils import L2_norm, par_print
+from utils import L2_norm, par_print, interpolate_by_tags
 
-with XDMFFile(MPI.COMM_WORLD, "copper_rod2.xdmf", "r") as xdmf:
-    domain = xdmf.read_mesh(ghost_mode=GhostMode.none)
-    ct = xdmf.read_meshtags(domain, name="ct")
+with XDMFFile(MPI.COMM_WORLD, "em_model2_refined.xdmf", "r") as xdmf:
+    domain = xdmf.read_mesh(name="domains",ghost_mode=GhostMode.none)
+    domain_tags = xdmf.read_meshtags(domain, "domains")
     tdim = domain.topology.dim
-    domain.topology.create_connectivity(tdim - 1, 0)
-    ft = xdmf.read_meshtags(domain, name="ft")
-    material_tags = np.unique(ct.values)
+    domain.topology.create_connectivity(tdim - 1, tdim)
+    domain.topology.create_connectivity(1, tdim)
+    ft = xdmf.read_meshtags(domain, "facets")
     fdim = tdim - 1
     domain.topology.create_connectivity(fdim, tdim)
 
+const = fem.functionspace(domain, ("DG", 0)) #Piecewise constant function space
 
-alpha_inner = 1e-8
-beta_inner = 5.96e4
-copper_tag = 1
+sigma = fem.Function(const)
+nu = fem.Function(const)
 
-alpha_outer = 1e-8
-beta_outer = 0.0
-outerboxtag = 2
 
-const = fem.functionspace(domain, ("DG", 0))  # Piecewise constant function space
+sigma_air = fem.Constant(domain, default_scalar_type(1e-7))
+sigma_copper = fem.Constant(domain, default_scalar_type(5.96e4))
+nu_value = fem.Constant(domain, default_scalar_type(1e6))
 
-alpha = fem.Function(const)
-alpha.interpolate(
-    lambda x: np.full_like(x[0], alpha_inner), ct.find(copper_tag)
-)  # Ct find which mesh tag you want
-alpha.interpolate(lambda x: np.full_like(x[0], alpha_outer), ct.find(outerboxtag))
+sigma_values = {
+    1: sigma_air,
+    2: sigma_air,
+    3: sigma_copper,
+    4: sigma_air
+}
 
-beta = fem.Function(const)
-beta.interpolate(lambda x: np.full_like(x[0], beta_inner), ct.find(copper_tag))
-beta.interpolate(lambda x: np.full_like(x[0], beta_outer), ct.find(outerboxtag))
+nu_values = {
+    1: nu_value,
+    2: nu_value,
+    3: nu_value,
+    4: nu_value
+}
 
+interpolate_by_tags(sigma, sigma_values, domain_tags)
+interpolate_by_tags(nu, nu_values, domain_tags)
 
 comm = MPI.COMM_WORLD
 degree = 1
 
 V_CG = fem.functionspace(domain, ("CG", degree))
 
-interior_nodes_array = fem.Function(V_CG)
-
-interior_nodes_array.x.array[:] = 1.0
-interior_nodes_array.x.scatter_forward()
-
-dofmap = V_CG.dofmap
-num_dofs_per_cell = dofmap.dof_layout.num_dofs
-cell_dofs = dofmap.list.reshape(-1, num_dofs_per_cell)
-
-tagged_cells = ct.find(copper_tag)
-
-tagged_cell_dofs = cell_dofs[tagged_cells].flatten()
-unique_dofs = np.unique(tagged_cell_dofs)
-
-interior_nodes_array.x.array[unique_dofs] = 0.0
-interior_nodes_array.x.scatter_forward()
-
-
 ti = 0.0  # Start time
 T = 0.1  # End time
-num_steps = 100  # Number of time steps
+num_steps = 5  # Number of time steps
 d_t = (T - ti) / num_steps  # Time step size
 
 t = variable(fem.Constant(domain, ti))
@@ -99,30 +88,59 @@ a_n = fem.Function(A_space)
 
 a_n_prev = a_n.copy()
 
-f = as_vector((0.0, 0.0, 1.0))
-
-
 A = TrialFunction(A_space)
 v = TestFunction(A_space)
 
-dx = Measure("dx", domain, subdomain_data=ct)
+dx = Measure("dx", domain, subdomain_data=domain_tags)
 
-lhs = dt * inner(alpha * curl(A), curl(v)) * dx + inner(beta * A, v) * dx
-rhs = dt * inner(f, v) * dx(copper_tag) + inner(beta * a_n, v) * dx
+conductive_tag = 3
+non_conductive_tags = (1, 2, 4)
 
+interior_nodes_array = fem.Function(V_CG)
+
+interior_nodes_array.x.array[:] = 1.0
+interior_nodes_array.x.scatter_forward()
+
+dofmap = V_CG.dofmap
+num_dofs_per_cell = dofmap.dof_layout.num_dofs
+cell_dofs = dofmap.list.reshape(-1, num_dofs_per_cell)
+
+tagged_cells = domain_tags.find(conductive_tag)
+
+tagged_cell_dofs = cell_dofs[tagged_cells].flatten()
+unique_dofs = np.unique(tagged_cell_dofs)
+
+interior_nodes_array.x.array[unique_dofs] = 0.0
+interior_nodes_array.x.scatter_forward()
+
+Q = fem.functionspace(domain, ("DG", 0))
+J = fem.Function(Q)
+J.x.array[:] = 0.0
+
+cells_inner = domain_tags.find(conductive_tag)
+J.x.array[cells_inner] = 1.0
+
+f = as_vector((0.0, 0.0, 1.0))
+
+lhs = dt * inner(nu * curl(A), curl(v)) * dx + inner(sigma * A, v) * dx
+rhs = dt * inner(f, v) * dx(conductive_tag) + inner(sigma * a_n, v) * dx
+# rhs = dt * J * v[2] * dx + inner(sigma * a_n, v) * dx
 
 a = form(lhs)
 L = form(rhs)
 
 # Boundary conditions
 
-boundary_facets = ft.find(4)
+boundary_tags_V = (1, 3, 5, 8, 9, 10, 12, 13, 14, 15, 16, 18)
+boundary_facets_V = np.concatenate([ft.find(tag) for tag in boundary_tags_V])
 
-dofs = locate_dofs_topological(V=A_space, entity_dim=fdim, entities=boundary_facets)
+dofs = locate_dofs_topological(V=A_space, entity_dim=fdim, entities=boundary_facets_V)
 u_bc = Function(A_space)
 u_bc.x.array[:] = 0
 bc = dirichletbc(u_bc, dofs)
 
+
+print("Before assemble")
 # Solver steps
 A_mat = assemble_matrix(a, bcs=[bc])
 A_mat.assemble()
@@ -135,18 +153,7 @@ petsc.set_bc(b, [bc])
 
 uh = fem.Function(A_space)
 
-
-# %%
-
-
-# ksp = PETSc.KSP().create(domain.comm)
-# ksp.setOperators(A_mat)
-# ksp.setType("preonly")
-
-# pc = ksp.getPC()
-# pc.setType("lu")
-# pc.setFactorSolverType("mumps")
-
+num_cells = domain.topology.index_map(domain.topology.dim).size_local
 
 ams_opts = {
     "ksp_atol": 1e-10,
@@ -187,7 +194,7 @@ G = discrete_gradient(V_CG._cpp_object, A_space._cpp_object)
 G.assemble()
 pc.setHYPREDiscreteGradient(G)
 
-pc.setHYPREAMSSetInteriorNodes(interior_nodes_array.x.petsc_vec)
+# pc.setHYPREAMSSetInteriorNodes(interior_nodes_array.x.petsc_vec)
 
 if degree == 1:
     cvec_0 = Function(A_space)
@@ -237,7 +244,7 @@ vector_vis = fem.functionspace(
 )
 
 A_vis = Function(vector_vis)
-A_file = VTXWriter(domain.comm, "A.bp", A_vis, "BP4")
+A_file = VTXWriter(domain.comm, "A_field.bp", A_vis, "BP4")
 A_vis.interpolate(a_n)
 A_file.write(t)
 
@@ -248,7 +255,7 @@ Bexpr = fem.Expression(B, vector_vis.element.interpolation_points)
 B_vis.interpolate(Bexpr)
 B_file.write(t)
 
-da_dt = (a_n - a_n_prev)/ dt
+da_dt = (a_n - a_n_prev) / dt
 E = -da_dt
 E_vis = Function(vector_vis)
 Eexpr = fem.Expression(E, vector_vis.element.interpolation_points)
@@ -256,30 +263,12 @@ E_vis.interpolate(Eexpr)
 E_file = VTXWriter(domain.comm, "E_field.bp", E_vis, "BP4")
 E_file.write(t)
 
-target_tags = copper_tag
-cell_mask = np.isin(ct.values, target_tags)
-inner_cells = ct.indices[cell_mask]
-inner_submesh, parent_cells, _, _ = create_submesh(domain, tdim, inner_cells)
-
-# Create submesh function space
-DG_submesh_vis = fem.functionspace(
-    inner_submesh, ("Discontinuous Lagrange", degree + 1, (inner_submesh.geometry.dim,))
-)
-
-B_vis_submesh = fem.Function(DG_submesh_vis)
-
-submesh_cell_indices = np.arange(
-    inner_submesh.topology.index_map(inner_submesh.topology.dim).size_local,
-    dtype=np.int32,
-)
-parent_cell_indices = parent_cells.sub_topology_to_topology(submesh_cell_indices, False)
-
-B_vis_submesh.interpolate(
-    B_vis, cells0=parent_cell_indices, cells1=submesh_cell_indices
-)
-
-B_file_submesh = VTXWriter(domain.comm, "Rod_B.bp", B_vis_submesh, "BP4")
-B_file_submesh.write(t)
+J_ind = sigma * E
+J_vis = Function(vector_vis)
+Jexpr = fem.Expression(J_ind, vector_vis.element.interpolation_points)
+J_vis.interpolate(Jexpr)
+J_file = VTXWriter(domain.comm, "J_field.bp", J_vis, "BP4")
+J_file.write(t)
 
 
 for n in range(num_steps):
@@ -312,11 +301,10 @@ for n in range(num_steps):
     E_vis.interpolate(Eexpr)
     E_file.write(t)
 
-    B_vis_submesh.interpolate(
-        B_vis, cells0=parent_cell_indices, cells1=submesh_cell_indices
-    )
-    B_file.write(t)
+    J_vis.interpolate(Jexpr)
+    J_file.write(t)
 
     par_print(comm, f"L2 norm of B: {L2_norm(B_vis)}")
     par_print(comm, f"L2 norm of E: {L2_norm(E_vis)}")
-    par_print(comm, f"L2 norm of B (submesh): {L2_norm(B_vis_submesh)}")
+    par_print(comm, f"L2 norm of J: {L2_norm(J_vis)}")
+
