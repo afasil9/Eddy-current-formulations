@@ -1,25 +1,28 @@
+#%%
 import gmsh
 from dolfinx.io import XDMFFile, gmshio
 from mpi4py import MPI
 
 comm = MPI.COMM_WORLD
 start = 0.1
-div = 2  # Number of divisions
+div = 8  # Number of divisions
 h = start / div
 
 # *** Outer Cube Parameters ***
-cube_size = 2.0
+cube_size = 1.0
 height = cube_size
 lc = 1.0
 
+boundary_tags ={"cube_boundary": 1, "upper_surface": 2, "side_surface": 3, "bottom_surface": 4}
+
 # *** Inner Cylinder Parameters ***
 cyl_center_x, cyl_center_y = cube_size / 2, cube_size / 2
-cyl_radius = 0.05  # Cylinder radius
-cyl_height = 0.2  # Full height
+cyl_radius = 0.1  # Cylinder radius
+cyl_height = 1.0  # Full height
 cyl_base_z = (cube_size - cyl_height) / 2
 
 gmsh.initialize()
-gmsh.option.setNumber("General.Terminal", 0)  # Suppress output
+# gmsh.option.setNumber("General.Terminal", 0)  # Suppress output
 
 # --- Outer Cube ---
 p1 = gmsh.model.occ.addPoint(0, 0, 0, lc)
@@ -35,7 +38,6 @@ cl = gmsh.model.occ.addCurveLoop(
         gmsh.model.occ.addLine(p4, p1),
     ]
 )
-
 
 surface = gmsh.model.occ.addPlaneSurface([cl])
 extrude_result = gmsh.model.occ.extrude([(2, surface)], 0, 0, height)
@@ -57,20 +59,56 @@ gmsh.model.addPhysicalGroup(3, [model_dim_tags[0][0][1]], tag=1)  # Cylinder
 gmsh.model.addPhysicalGroup(3, [model_dim_tags[0][1][1]], tag=2)  # Remaining cube
 
 # --- Boundary tags (top 2D surfaces) ---
-boundary = gmsh.model.getBoundary([model_dim_tags[0][1]], oriented=False)
-boundary_ids = [b[1] for b in boundary]
-gmsh.model.occ.synchronize()
-# The first 6 faces are typically the inner (cylinder), next 6 are the cube. Adjust if needed!
-gmsh.model.addPhysicalGroup(2, boundary_ids[:1], tag=1)  # Lower face of cylinder
-gmsh.model.addPhysicalGroup(2, boundary_ids[1:2], tag=2)  # Side face of cylinder
-gmsh.model.addPhysicalGroup(2, boundary_ids[2:3], tag=3)  # Upper face of cylinder
-gmsh.model.addPhysicalGroup(2, boundary_ids[3:], tag=4)  # Cube boundaries
+boundary_cube = gmsh.model.getBoundary([model_dim_tags[0][1]], oriented=False)
+boundary_ids_cube = [b[1] for b in boundary_cube]
 
+boundary_cylinder = gmsh.model.getBoundary([model_dim_tags[0][0]], oriented=False)
+boundary_ids_cylinder = [b[1] for b in boundary_cylinder]
+
+gmsh.model.occ.synchronize()
+
+cyl_surfs = [s for s in gmsh.model.getBoundary([(3, inner_volume[1])], oriented=False, combined=False) if s[0] == 2]
+cyl_surface_tags = [s[1] for s in cyl_surfs]
+
+distance = gmsh.model.mesh.field.add("Distance")
+gmsh.model.mesh.field.setNumbers(distance, "FacesList", cyl_surface_tags)
+
+r = cyl_radius
+LcMin = r/8          # very fine near the rod
+LcMax = h*8          # coarser far away (or use cube_size/10)
+DistMin = 1.0*r      # Increase this if you want to have fine mesh further away
+DistMax = 8.0*r      # Increase this if you want decrease the change of mesh size as you go away from rod
+
+threshold = gmsh.model.mesh.field.add("Threshold")
+gmsh.model.mesh.field.setNumber(threshold, "IField", distance)
+gmsh.model.mesh.field.setNumber(threshold, "LcMin", LcMin)
+gmsh.model.mesh.field.setNumber(threshold, "LcMax", LcMax)
+gmsh.model.mesh.field.setNumber(threshold, "DistMin", DistMin)
+gmsh.model.mesh.field.setNumber(threshold, "DistMax", DistMax)
+
+minf = gmsh.model.mesh.field.add("Min")
+gmsh.model.mesh.field.setNumbers(minf, "FieldsList", [threshold])
+gmsh.model.mesh.field.setAsBackgroundMesh(minf)
+
+gmsh.option.setNumber("Mesh.CharacteristicLengthFromCurvature", 0)
+gmsh.option.setNumber("Mesh.CharacteristicLengthFromPoints", 0)
+
+
+#%%
+
+gmsh.model.addPhysicalGroup(2, boundary_ids_cube[1:], tag=boundary_tags["cube_boundary"]) # Cube boundaries
+
+# Find intersection
+common = list(set(boundary_ids_cube) & set(boundary_ids_cylinder))
+
+gmsh.model.addPhysicalGroup(2, common, tag=boundary_tags["side_surface"])  # Side face of cylinder
+gmsh.model.addPhysicalGroup(2, [boundary_ids_cylinder[0]], tag=boundary_tags["upper_surface"])  # Upper face of cylinder
+gmsh.model.addPhysicalGroup(2, [boundary_ids_cylinder[2]], tag=boundary_tags["bottom_surface"])  # Cube boundaries
 
 # --- Mesh settings and generation ---
 gmsh.model.mesh.setSize(gmsh.model.getEntities(0), h)
 gmsh.model.mesh.generate(3)
-gmsh.model.mesh.optimize("Netgen")
+# gmsh.model.mesh.optimize("Netgen")
 
 model_rank = 0
 mesh_comm = comm
@@ -81,7 +119,7 @@ ft = mesh_data[2]
 ct.name = "ct"
 ft.name = "ft"
 
-with XDMFFile(mesh.comm, "copper_rod2.xdmf", "w") as xdmf:
+with XDMFFile(mesh.comm, "copper_rod.xdmf", "w") as xdmf:
     xdmf.write_mesh(mesh)
     xdmf.write_meshtags(ct, mesh.geometry)
     xdmf.write_meshtags(ft, mesh.geometry)
