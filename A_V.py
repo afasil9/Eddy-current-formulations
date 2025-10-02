@@ -38,35 +38,32 @@ with XDMFFile(MPI.COMM_WORLD, "copper_rod.xdmf", "r") as xdmf:
     ft = xdmf.read_meshtags(domain, name="ft")
     material_tags = np.unique(ct.values)
     fdim = tdim - 1
-    domain.topology.create_connectivity(fdim, tdim) 
+    domain.topology.create_connectivity(fdim, tdim)
 
 boundary_tags = {
     "cube_boundary": 1,
     "upper_surface": 2,
     "side_surface": 3,
-    "bottom_surface": 4
+    "bottom_surface": 4,
 }
 
-vol_ids = {
-    "copper": 1,
-    "air": 2 
-    }
+vol_ids = {"copper": 1, "air": 2}
 
 
 ti = 0  # Start time
 T = 0.1  # End time
-num_steps = 50  # Number of time steps
+num_steps = 100  # Number of time steps
 d_t = (T - ti) / num_steps  # Time step size
 
 t = variable(fem.Constant(domain, d_t))
 dt = fem.Constant(domain, d_t)
 
-const = fem.functionspace(domain, ("DG", 0)) #Piecewise constant function space
+const = fem.functionspace(domain, ("DG", 0))  # Piecewise constant function space
 
 sigma = fem.Function(const)
 nu = fem.Function(const)
 
-sigma_air = fem.Constant(domain, default_scalar_type(1e-3))
+sigma_air = fem.Constant(domain, default_scalar_type(1e-5))
 sigma_copper = fem.Constant(domain, default_scalar_type(5.96e4))
 nu_value = fem.Constant(domain, default_scalar_type(1e6))
 
@@ -75,10 +72,7 @@ sigma_values = {
     vol_ids["copper"]: sigma_copper,
 }
 
-nu_values = {
-    vol_ids["air"]: nu_value,
-    vol_ids["copper"]: nu_value
-}
+nu_values = {vol_ids["air"]: nu_value, vol_ids["copper"]: nu_value}
 
 interpolate_by_tags(sigma, sigma_values, ct)
 interpolate_by_tags(nu, nu_values, ct)
@@ -112,10 +106,14 @@ interior_nodes_array.x.scatter_forward()
 gdim = domain.geometry.dim
 facet_dim = gdim - 1
 
+frequency = 10.0
+omega = 2.0 * np.pi * frequency
+V_in = 10.0
+
 
 outer_boundary_facets = ft.find(boundary_tags["cube_boundary"])
 
-boundary_tags_total = (1,2,3,4)
+boundary_tags_total = (1, 2, 3, 4)
 boundary_facets_V = np.concatenate([ft.find(tag) for tag in boundary_tags_total])
 
 
@@ -124,7 +122,9 @@ u_bc_V = fem.Function(V)
 u_bc_V.x.array[:] = 0
 bc_ex = fem.dirichletbc(u_bc_V, bdofs0)
 
-bdofs1 = fem.locate_dofs_topological(V1, entity_dim=facet_dim, entities=outer_boundary_facets)
+bdofs1 = fem.locate_dofs_topological(
+    V1, entity_dim=facet_dim, entities=outer_boundary_facets
+)
 u_bc_V1 = fem.Function(V1)
 u_bc_V1.x.array[:] = 0.0
 bc_ex1 = fem.dirichletbc(u_bc_V1, bdofs1)
@@ -132,7 +132,11 @@ bc_ex1 = fem.dirichletbc(u_bc_V1, bdofs1)
 upper_facets = ft.find(boundary_tags["upper_surface"])
 bdofs2 = fem.locate_dofs_topological(V1, entity_dim=facet_dim, entities=upper_facets)
 high_func = fem.Function(V1)
-high_func.x.array[:] = 10.0
+
+high_expr = fem.Expression(V_in * ufl.sin(omega * t), V1.element.interpolation_points)
+high_func.interpolate(high_expr)
+
+# high_func.x.array[:] = 10.0
 bc_ex2 = fem.dirichletbc(high_func, bdofs2)
 
 lower_facets = ft.find(boundary_tags["bottom_surface"])
@@ -141,7 +145,7 @@ low_func = fem.Function(V1)
 low_func.x.array[:] = 0.0
 bc_ex3 = fem.dirichletbc(low_func, bdofs3)
 
-bc = [bc_ex, bc_ex1,bc_ex2, bc_ex3]
+bc = [bc_ex, bc_ex1, bc_ex2, bc_ex3]
 
 u_n = fem.Function(V)
 u_n1 = fem.Function(V1)
@@ -199,10 +203,10 @@ offset_u = u_map.local_range[0] * V.dofmap.index_map_bs + u1_map.local_range[0]
 offset_u1 = offset_u + u_map.size_local * V.dofmap.index_map_bs
 
 is_u = PETSc.IS().createStride(
-    u_map.size_local * V.dofmap.index_map_bs, offset_u, 1, comm=PETSc.COMM_SELF
+    u_map.size_local * V.dofmap.index_map_bs, offset_u, 1, comm=domain.comm
 )
-is_u1 = PETSc.IS().createStride(u1_map.size_local, offset_u1, 1, comm=PETSc.COMM_SELF)
 
+is_u1 = PETSc.IS().createStride(u1_map.size_local, offset_u1, 1, comm=domain.comm)
 
 ksp = PETSc.KSP().create(domain.comm)
 ksp.setOperators(A_mat, P)
@@ -292,31 +296,36 @@ ksp_u1.getPC().setUp()
 # pc.setFactorSolverType("mumps")
 
 
-offset = V.dofmap.index_map.size_local * V.dofmap.index_map_bs
+# ksp.setMonitor(my_monitor)
 
-ksp.setMonitor(my_monitor)
+u_n_prev = u_n.copy()
 
 sol = A_mat.createVecRight()
 
-print("about to solve")
+par_print(comm, "about to solve")
 ksp.solve(b, sol)
 
-reason = ksp.getConvergedReason()
-print("Converged reason:", reason)
+uh, uh1 = Function(V), Function(V1)
+offset = V.dofmap.index_map.size_local * V.dofmap.index_map_bs
 
-res = ksp.getResidualNorm()
-print("Final residual:", res)
+uh.x.array[:offset] = sol.array_r[:offset]
+uh1.x.array[: (len(sol.array_r) - offset)] = sol.array_r[offset:]
 
-u_n.x.array[:] = sol.array[:offset]
-u_n1.x.array[:] = sol.array[offset:]
+uh.x.scatter_forward()
+uh1.x.scatter_forward()
+
+u_n.x.array[:] = uh.x.array
+u_n1.x.array[:] = uh1.x.array
 
 u_n.x.scatter_forward()
 u_n1.x.scatter_forward()
 
 
-vector_vis = fem.functionspace(
-    domain, ("Discontinuous Lagrange", degree + 1, (domain.geometry.dim,))
-)
+reason = ksp.getConvergedReason()
+par_print(comm, f"Converged reason: {reason}")
+
+res = ksp.getResidualNorm()
+par_print(comm, f"Final residual: {res}")
 
 
 vector_vis = fem.functionspace(
@@ -336,7 +345,8 @@ B_vis.interpolate(Bexpr)
 B_file.write(t.expression().value)
 
 
-E = - grad(u_n1)
+da_dt = (u_n - u_n_prev) / dt
+E = -grad(u_n1) - da_dt
 E_vis = Function(vector_vis)
 Eexpr = fem.Expression(E, vector_vis.element.interpolation_points)
 E_vis.interpolate(Eexpr)
@@ -350,17 +360,27 @@ J_vis.interpolate(Jexpr)
 J_file = VTXWriter(domain.comm, "J_field.bp", J_vis, "BP4")
 J_file.write(t.expression().value)
 
-print(L2_norm(J_ind))
-
 u_n1_file = VTXWriter(domain.comm, "u_n1_field.bp", u_n1, "BP4")
 u_n1_file.write(t.expression().value)
 
+output_freq = 5
 
 for n in range(num_steps):
-
     t.expression().value += d_t
-    print(f"Time step {n+1}: t = {t.expression().value}")
+    par_print(comm, f"Time step {n + 1}: t = {t.expression().value}")
 
+    u_n_prev = u_n.copy()
+
+    high_expr = fem.Expression(
+        V_in * ufl.sin(omega * t), V1.element.interpolation_points
+    )
+    high_func.interpolate(high_expr)
+
+    bc_ex2 = fem.dirichletbc(high_func, bdofs2)
+    bc = [bc_ex, bc_ex1, bc_ex2, bc_ex3]
+
+    uh.x.array[:] = 0
+    uh1.x.array[:] = 0
 
     b = assemble_vector(L, kind=PETSc.Vec.Type.MPI)
     bcs1 = bcs_by_block(extract_function_spaces(L), bc)
@@ -369,43 +389,57 @@ for n in range(num_steps):
     bcs0 = bcs_by_block(extract_function_spaces(L), bc)
     set_bc(b, bcs0)
 
-    print(b.norm())
+    par_print(comm, b.norm())
     sol = A_mat.createVecRight()
 
-    print("about to solve")
+    par_print(comm, "about to solve")
     ksp.solve(b, sol)
 
+    uh.x.array[:offset] = sol.array_r[:offset]
+    uh1.x.array[: (len(sol.array_r) - offset)] = sol.array_r[offset:]
 
-    reason = ksp.getConvergedReason()
-    print("Converged reason:", reason)
+    uh.x.scatter_forward()
+    uh1.x.scatter_forward()
 
-    res = ksp.getResidualNorm()
-    print("Final residual:", res)
-
-    u_n.x.array[:] = sol.array[:offset]
-    u_n1.x.array[:] = sol.array[offset:]
+    u_n.x.array[:] = uh.x.array
+    u_n1.x.array[:] = uh1.x.array
 
     u_n.x.scatter_forward()
     u_n1.x.scatter_forward()
 
-    print(L2_norm(u_n))
-    print(L2_norm(u_n1))
+    reason = ksp.getConvergedReason()
+    par_print(comm, f"Converged reason: {reason}")
 
-    A_vis.interpolate(u_n)
-    A_file.write(t.expression().value)
+    res = ksp.getResidualNorm()
+    par_print(comm, f"Final residual: {res}")
 
-    Bexpr = fem.Expression(B, vector_vis.element.interpolation_points)
-    B_vis.interpolate(Bexpr)
-    B_file.write(t.expression().value)
+    par_print(comm, f"L2 norm of u_n is {L2_norm(u_n)}")
+    par_print(comm, f"L2 norm of u_n1 is {L2_norm(u_n1)}")
 
-    Eexpr = fem.Expression(E, vector_vis.element.interpolation_points)
-    E_vis.interpolate(Eexpr)
-    E_file.write(t.expression().value)
+    if (n + 1) % output_freq == 0:
+        A_vis.interpolate(u_n)
+        A_file.write(t.expression().value)
 
-    Jexpr = fem.Expression(J_ind, vector_vis.element.interpolation_points)
-    J_vis.interpolate(Jexpr)
-    J_file.write(t.expression().value)
+        B = curl(u_n)
+        Bexpr = fem.Expression(B, vector_vis.element.interpolation_points)
+        B_vis.interpolate(Bexpr)
+        B_file.write(t.expression().value)
 
-    print(L2_norm(J_ind))
+        da_dt = (u_n - u_n_prev) / dt
+        E = -grad(u_n1) - da_dt
+        Eexpr = fem.Expression(E, vector_vis.element.interpolation_points)
+        E_vis.interpolate(Eexpr)
+        E_file.write(t.expression().value)
 
-    u_n1_file.write(t.expression().value)
+        J_ind = sigma * E
+        Jexpr = fem.Expression(J_ind, vector_vis.element.interpolation_points)
+        J_vis.interpolate(Jexpr)
+        J_file.write(t.expression().value)
+
+        u_n1_file.write(t.expression().value)
+
+A_file.close()
+B_file.close()
+E_file.close()
+J_file.close()
+u_n1_file.close()
