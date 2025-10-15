@@ -28,7 +28,6 @@ from dolfinx.mesh import locate_entities_boundary
 from dolfinx.fem import locate_dofs_topological
 
 
-degree = 1
 comm = MPI.COMM_WORLD
 
 with XDMFFile(comm, "copper_rod.xdmf", "r") as xdmf:
@@ -62,13 +61,15 @@ d_t = (T - ti) / num_steps  # Time step size
 t = variable(fem.Constant(domain, ti))
 dt = fem.Constant(domain, d_t)
 
+degree = 1
+
 const = fem.functionspace(domain, ("DG", 0)) #Piecewise constant function space
 
 sigma = fem.Function(const)
 nu = fem.Function(const)
 
 sigma_air = fem.Constant(domain, default_scalar_type(0.0))
-sigma_copper = fem.Constant(domain, default_scalar_type(5.96e4))
+sigma_copper = fem.Constant(domain, default_scalar_type(5.96e7))
 nu_value = fem.Constant(domain, default_scalar_type(1e6))
 
 sigma_values = {
@@ -114,7 +115,7 @@ gdim = domain.geometry.dim
 facet_dim = gdim - 1
 
 
-frequency = 10.0
+frequency = 50.0
 omega = 2.0 * np.pi * frequency
 V_in = 10.0
 
@@ -125,7 +126,7 @@ boundary_tags_total = (1,2,3,4)
 boundary_facets_V = np.concatenate([ft.find(tag) for tag in boundary_tags_total])
 
 
-bdofs0 = fem.locate_dofs_topological(V=V, entity_dim=fdim, entities=boundary_facets_V)
+bdofs0 = fem.locate_dofs_topological(V=V, entity_dim=fdim, entities=outer_boundary_facets)
 u_bc_V = fem.Function(V)
 u_bc_V.x.array[:] = 0
 bc_ex = fem.dirichletbc(u_bc_V, bdofs0)
@@ -143,9 +144,8 @@ high_expr = fem.Expression(
     V_in * ufl.sin(omega * t), V1.element.interpolation_points
 )
 high_func.interpolate(high_expr)
-
-
 # high_func.x.array[:] = 10.0
+
 bc_ex2 = fem.dirichletbc(high_func, bdofs2)
 
 lower_facets = ft.find(boundary_tags["bottom_surface"])
@@ -167,16 +167,15 @@ v1 = ufl.TestFunction(V1)
 dx = Measure("dx", domain=domain, subdomain_data=ct)
 
 
-a00 = dt * ufl.inner(nu * curl(u), curl(v)) * dx + ufl.inner(sigma * u, v) * dx(vol_ids["copper"])
+a00 = dt * ufl.inner(nu * curl(u), curl(v)) * dx + ufl.inner(sigma * u, v) * dx
 
 a01 = dt * ufl.inner(sigma * grad(u1), v) * dx(vol_ids["copper"])
 a10 = ufl.inner(sigma * grad(v1), u) * dx(vol_ids["copper"])
 
 a11 = dt * ufl.inner(sigma * ufl.grad(u1), ufl.grad(v1)) * dx(vol_ids["copper"])
 
-zero_vec = fem.Constant(domain, PETSc.ScalarType((0.0, 0.0, 0.0)))
-L0 = ufl.inner(zero_vec, v) * dx + ufl.inner(sigma * u_n, v) * dx(vol_ids["copper"])
-L1 = ufl.inner(grad(v1), sigma * u_n) * dx(vol_ids["copper"])
+L0 = ufl.inner(sigma * u_n, v) * dx(vol_ids["copper"])
+L1 = ufl.inner(grad(v1), sigma * u_n) * dx
 
 a = form([[a00, a01], [a10, a11]])
 
@@ -220,7 +219,7 @@ is_u1 = PETSc.IS().createStride(u1_map.size_local, offset_u1, 1, comm=domain.com
 ksp = PETSc.KSP().create(domain.comm)
 ksp.setOperators(A_mat, P)
 ksp.setType("gmres")
-ksp.setTolerances(rtol=1e-10, atol=1e-10, max_it=100)
+ksp.setTolerances(rtol=1e-15, atol=1e-15, max_it=100)
 ksp.setNormType(PETSc.KSP.NormType.UNPRECONDITIONED)
 # ksp.setNormType(2)
 
@@ -283,7 +282,7 @@ opts[f"{ksp_u.prefix}pc_hypre_ams_relax_type"] = 2
 opts[f"{ksp_u.prefix}pc_hypre_ams_relax_weight"] = 1.0
 opts[f"{ksp_u.prefix}pc_hypre_ams_relax_times"] = 1
 opts[f"{ksp_u.prefix}pc_hypre_ams_omega"] = 1.0
-opts[f"{ksp_u.prefix}pc_hypre_ams_projection_frequency"] = 8
+opts[f"{ksp_u.prefix}pc_hypre_ams_projection_frequency"] = 20
 
 
 ksp_u.setFromOptions()
@@ -309,13 +308,10 @@ ksp_u1.getPC().setUp()
 
 ksp.setMonitor(my_monitor)
 
-
 u_n_prev = u_n.copy()
 
-par_print(comm, f"b norm is, {b.norm()}")
 sol = A_mat.createVecRight()
 
-par_print(comm, "about to solve")
 ksp.solve(b, sol)
 
 
@@ -333,7 +329,6 @@ u_n1.x.array[:] = uh1.x.array
 
 u_n.x.scatter_forward()
 u_n1.x.scatter_forward()
-
 
 reason = ksp.getConvergedReason()
 par_print(comm, f"Converged reason: {reason}")
@@ -358,7 +353,6 @@ B_vis.interpolate(Bexpr)
 B_file = VTXWriter(domain.comm, "B_field_interior.bp", B_vis, "BP4")
 B_file.write(t.expression().value)
 
-
 da_dt = (u_n - u_n_prev) / dt
 E = - grad(u_n1) - da_dt
 E_vis = Function(vector_vis)
@@ -377,15 +371,9 @@ J_file.write(t.expression().value)
 u_n1_file = VTXWriter(domain.comm, "u_n1_field_interior.bp", u_n1, "BP4")
 u_n1_file.write(t.expression().value)
 
-par_print(comm, f"L2 norm of u_n is {L2_norm(u_n)}")
-par_print(comm, f"L2 norm of u_n1 is {L2_norm(u_n1)}")
-par_print(comm, f"L2 norm of B is {L2_norm(B)}")
-par_print(comm, f"L2 norm of J is {L2_norm(J_ind)}")
-par_print(comm, f"L2 norm of E is {L2_norm(E)}")
+output_freq = 10
 
-output_freq = 20
-
-for n in range(num_steps):
+for n in range(300):
 
     par_print(comm, "\n")
 
@@ -414,13 +402,13 @@ for n in range(num_steps):
     bcs0 = bcs_by_block(extract_function_spaces(L), bc)
     set_bc(b, bcs0)
 
-    par_print(comm, f"b norm is, {b.norm()}")
-    sol = A_mat.createVecRight()
 
-    par_print(comm, "about to solve")
+    sol = A_mat.createVecRight()
+    par_print(comm, f"Norm of b: {b.norm()}")
+
     ksp.solve(b, sol)
 
-    par_print(comm, f"Sol norm is, {sol.norm()}")
+    par_print(comm, f"Norm of solution: {sol.norm()}")
 
     uh.x.array[:offset] = sol.array_r[:offset]
     uh1.x.array[:(len(sol.array_r) - offset)] = sol.array_r[offset:]
@@ -443,31 +431,14 @@ for n in range(num_steps):
     par_print(comm, f"L2 norm of u_n is {L2_norm(u_n)}")
     par_print(comm, f"L2 norm of u_n1 is {L2_norm(u_n1)}")
 
-
-    A_vis.interpolate(u_n)
-    A_file.write(t.expression().value)
-
     B = curl(u_n)
-    Bexpr = fem.Expression(B, vector_vis.element.interpolation_points)
-    B_vis.interpolate(Bexpr)
-    B_file.write(t.expression().value)
-
     da_dt = (u_n - u_n_prev) / dt
     E = -grad(u_n1) - da_dt
-    Eexpr = fem.Expression(E, vector_vis.element.interpolation_points)
-    E_vis.interpolate(Eexpr)
-    E_file.write(t.expression().value)
-
     J_ind = sigma * E
-    Jexpr = fem.Expression(J_ind, vector_vis.element.interpolation_points)
-    J_vis.interpolate(Jexpr)
-    J_file.write(t.expression().value)
-
-    u_n1_file.write(t.expression().value)
 
     par_print(comm, f"L2 norm of B is {L2_norm(B)}")
-    par_print(comm, f"L2 norm of J is {L2_norm(J_ind)}")
     par_print(comm, f"L2 norm of E is {L2_norm(E)}")
+    par_print(comm, f"L2 norm of J is {L2_norm(J_ind)}")
 
 
     if (n + 1) % output_freq == 0:   
@@ -491,10 +462,6 @@ for n in range(num_steps):
         J_file.write(t.expression().value)
 
         u_n1_file.write(t.expression().value)
-
-        par_print(comm, f"L2 norm of B is {L2_norm(B)}")
-        par_print(comm, f"L2 norm of J is {L2_norm(J_ind)}")
-        par_print(comm, f"L2 norm of E is {L2_norm(E)}")
 
 A_file.close()
 B_file.close()
