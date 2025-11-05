@@ -1,4 +1,4 @@
-#%%
+# %%
 from mpi4py import MPI
 
 from petsc4py import PETSc
@@ -61,7 +61,7 @@ const = fem.functionspace(domain, ("DG", 0))  # Piecewise constant function spac
 sigma = fem.Function(const)
 nu = fem.Function(const)
 mu = 4e-7 * np.pi
-nu_val = 1/ mu
+nu_val = 1 / mu
 
 sigma_air = fem.Constant(domain, default_scalar_type(0.0))
 sigma_copper = fem.Constant(domain, default_scalar_type(5.96e7))
@@ -147,19 +147,14 @@ par_print(comm, "Assembling system matrix...")
 A_mat = assemble_matrix(a, bcs=bc)
 A_mat.assemble()
 
-
 L = form([L0, L1])
 
-b = assemble_vector(L, kind=PETSc.Vec.Type.MPI)
+b = assemble_vector(L)
 bcs1 = bcs_by_block(extract_function_spaces(a, 1), bc)
 apply_lifting(b, a, bcs=bcs1)
 b.ghostUpdate(addv=PETSc.InsertMode.ADD, mode=PETSc.ScatterMode.REVERSE)
 bcs0 = bcs_by_block(extract_function_spaces(L), bc)
 set_bc(b, bcs0)
-
-
-
-#%%
 
 
 a_p = form([[a00, None], [None, a11]])
@@ -186,15 +181,18 @@ is_u1 = PETSc.IS().createStride(u1_map.size_local, offset_u1, 1, comm=domain.com
 ksp = PETSc.KSP().create(domain.comm)
 ksp.setOperators(A_mat, P)
 ksp.setType("gmres")
-ksp.setTolerances(rtol=1e-14, atol=1e-14, max_it=100)
+ksp.setTolerances(rtol=1e-14, atol=1e-50, max_it=100)
 ksp.setNormType(PETSc.KSP.NormType.UNPRECONDITIONED)
-# ksp.setNormType(2)
 
-ksp.getPC().setType("fieldsplit")
-ksp.getPC().setFieldSplitType(PETSc.PC.CompositeType.ADDITIVE)
-ksp.getPC().setFieldSplitIS(("u", is_u), ("u1", is_u1))
+pc = ksp.getPC()
+pc.setType("fieldsplit")
+pc.setFieldSplitType(PETSc.PC.CompositeType.SCHUR)
+pc.setFieldSplitSchurFactType(PETSc.PC.SchurFactType.UPPER)
+pc.setFieldSplitIS(("u", is_u), ("u1", is_u1))
 
-ksp_u, ksp_u1 = ksp.getPC().getFieldSplitSubKSP()
+ksp.setUp()
+
+ksp_u, ksp_u1 = pc.getFieldSplitSubKSP()
 
 ksp_u.setType("preonly")
 ksp_u.getPC().setType("hypre")
@@ -256,29 +254,29 @@ ksp_u1.setType("preonly")
 ksp_u1.getPC().setType("hypre")
 ksp_u1.getPC().setHYPREType("boomeramg")
 
-
 ksp.setUp()
 ksp_u.getPC().setUp()
 ksp_u1.getPC().setUp()
 
-ksp = PETSc.KSP().create(domain.comm)
-ksp.setOperators(A_mat)
-ksp.setType("preonly")
 
-pc = ksp.getPC()
-pc.setType("lu")
-pc.setFactorSolverType("mumps")
+# ksp = PETSc.KSP().create(domain.comm)
+# ksp.setOperators(A_mat)
+# ksp.setType("preonly")
 
-opts = PETSc.Options() 
-opts["mat_mumps_icntl_14"] = 80  
-opts["mat_mumps_icntl_24"] = (
-    1  
-)
-opts["mat_mumps_icntl_25"] = (
-    0  
-)
-opts["ksp_error_if_not_converged"] = 1
-ksp.setFromOptions()
+# pc = ksp.getPC()
+# pc.setType("lu")
+# pc.setFactorSolverType("mumps")
+
+# opts = PETSc.Options()
+# opts["mat_mumps_icntl_14"] = 80
+# opts["mat_mumps_icntl_24"] = (
+#     1
+# )
+# opts["mat_mumps_icntl_25"] = (
+#     0
+# )
+# opts["ksp_error_if_not_converged"] = 1
+# ksp.setFromOptions()
 
 
 ksp.setMonitor(my_monitor)
@@ -297,7 +295,7 @@ par_print(comm, f"Final residual: {res}")
 uh, uh1 = Function(V), Function(V1)
 
 uh.x.array[:offset] = sol.array_r[:offset]
-uh1.x.array[:(len(sol.array_r) - offset)] = sol.array_r[offset:]
+uh1.x.array[: (len(sol.array_r) - offset)] = sol.array_r[offset:]
 
 uh.x.scatter_forward()
 uh1.x.scatter_forward()
@@ -360,7 +358,6 @@ ds = ufl.Measure("ds", domain=domain, subdomain_data=ft)
 
 n = ufl.FacetNormal(domain)
 I_form = ufl.dot(J_ind, n) * ds(boundary_tags["bottom_surface"])
-I = fem.assemble_scalar(fem.form(I_form))
+current_surface = fem.assemble_scalar(fem.form(I_form))
 
-par_print(comm, f"Current is: {I:.6e} A")
-
+par_print(comm, f"Current is: {current_surface:.6e} A")
