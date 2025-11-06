@@ -7,7 +7,7 @@ from dolfinx import fem, default_scalar_type
 from dolfinx.io import XDMFFile, VTXWriter
 from dolfinx.mesh import GhostMode
 from basix.ufl import element
-from dolfinx.fem import form, functionspace, Function
+from dolfinx.fem import form
 from dolfinx.fem.petsc import assemble_matrix, assemble_vector, apply_lifting, set_bc
 from utils import L2_norm, my_monitor, interpolate_by_tags, par_print
 
@@ -122,24 +122,24 @@ pc.setType("hypre")
 pc.setHYPREType("boomeramg")
 
 
-ksp = PETSc.KSP().create(domain.comm)
-ksp.setOperators(A)
-ksp.setType("preonly")
+# ksp = PETSc.KSP().create(domain.comm)
+# ksp.setOperators(A)
+# ksp.setType("preonly")
 
-pc = ksp.getPC()
-pc.setType("lu")
-pc.setFactorSolverType("mumps")
+# pc = ksp.getPC()
+# pc.setType("lu")
+# pc.setFactorSolverType("mumps")
 
-opts = PETSc.Options()  # type: ignore
-opts["mat_mumps_icntl_14"] = 80  # Increase MUMPS working memory
-opts["mat_mumps_icntl_24"] = (
-    1  # Option to support solving a singular matrix (pressure nullspace)
-)
-opts["mat_mumps_icntl_25"] = (
-    0  # Option to support solving a singular matrix (pressure nullspace)
-)
-opts["ksp_error_if_not_converged"] = 1
-ksp.setFromOptions()
+# opts = PETSc.Options()  # type: ignore
+# opts["mat_mumps_icntl_14"] = 80  # Increase MUMPS working memory
+# opts["mat_mumps_icntl_24"] = (
+#     1  # Option to support solving a singular matrix (pressure nullspace)
+# )
+# opts["mat_mumps_icntl_25"] = (
+#     0  # Option to support solving a singular matrix (pressure nullspace)
+# )
+# opts["ksp_error_if_not_converged"] = 1
+# ksp.setFromOptions()
 
 ksp.setMonitor(my_monitor)
 
@@ -191,8 +191,8 @@ J = -sigma * ufl.grad(u_n1)
 ds = ufl.Measure("ds", domain=domain, subdomain_data=ft)
 
 I_form = ufl.dot(J, n) * ds(boundary_tags["bottom_surface"])
-I = fem.assemble_scalar(fem.form(I_form))
+surface_current = fem.assemble_scalar(fem.form(I_form))
 
-par_print(comm, f"Current is: {I:.6e} A")
+par_print(comm, f"Current is: {surface_current:.6e} A")
 
 # %%
