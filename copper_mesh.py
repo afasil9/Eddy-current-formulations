@@ -1,6 +1,7 @@
 #%%
 import gmsh
-from dolfinx.io import XDMFFile, gmshio
+from dolfinx.io import XDMFFile
+from dolfinx.io import gmsh as gmshio
 from mpi4py import MPI
 
 comm = MPI.COMM_WORLD
@@ -10,7 +11,7 @@ h = start / div
 
 # --- Outer Box Parameters ---
 Lx = 3.0   # length in x-direction
-Ly = 2.0   # length in y-direction
+Ly = 3.0   # length in y-direction
 Lz = 0.5   # height in z-direction
 lc = 1.0
 
