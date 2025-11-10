@@ -12,7 +12,7 @@ from dolfinx.fem import (
 )
 from dolfinx.fem.petsc import assemble_matrix
 from dolfinx.io import VTXWriter, XDMFFile
-from dolfinx.mesh import GhostMode, create_submesh
+from dolfinx.mesh import GhostMode
 from mpi4py import MPI
 from petsc4py import PETSc
 from ufl import (
@@ -24,47 +24,50 @@ from ufl import (
     curl,
     inner,
     variable,
+    sin,
+    pi,
 )
 from dolfinx import default_scalar_type
-
 from utils import L2_norm, par_print, interpolate_by_tags
 
-with XDMFFile(MPI.COMM_WORLD, "em_model2_refined.xdmf", "r") as xdmf:
-    domain = xdmf.read_mesh(name="domains",ghost_mode=GhostMode.none)
-    domain_tags = xdmf.read_meshtags(domain, "domains")
+with XDMFFile(MPI.COMM_WORLD, "copper_rod.xdmf", "r") as xdmf:
+    domain = xdmf.read_mesh(ghost_mode=GhostMode.none)
+    ct = xdmf.read_meshtags(domain, name="ct")
     tdim = domain.topology.dim
-    domain.topology.create_connectivity(tdim - 1, tdim)
-    domain.topology.create_connectivity(1, tdim)
-    ft = xdmf.read_meshtags(domain, "facets")
+    domain.topology.create_connectivity(tdim - 1, 0)
+    ft = xdmf.read_meshtags(domain, name="ft")
+    material_tags = np.unique(ct.values)
     fdim = tdim - 1
     domain.topology.create_connectivity(fdim, tdim)
 
-const = fem.functionspace(domain, ("DG", 0)) #Piecewise constant function space
+boundary_tags = {
+    "cube_boundary": 1,
+    "upper_surface": 2,
+    "side_surface": 3,
+    "bottom_surface": 4,
+}
+
+vol_ids = {"copper": 1, "air": 2}
+
+const = fem.functionspace(domain, ("DG", 0))  # Piecewise constant function space
 
 sigma = fem.Function(const)
 nu = fem.Function(const)
 
+mu = 4e-7 * np.pi
 
-sigma_air = fem.Constant(domain, default_scalar_type(1e-7))
-sigma_copper = fem.Constant(domain, default_scalar_type(5.96e4))
-nu_value = fem.Constant(domain, default_scalar_type(1e6))
-
+sigma_air = fem.Constant(domain, default_scalar_type(0.0))
+sigma_copper = fem.Constant(domain, default_scalar_type(5.96e7))
+nu_value = fem.Constant(domain, default_scalar_type(1 / mu))
 sigma_values = {
-    1: sigma_air,
-    2: sigma_air,
-    3: sigma_copper,
-    4: sigma_air
+    vol_ids["air"]: sigma_air,
+    vol_ids["copper"]: sigma_copper,
 }
 
-nu_values = {
-    1: nu_value,
-    2: nu_value,
-    3: nu_value,
-    4: nu_value
-}
+nu_values = {vol_ids["air"]: nu_value, vol_ids["copper"]: nu_value}
 
-interpolate_by_tags(sigma, sigma_values, domain_tags)
-interpolate_by_tags(nu, nu_values, domain_tags)
+interpolate_by_tags(sigma, sigma_values, ct)
+interpolate_by_tags(nu, nu_values, ct)
 
 comm = MPI.COMM_WORLD
 degree = 1
@@ -73,7 +76,7 @@ V_CG = fem.functionspace(domain, ("CG", degree))
 
 ti = 0.0  # Start time
 T = 0.1  # End time
-num_steps = 5  # Number of time steps
+num_steps = 100  # Number of time steps
 d_t = (T - ti) / num_steps  # Time step size
 
 t = variable(fem.Constant(domain, ti))
@@ -91,10 +94,8 @@ a_n_prev = a_n.copy()
 A = TrialFunction(A_space)
 v = TestFunction(A_space)
 
-dx = Measure("dx", domain, subdomain_data=domain_tags)
+dx = Measure("dx", domain, subdomain_data=ct)
 
-conductive_tag = 3
-non_conductive_tags = (1, 2, 4)
 
 interior_nodes_array = fem.Function(V_CG)
 
@@ -105,7 +106,7 @@ dofmap = V_CG.dofmap
 num_dofs_per_cell = dofmap.dof_layout.num_dofs
 cell_dofs = dofmap.list.reshape(-1, num_dofs_per_cell)
 
-tagged_cells = domain_tags.find(conductive_tag)
+tagged_cells = ct.find(vol_ids["copper"])
 
 tagged_cell_dofs = cell_dofs[tagged_cells].flatten()
 unique_dofs = np.unique(tagged_cell_dofs)
@@ -117,21 +118,20 @@ Q = fem.functionspace(domain, ("DG", 0))
 J = fem.Function(Q)
 J.x.array[:] = 0.0
 
-cells_inner = domain_tags.find(conductive_tag)
-J.x.array[cells_inner] = 1.0
+cells_inner = ct.find(vol_ids["copper"])
 
-f = as_vector((0.0, 0.0, 1.0))
+freq = fem.Constant(domain, default_scalar_type(50.0))  # frequency in Hz
+J.x.array[cells_inner] = sin(2.0 * pi * freq * t)
 
 lhs = dt * inner(nu * curl(A), curl(v)) * dx + inner(sigma * A, v) * dx
-rhs = dt * inner(f, v) * dx(conductive_tag) + inner(sigma * a_n, v) * dx
-# rhs = dt * J * v[2] * dx + inner(sigma * a_n, v) * dx
+rhs = dt * J * v[2] * dx + inner(sigma * a_n, v) * dx
 
 a = form(lhs)
 L = form(rhs)
 
 # Boundary conditions
 
-boundary_tags_V = (1, 3, 5, 8, 9, 10, 12, 13, 14, 15, 16, 18)
+boundary_tags_V = (boundary_tags["upper_surface"],boundary_tags["cube_boundary"],boundary_tags["bottom_surface"])
 boundary_facets_V = np.concatenate([ft.find(tag) for tag in boundary_tags_V])
 
 dofs = locate_dofs_topological(V=A_space, entity_dim=fdim, entities=boundary_facets_V)
@@ -140,7 +140,6 @@ u_bc.x.array[:] = 0
 bc = dirichletbc(u_bc, dofs)
 
 
-print("Before assemble")
 # Solver steps
 A_mat = assemble_matrix(a, bcs=[bc])
 A_mat.assemble()
@@ -194,7 +193,7 @@ G = discrete_gradient(V_CG._cpp_object, A_space._cpp_object)
 G.assemble()
 pc.setHYPREDiscreteGradient(G)
 
-# pc.setHYPREAMSSetInteriorNodes(interior_nodes_array.x.petsc_vec)
+pc.setHYPREAMSSetInteriorNodes(interior_nodes_array.x.petsc_vec)
 
 if degree == 1:
     cvec_0 = Function(A_space)
@@ -238,19 +237,21 @@ uh.x.scatter_forward()
 a_n.x.array[:] = uh.x.array
 a_n.x.scatter_forward()
 
+par_print(comm, f"Norm of a_n: {L2_norm(a_n)}")
+par_print(comm, f"Norm of B: {L2_norm(curl(a_n))}")
 
 vector_vis = fem.functionspace(
     domain, ("Discontinuous Lagrange", degree + 1, (domain.geometry.dim,))
 )
 
 A_vis = Function(vector_vis)
-A_file = VTXWriter(domain.comm, "A_field.bp", A_vis, "BP4")
+A_file = VTXWriter(domain.comm, "A_field_aform.bp", A_vis, "BP4")
 A_vis.interpolate(a_n)
 A_file.write(t)
 
 B = curl(a_n)
 B_vis = Function(vector_vis)
-B_file = VTXWriter(domain.comm, "B_field.bp", B_vis, "BP4")
+B_file = VTXWriter(domain.comm, "B_field_aform.bp", B_vis, "BP4")
 Bexpr = fem.Expression(B, vector_vis.element.interpolation_points)
 B_vis.interpolate(Bexpr)
 B_file.write(t)
@@ -260,19 +261,28 @@ E = -da_dt
 E_vis = Function(vector_vis)
 Eexpr = fem.Expression(E, vector_vis.element.interpolation_points)
 E_vis.interpolate(Eexpr)
-E_file = VTXWriter(domain.comm, "E_field.bp", E_vis, "BP4")
+E_file = VTXWriter(domain.comm, "E_field_aform.bp", E_vis, "BP4")
 E_file.write(t)
 
 J_ind = sigma * E
 J_vis = Function(vector_vis)
 Jexpr = fem.Expression(J_ind, vector_vis.element.interpolation_points)
 J_vis.interpolate(Jexpr)
-J_file = VTXWriter(domain.comm, "J_field.bp", J_vis, "BP4")
+J_file = VTXWriter(domain.comm, "J_field_aform.bp", J_vis, "BP4")
 J_file.write(t)
 
 
-for n in range(num_steps):
+output_freq = 1  # Frequency of writing output
+
+for n in range(10):
+
+    a_n_prev = a_n.copy()
+    pc.HYPREAMSResetSolveCounter()
+
     t.expression().value += d_t
+    par_print(comm, f"t is {t.expression().value}")
+    
+    J.x.array[cells_inner] = sin(2.0 * pi * freq * t)
 
     with b.localForm() as loc_b:
         loc_b.set(0)
@@ -282,29 +292,50 @@ for n in range(num_steps):
     b.ghostUpdate(addv=PETSc.InsertMode.ADD_VALUES, mode=PETSc.ScatterMode.REVERSE)
     petsc.set_bc(b, [bc])
 
+    uh.x.array[:] = 0.0
+
     ksp.solve(b, uh.x.petsc_vec)
     uh.x.scatter_forward()
+
+    res = b - A_mat * uh.x.petsc_vec
+    par_print(comm, f"Residual norm: {res.norm()}")
 
     a_n.x.array[:] = uh.x.array
     a_n.x.scatter_forward()
 
     iterations = ksp.getIterationNumber()
-    # print(f"number of iterations: {iterations}")
+    par_print(comm, f"Iteration count is {iterations}")
+    
     reason = ksp.getConvergedReason()
-    # print("Converged reason:", reason)
+    par_print(comm, f"KSP converged reason: {reason}")
+
 
     B = curl(a_n)
+    da_dt = (a_n - a_n_prev) / dt
+    E = -da_dt
+    J_ind = sigma * E
 
-    B_vis.interpolate(Bexpr)
-    B_file.write(t)
+    par_print(comm, f"Norm of a_n: {L2_norm(a_n)}")
+    par_print(comm, f"Norm of B: {L2_norm(B)}")
+    par_print(comm, f"Norm of E: {L2_norm(E)}")
+    par_print(comm, f"Norm of J: {L2_norm(J_ind)}")
 
-    E_vis.interpolate(Eexpr)
-    E_file.write(t)
+    if (n + 1) % output_freq == 0:
+        par_print(comm, "Writing output ")
+        A_vis.interpolate(a_n)
+        A_file.write(t)
 
-    J_vis.interpolate(Jexpr)
-    J_file.write(t)
+        B = curl(a_n)
 
-    par_print(comm, f"L2 norm of B: {L2_norm(B_vis)}")
-    par_print(comm, f"L2 norm of E: {L2_norm(E_vis)}")
-    par_print(comm, f"L2 norm of J: {L2_norm(J_vis)}")
+        B_vis.interpolate(Bexpr)
+        B_file.write(t)
+
+        da_dt = (a_n - a_n_prev) / dt
+        E = -da_dt
+        E_vis.interpolate(Eexpr)
+        E_file.write(t)
+
+        J_ind = sigma * E
+        J_vis.interpolate(Jexpr)
+        J_file.write(t)
 
