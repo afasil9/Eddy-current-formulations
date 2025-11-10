@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE Xdmf SYSTEM "Xdmf.dtd" []>
+<Xdmf Version="3.0" xmlns:xi="https://www.w3.org/2001/XInclude">
+  <Domain>
+    <Grid Name="mesh" GridType="Uniform">
+      <Topology TopologyType="Tetrahedron" NumberOfElements="505728" NodesPerElement="4">
+        <DataItem Dimensions="505728 4" NumberType="Int" Format="HDF">copper_rod.h5:/Mesh/mesh/topology</DataItem>
+      </Topology>
+      <Geometry GeometryType="XYZ">
+        <DataItem Dimensions="88501 3" Format="HDF">copper_rod.h5:/Mesh/mesh/geometry</DataItem>
+      </Geometry>
+    </Grid>
+    <Grid Name="ct" GridType="Uniform">
+      <xi:include xpointer="xpointer(/Xdmf/Domain/Grid/Geometry)" />
+      <Topology TopologyType="Tetrahedron" NumberOfElements="505728" NodesPerElement="4">
+        <DataItem Dimensions="505728 4" NumberType="Int" Format="HDF">copper_rod.h5:/MeshTags/ct/topology</DataItem>
+      </Topology>
+      <Attribute Name="ct" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="505728 1" Format="HDF">copper_rod.h5:/MeshTags/ct/Values</DataItem>
+      </Attribute>
+    </Grid>
+    <Grid Name="ft" GridType="Uniform">
+      <xi:include xpointer="xpointer(/Xdmf/Domain/Grid/Geometry)" />
+      <Topology TopologyType="Triangle" NumberOfElements="35508" NodesPerElement="3">
+        <DataItem Dimensions="35508 3" NumberType="Int" Format="HDF">copper_rod.h5:/MeshTags/ft/topology</DataItem>
+      </Topology>
+      <Attribute Name="ft" AttributeType="Scalar" Center="Cell">
+        <DataItem Dimensions="35508 1" Format="HDF">copper_rod.h5:/MeshTags/ft/Values</DataItem>
+      </Attribute>
+    </Grid>
+  </Domain>
+</Xdmf>

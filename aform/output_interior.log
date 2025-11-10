@@ -1,0 +1,1725 @@
+b norm is 0.0
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 0.000000000000e+00 true resid norm 0.000000000000e+00 ||r(i)||/||b|| inf
+Residual norm: 0.0
+Norm of a_n: 0.0
+Norm of B: 0.0
+
+
+n is 0
+t is 0.001
+f norm is 0.5352331346596354
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 2.664691437489e-06 true resid norm 2.664691437489e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 1.178499957327e-06 true resid norm 1.178499957327e-06 ||r(i)||/||b|| 4.422650745777e-01
+  2 KSP unpreconditioned resid norm 1.713267123017e-07 true resid norm 1.713267123017e-07 ||r(i)||/||b|| 6.429514122776e-02
+  3 KSP unpreconditioned resid norm 3.431827786796e-08 true resid norm 3.431827786796e-08 ||r(i)||/||b|| 1.287889373800e-02
+  4 KSP unpreconditioned resid norm 5.557950990807e-09 true resid norm 5.557950990809e-09 ||r(i)||/||b|| 2.085776579088e-03
+  5 KSP unpreconditioned resid norm 8.858204261728e-10 true resid norm 8.858204261728e-10 ||r(i)||/||b|| 3.324288935336e-04
+  6 KSP unpreconditioned resid norm 2.703568299495e-10 true resid norm 2.703568299516e-10 ||r(i)||/||b|| 1.014589629959e-04
+  7 KSP unpreconditioned resid norm 9.516622700822e-11 true resid norm 9.516622700829e-11 ||r(i)||/||b|| 3.571378872219e-05
+Iteration count is 7
+KSP converged reason: 3
+Norm of a_n: 9.362669556462209e-10
+Norm of B: 2.490692076038998e-09
+Norm of E: 9.362669556462214e-07
+Norm of J: 0.01743343915629141
+
+
+n is 1
+t is 0.002
+f norm is 1.0180739209102545
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 6.271579959445e-06 true resid norm 6.271579959445e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 2.776779726127e-06 true resid norm 2.776779726127e-06 ||r(i)||/||b|| 4.427560110981e-01
+  2 KSP unpreconditioned resid norm 4.026859601824e-07 true resid norm 4.026859601824e-07 ||r(i)||/||b|| 6.420805646844e-02
+  3 KSP unpreconditioned resid norm 8.056949496891e-08 true resid norm 8.056949496892e-08 ||r(i)||/||b|| 1.284676197863e-02
+  4 KSP unpreconditioned resid norm 1.306408003659e-08 true resid norm 1.306408003659e-08 ||r(i)||/||b|| 2.083060428324e-03
+  5 KSP unpreconditioned resid norm 2.081309785040e-09 true resid norm 2.081309785036e-09 ||r(i)||/||b|| 3.318637087456e-04
+  6 KSP unpreconditioned resid norm 6.341818619262e-10 true resid norm 6.341818619232e-10 ||r(i)||/||b|| 1.011199515950e-04
+  7 KSP unpreconditioned resid norm 2.232625929145e-10 true resid norm 2.232625929075e-10 ||r(i)||/||b|| 3.559909852880e-05
+  8 KSP unpreconditioned resid norm 5.731272651094e-11 true resid norm 5.731272651329e-11 ||r(i)||/||b|| 9.138482947503e-06
+Iteration count is 8
+KSP converged reason: 3
+Norm of a_n: 2.2014618014587046e-09
+Norm of B: 5.861126956152821e-09
+Norm of E: 1.26519495863383e-06
+Norm of J: 0.023593684444283405
+
+
+n is 2
+t is 0.003
+f norm is 1.4012585384440732
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 9.807751622622e-06 true resid norm 9.807751622622e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 4.344899853352e-06 true resid norm 4.344899853352e-06 ||r(i)||/||b|| 4.430067175978e-01
+  2 KSP unpreconditioned resid norm 6.292732351558e-07 true resid norm 6.292732351558e-07 ||r(i)||/||b|| 6.416080457261e-02
+  3 KSP unpreconditioned resid norm 1.258293821632e-07 true resid norm 1.258293821632e-07 ||r(i)||/||b|| 1.282958490435e-02
+  4 KSP unpreconditioned resid norm 2.041658371214e-08 true resid norm 2.041658371214e-08 ||r(i)||/||b|| 2.081678298729e-03
+  5 KSP unpreconditioned resid norm 3.253542237717e-09 true resid norm 3.253542237719e-09 ||r(i)||/||b|| 3.317317121097e-04
+  6 KSP unpreconditioned resid norm 9.913659466980e-10 true resid norm 9.913659466847e-10 ||r(i)||/||b|| 1.010798381556e-04
+  7 KSP unpreconditioned resid norm 3.489264079588e-10 true resid norm 3.489264079607e-10 ||r(i)||/||b|| 3.557659506342e-05
+  8 KSP unpreconditioned resid norm 8.952953378498e-11 true resid norm 8.952953377058e-11 ||r(i)||/||b|| 9.128446275503e-06
+Iteration count is 8
+KSP converged reason: 3
+Norm of a_n: 3.440892922175579e-09
+Norm of B: 9.164872388951579e-09
+Norm of E: 1.2394312410607444e-06
+Norm of J: 0.023127575394484345
+
+
+n is 3
+t is 0.004
+f norm is 1.6472782070926641
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.262907112835e-05 true resid norm 1.262907112835e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 5.596773994986e-06 true resid norm 5.596773994986e-06 ||r(i)||/||b|| 4.431659255146e-01
+  2 KSP unpreconditioned resid norm 8.098978848717e-07 true resid norm 8.098978848717e-07 ||r(i)||/||b|| 6.412964790843e-02
+  3 KSP unpreconditioned resid norm 1.618834953548e-07 true resid norm 1.618834953548e-07 ||r(i)||/||b|| 1.281832160969e-02
+  4 KSP unpreconditioned resid norm 2.627782261413e-08 true resid norm 2.627782261412e-08 ||r(i)||/||b|| 2.080740724876e-03
+  5 KSP unpreconditioned resid norm 4.187744036625e-09 true resid norm 4.187744036612e-09 ||r(i)||/||b|| 3.315955697811e-04
+  6 KSP unpreconditioned resid norm 1.275681447037e-09 true resid norm 1.275681447034e-09 ||r(i)||/||b|| 1.010115022767e-04
+  7 KSP unpreconditioned resid norm 4.489336327480e-10 true resid norm 4.489336327552e-10 ||r(i)||/||b|| 3.554763673374e-05
+  8 KSP unpreconditioned resid norm 1.151626157725e-10 true resid norm 1.151626157852e-10 ||r(i)||/||b|| 9.118850833510e-06
+  9 KSP unpreconditioned resid norm 3.129813621479e-11 true resid norm 3.129813620449e-11 ||r(i)||/||b|| 2.478261139430e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 4.429105789369664e-09
+Norm of B: 1.180029824694944e-08
+Norm of E: 9.88213006507661e-07
+Norm of J: 0.01844950233298262
+
+
+n is 4
+t is 0.005
+f norm is 1.7320508075688779
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.432485341799e-05 true resid norm 1.432485341799e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 6.350016721359e-06 true resid norm 6.350016721359e-06 ||r(i)||/||b|| 4.432866805733e-01
+  2 KSP unpreconditioned resid norm 9.182999905560e-07 true resid norm 9.182999905560e-07 ||r(i)||/||b|| 6.410536734726e-02
+  3 KSP unpreconditioned resid norm 1.834954655449e-07 true resid norm 1.834954655449e-07 ||r(i)||/||b|| 1.280958765794e-02
+  4 KSP unpreconditioned resid norm 2.979598906551e-08 true resid norm 2.979598906550e-08 ||r(i)||/||b|| 2.080020520704e-03
+  5 KSP unpreconditioned resid norm 4.748848699164e-09 true resid norm 4.748848699148e-09 ||r(i)||/||b|| 3.315111548147e-04
+  6 KSP unpreconditioned resid norm 1.446492644607e-09 true resid norm 1.446492644608e-09 ||r(i)||/||b|| 1.009778321914e-04
+  7 KSP unpreconditioned resid norm 5.089768715811e-10 true resid norm 5.089768715844e-10 ||r(i)||/||b|| 3.553103523874e-05
+  8 KSP unpreconditioned resid norm 1.305293481909e-10 true resid norm 1.305293481914e-10 ||r(i)||/||b|| 9.112089623721e-06
+  9 KSP unpreconditioned resid norm 3.545401014727e-11 true resid norm 3.545401015313e-11 ||r(i)||/||b|| 2.474999856446e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 5.022407240671142e-09
+Norm of B: 1.3383890625174788e-08
+Norm of E: 5.933016849573838e-07
+Norm of J: 0.011086533832410653
+Writing output 
+
+
+n is 5
+t is 0.006
+f norm is 1.6472782070926641
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.466840658042e-05 true resid norm 1.466840658042e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 6.503893735459e-06 true resid norm 6.503893735459e-06 ||r(i)||/||b|| 4.433947000173e-01
+  2 KSP unpreconditioned resid norm 9.399975587268e-07 true resid norm 9.399975587268e-07 ||r(i)||/||b|| 6.408314042653e-02
+  3 KSP unpreconditioned resid norm 1.877792694456e-07 true resid norm 1.877792694456e-07 ||r(i)||/||b|| 1.280161334607e-02
+  4 KSP unpreconditioned resid norm 3.050068948128e-08 true resid norm 3.050068948128e-08 ||r(i)||/||b|| 2.079345790836e-03
+  5 KSP unpreconditioned resid norm 4.861178782137e-09 true resid norm 4.861178782149e-09 ||r(i)||/||b|| 3.314046931748e-04
+  6 KSP unpreconditioned resid norm 1.480358083213e-09 true resid norm 1.480358083221e-09 ||r(i)||/||b|| 1.009215333039e-04
+  7 KSP unpreconditioned resid norm 5.208260346446e-10 true resid norm 5.208260346438e-10 ||r(i)||/||b|| 3.550665382693e-05
+  8 KSP unpreconditioned resid norm 1.335363863488e-10 true resid norm 1.335363863539e-10 ||r(i)||/||b|| 9.103673641831e-06
+  9 KSP unpreconditioned resid norm 3.624235700322e-11 true resid norm 3.624235700345e-11 ||r(i)||/||b|| 2.470776686257e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 5.14151426685758e-09
+Norm of B: 1.3703976630746903e-08
+Norm of E: 1.1910842811967799e-07
+Norm of J: 0.002241743081925701
+
+
+n is 6
+t is 0.007
+f norm is 1.4012585384440732
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.359871350744e-05 true resid norm 1.359871350744e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 6.031157086065e-06 true resid norm 6.031157086065e-06 ||r(i)||/||b|| 4.435093865876e-01
+  2 KSP unpreconditioned resid norm 8.711198118846e-07 true resid norm 8.711198118846e-07 ||r(i)||/||b|| 6.405898700697e-02
+  3 KSP unpreconditioned resid norm 1.739679278898e-07 true resid norm 1.739679278898e-07 ||r(i)||/||b|| 1.279296955515e-02
+  4 KSP unpreconditioned resid norm 2.826623493767e-08 true resid norm 2.826623493767e-08 ||r(i)||/||b|| 2.078596252668e-03
+  5 KSP unpreconditioned resid norm 4.504684711261e-09 true resid norm 4.504684711255e-09 ||r(i)||/||b|| 3.312581523826e-04
+  6 KSP unpreconditioned resid norm 1.371204328097e-09 true resid norm 1.371204328094e-09 ||r(i)||/||b|| 1.008333859923e-04
+  7 KSP unpreconditioned resid norm 4.823511020230e-10 true resid norm 4.823511020261e-10 ||r(i)||/||b|| 3.547034811508e-05
+  8 KSP unpreconditioned resid norm 1.236409889426e-10 true resid norm 1.236409889381e-10 ||r(i)||/||b|| 9.092109255078e-06
+  9 KSP unpreconditioned resid norm 3.351859882554e-11 true resid norm 3.351859882045e-11 ||r(i)||/||b|| 2.464836015709e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 4.765201169362378e-09
+Norm of B: 1.2703656956556066e-08
+Norm of E: 3.763137346018266e-07
+Norm of J: 0.0070017331623166675
+
+
+n is 7
+t is 0.008
+f norm is 1.0180739209102547
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.120814749999e-05 true resid norm 1.120814749999e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 4.972586452363e-06 true resid norm 4.972586452363e-06 ||r(i)||/||b|| 4.436581917188e-01
+  2 KSP unpreconditioned resid norm 7.176211927341e-07 true resid norm 7.176211927341e-07 ||r(i)||/||b|| 6.402674418184e-02
+  3 KSP unpreconditioned resid norm 1.432565815614e-07 true resid norm 1.432565815614e-07 ||r(i)||/||b|| 1.278146826329e-02
+  4 KSP unpreconditioned resid norm 2.328578020098e-08 true resid norm 2.328578020099e-08 ||r(i)||/||b|| 2.077576174029e-03
+  5 KSP unpreconditioned resid norm 3.710183374720e-09 true resid norm 3.710183374717e-09 ||r(i)||/||b|| 3.310255664213e-04
+  6 KSP unpreconditioned resid norm 1.128475721525e-09 true resid norm 1.128475721513e-09 ||r(i)||/||b|| 1.006835180849e-04
+  7 KSP unpreconditioned resid norm 3.968819334875e-10 true resid norm 3.968819334952e-10 ||r(i)||/||b|| 3.541012763220e-05
+  8 KSP unpreconditioned resid norm 1.017001225681e-10 true resid norm 1.017001225675e-10 ||r(i)||/||b|| 9.073767325741e-06
+  9 KSP unpreconditioned resid norm 2.751912821820e-11 true resid norm 2.751912822543e-11 ||r(i)||/||b|| 2.455278914330e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 3.925987174589612e-09
+Norm of B: 1.0469315733229421e-08
+Norm of E: 8.392144835975157e-07
+Norm of J: 0.015640430524776584
+
+
+n is 8
+t is 0.009000000000000001
+f norm is 0.5352331346596348
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 7.725227775404e-06 true resid norm 7.725227775404e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 3.429335023865e-06 true resid norm 3.429335023865e-06 ||r(i)||/||b|| 4.439137749160e-01
+  2 KSP unpreconditioned resid norm 4.941734205858e-07 true resid norm 4.941734205858e-07 ||r(i)||/||b|| 6.396878318064e-02
+  3 KSP unpreconditioned resid norm 9.858094637948e-08 true resid norm 9.858094637948e-08 ||r(i)||/||b|| 1.276091129550e-02
+  4 KSP unpreconditioned resid norm 1.603537975853e-08 true resid norm 1.603537975853e-08 ||r(i)||/||b|| 2.075716111515e-03
+  5 KSP unpreconditioned resid norm 2.553627739809e-09 true resid norm 2.553627739811e-09 ||r(i)||/||b|| 3.305569510768e-04
+  6 KSP unpreconditioned resid norm 7.753880281483e-10 true resid norm 7.753880281482e-10 ||r(i)||/||b|| 1.003708952915e-04
+  7 KSP unpreconditioned resid norm 2.725930304152e-10 true resid norm 2.725930304174e-10 ||r(i)||/||b|| 3.528608325120e-05
+  8 KSP unpreconditioned resid norm 6.981253079993e-11 true resid norm 6.981253080020e-11 ||r(i)||/||b|| 9.036954356541e-06
+Iteration count is 8
+KSP converged reason: 3
+Norm of a_n: 2.7040799610946365e-09
+Norm of B: 7.214478507338393e-09
+Norm of E: 1.2219079419683111e-06
+Norm of J: 0.022784554333504178
+
+
+n is 9
+t is 0.010000000000000002
+f norm is 1.326255101361871e-15
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 3.488929618436e-06 true resid norm 3.488929618436e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 1.551435221857e-06 true resid norm 1.551435221857e-06 ||r(i)||/||b|| 4.446736940919e-01
+  2 KSP unpreconditioned resid norm 2.225005809577e-07 true resid norm 2.225005809577e-07 ||r(i)||/||b|| 6.377330737255e-02
+  3 KSP unpreconditioned resid norm 4.428378996033e-08 true resid norm 4.428378996033e-08 ||r(i)||/||b|| 1.269265786456e-02
+  4 KSP unpreconditioned resid norm 7.219773131965e-09 true resid norm 7.219773131962e-09 ||r(i)||/||b|| 2.069337568121e-03
+  5 KSP unpreconditioned resid norm 1.147036299402e-09 true resid norm 1.147036299405e-09 ||r(i)||/||b|| 3.287645280500e-04
+  6 KSP unpreconditioned resid norm 3.459023539555e-10 true resid norm 3.459023539578e-10 ||r(i)||/||b|| 9.914282940245e-05
+  7 KSP unpreconditioned resid norm 1.214453365736e-10 true resid norm 1.214453365748e-10 ||r(i)||/||b|| 3.480876654348e-05
+  8 KSP unpreconditioned resid norm 3.105906145444e-11 true resid norm 3.105906145398e-11 ||r(i)||/||b|| 8.902174836047e-06
+Iteration count is 8
+KSP converged reason: 3
+Norm of a_n: 1.2181935010347798e-09
+Norm of B: 3.255462494607323e-09
+Norm of E: 1.4858886697881073e-06
+Norm of J: 0.027714915087134934
+Writing output 
+
+
+n is 10
+t is 0.011000000000000003
+f norm is 0.5352331346596366
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.095641044392e-06 true resid norm 1.095641044392e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 4.791377309690e-07 true resid norm 4.791377309690e-07 ||r(i)||/||b|| 4.373126886960e-01
+  2 KSP unpreconditioned resid norm 7.105308777281e-08 true resid norm 7.105308777281e-08 ||r(i)||/||b|| 6.485069917421e-02
+  3 KSP unpreconditioned resid norm 1.435883968975e-08 true resid norm 1.435883968975e-08 ||r(i)||/||b|| 1.310542331655e-02
+  4 KSP unpreconditioned resid norm 2.307590774563e-09 true resid norm 2.307590774563e-09 ||r(i)||/||b|| 2.106155831212e-03
+  5 KSP unpreconditioned resid norm 3.739279026316e-10 true resid norm 3.739279026310e-10 ||r(i)||/||b|| 3.412868699514e-04
+  6 KSP unpreconditioned resid norm 1.189694639527e-10 true resid norm 1.189694639529e-10 ||r(i)||/||b|| 1.085843438978e-04
+  7 KSP unpreconditioned resid norm 4.203502495289e-11 true resid norm 4.203502495304e-11 ||r(i)||/||b|| 3.836569026707e-05
+Iteration count is 7
+KSP converged reason: 3
+Norm of a_n: 3.866324595236978e-10
+Norm of B: 1.022372485245465e-09
+Norm of E: 1.6048107972655907e-06
+Norm of J: 0.029939753153995538
+
+
+n is 11
+t is 0.012000000000000004
+f norm is 1.0180739209102563
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 5.561881415921e-06 true resid norm 5.561881415921e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 2.460916917532e-06 true resid norm 2.460916917532e-06 ||r(i)||/||b|| 4.424612345181e-01
+  2 KSP unpreconditioned resid norm 3.574029996379e-07 true resid norm 3.574029996379e-07 ||r(i)||/||b|| 6.425937068971e-02
+  3 KSP unpreconditioned resid norm 7.155941372610e-08 true resid norm 7.155941372610e-08 ||r(i)||/||b|| 1.286604448654e-02
+  4 KSP unpreconditioned resid norm 1.159846511452e-08 true resid norm 1.159846511452e-08 ||r(i)||/||b|| 2.085349227569e-03
+  5 KSP unpreconditioned resid norm 1.854703826809e-09 true resid norm 1.854703826805e-09 ||r(i)||/||b|| 3.334669850198e-04
+  6 KSP unpreconditioned resid norm 5.698697668067e-10 true resid norm 5.698697668137e-10 ||r(i)||/||b|| 1.024598915724e-04
+  7 KSP unpreconditioned resid norm 2.007791809732e-10 true resid norm 2.007791809834e-10 ||r(i)||/||b|| 3.609914810637e-05
+  8 KSP unpreconditioned resid norm 5.156227499326e-11 true resid norm 5.156227499294e-11 ||r(i)||/||b|| 9.270653424098e-06
+Iteration count is 8
+KSP converged reason: 3
+Norm of a_n: 1.9534378324574732e-09
+Norm of B: 5.198322747612489e-09
+Norm of E: 1.566814876575926e-06
+Norm of J: 0.029237200007393035
+
+
+n is 12
+t is 0.013000000000000005
+f norm is 1.4012585384440748
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 9.487412062594e-06 true resid norm 9.487412062594e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 4.202350746888e-06 true resid norm 4.202350746888e-06 ||r(i)||/||b|| 4.429396255968e-01
+  2 KSP unpreconditioned resid norm 6.088367443341e-07 true resid norm 6.088367443341e-07 ||r(i)||/||b|| 6.417311067731e-02
+  3 KSP unpreconditioned resid norm 1.217644337259e-07 true resid norm 1.217644337259e-07 ||r(i)||/||b|| 1.283431487139e-02
+  4 KSP unpreconditioned resid norm 1.975752315912e-08 true resid norm 1.975752315912e-08 ||r(i)||/||b|| 2.082498686551e-03
+  5 KSP unpreconditioned resid norm 3.155734388112e-09 true resid norm 3.155734388101e-09 ||r(i)||/||b|| 3.326233083671e-04
+  6 KSP unpreconditioned resid norm 9.663078624546e-10 true resid norm 9.663078624432e-10 ||r(i)||/||b|| 1.018515751259e-04
+  7 KSP unpreconditioned resid norm 3.402496848360e-10 true resid norm 3.402496848241e-10 ||r(i)||/||b|| 3.586327679026e-05
+  8 KSP unpreconditioned resid norm 8.731182964435e-11 true resid norm 8.731182964513e-11 ||r(i)||/||b|| 9.202913193723e-06
+Iteration count is 8
+KSP converged reason: 3
+Norm of a_n: 3.3289714813206446e-09
+Norm of B: 8.8657675438064e-09
+Norm of E: 1.3755347915124017e-06
+Norm of J: 0.025674228021487295
+
+
+n is 13
+t is 0.014000000000000005
+f norm is 1.6472782070926653
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.248450706306e-05 true resid norm 1.248450706306e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 5.532445461170e-06 true resid norm 5.532445461170e-06 ||r(i)||/||b|| 4.431448861556e-01
+  2 KSP unpreconditioned resid norm 8.006749904120e-07 true resid norm 8.006749904120e-07 ||r(i)||/||b|| 6.413348852042e-02
+  3 KSP unpreconditioned resid norm 1.600502586968e-07 true resid norm 1.600502586968e-07 ||r(i)||/||b|| 1.281991014049e-02
+  4 KSP unpreconditioned resid norm 2.598278365393e-08 true resid norm 2.598278365394e-08 ||r(i)||/||b|| 2.081202207079e-03
+  5 KSP unpreconditioned resid norm 4.148065984793e-09 true resid norm 4.148065984793e-09 ||r(i)||/||b|| 3.322570898346e-04
+  6 KSP unpreconditioned resid norm 1.268339630460e-09 true resid norm 1.268339630466e-09 ||r(i)||/||b|| 1.015930884623e-04
+  7 KSP unpreconditioned resid norm 4.464864808434e-10 true resid norm 4.464864808456e-10 ||r(i)||/||b|| 3.576324468321e-05
+  8 KSP unpreconditioned resid norm 1.145379376653e-10 true resid norm 1.145379376579e-10 ||r(i)||/||b|| 9.174406092236e-06
+  9 KSP unpreconditioned resid norm 3.132773984152e-11 true resid norm 3.132773984157e-11 ||r(i)||/||b|| 2.509329337821e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 4.3786009991639405e-09
+Norm of B: 1.166532388947996e-08
+Norm of E: 1.0496300808930452e-06
+Norm of J: 0.01959868696621961
+
+
+n is 14
+t is 0.015000000000000006
+f norm is 1.7320508075688779
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.425962223857e-05 true resid norm 1.425962223857e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 6.320987653319e-06 true resid norm 6.320987653319e-06 ||r(i)||/||b|| 4.432787592522e-01
+  2 KSP unpreconditioned resid norm 9.141375409265e-07 true resid norm 9.141375409265e-07 ||r(i)||/||b|| 6.410671514520e-02
+  3 KSP unpreconditioned resid norm 1.826693291075e-07 true resid norm 1.826693291075e-07 ||r(i)||/||b|| 1.281025023323e-02
+  4 KSP unpreconditioned resid norm 2.966522139290e-08 true resid norm 2.966522139290e-08 ||r(i)||/||b|| 2.080365166522e-03
+  5 KSP unpreconditioned resid norm 4.735391486027e-09 true resid norm 4.735391486030e-09 ||r(i)||/||b|| 3.320839365029e-04
+  6 KSP unpreconditioned resid norm 1.447134194637e-09 true resid norm 1.447134194638e-09 ||r(i)||/||b|| 1.014847497659e-04
+  7 KSP unpreconditioned resid norm 5.093363573527e-10 true resid norm 5.093363573301e-10 ||r(i)||/||b|| 3.571878334563e-05
+  8 KSP unpreconditioned resid norm 1.306226162039e-10 true resid norm 1.306226162036e-10 ||r(i)||/||b|| 9.160313928248e-06
+  9 KSP unpreconditioned resid norm 3.567805817441e-11 true resid norm 3.567805815907e-11 ||r(i)||/||b|| 2.502033894177e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 4.999616694671133e-09
+Norm of B: 1.3322982359113292e-08
+Norm of E: 6.21016195454779e-07
+Norm of J: 0.011605106018729078
+Writing output 
+
+
+n is 15
+t is 0.016000000000000007
+f norm is 1.6472782070926628
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.463897791025e-05 true resid norm 1.463897791025e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 6.490794208321e-06 true resid norm 6.490794208321e-06 ||r(i)||/||b|| 4.433912154328e-01
+  2 KSP unpreconditioned resid norm 9.381187104722e-07 true resid norm 9.381187104722e-07 ||r(i)||/||b|| 6.408362088005e-02
+  3 KSP unpreconditioned resid norm 1.874075946064e-07 true resid norm 1.874075946064e-07 ||r(i)||/||b|| 1.280195897250e-02
+  4 KSP unpreconditioned resid norm 3.044404932499e-08 true resid norm 3.044404932499e-08 ||r(i)||/||b|| 2.079656756888e-03
+  5 KSP unpreconditioned resid norm 4.859546770515e-09 true resid norm 4.859546770523e-09 ||r(i)||/||b|| 3.319594305228e-04
+  6 KSP unpreconditioned resid norm 1.484594854511e-09 true resid norm 1.484594854516e-09 ||r(i)||/||b|| 1.014138325515e-04
+  7 KSP unpreconditioned resid norm 5.224487837080e-10 true resid norm 5.224487837043e-10 ||r(i)||/||b|| 3.568888394444e-05
+  8 KSP unpreconditioned resid norm 1.339524200042e-10 true resid norm 1.339524200117e-10 ||r(i)||/||b|| 9.150394298898e-06
+  9 KSP unpreconditioned resid norm 3.655349766849e-11 true resid norm 3.655349764491e-11 ||r(i)||/||b|| 2.496997937220e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 5.131229733607983e-09
+Norm of B: 1.3676491336112413e-08
+Norm of E: 1.316145622264444e-07
+Norm of J: 0.002475742115326158
+
+
+n is 16
+t is 0.017000000000000008
+f norm is 1.4012585384440706
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.358544159793e-05 true resid norm 1.358544159793e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 6.025245983084e-06 true resid norm 6.025245983084e-06 ||r(i)||/||b|| 4.435075547343e-01
+  2 KSP unpreconditioned resid norm 8.702714529300e-07 true resid norm 8.702714529300e-07 ||r(i)||/||b|| 6.405912142471e-02
+  3 KSP unpreconditioned resid norm 1.738013266998e-07 true resid norm 1.738013266998e-07 ||r(i)||/||b|| 1.279320406679e-02
+  4 KSP unpreconditioned resid norm 2.824304134501e-08 true resid norm 2.824304134500e-08 ||r(i)||/||b|| 2.078919639190e-03
+  5 KSP unpreconditioned resid norm 4.508378596544e-09 true resid norm 4.508378596550e-09 ||r(i)||/||b|| 3.318536658563e-04
+  6 KSP unpreconditioned resid norm 1.377053416039e-09 true resid norm 1.377053416042e-09 ||r(i)||/||b|| 1.013624331690e-04
+  7 KSP unpreconditioned resid norm 4.845397611961e-10 true resid norm 4.845397611930e-10 ||r(i)||/||b|| 3.566610313696e-05
+  8 KSP unpreconditioned resid norm 1.242012308111e-10 true resid norm 1.242012308017e-10 ||r(i)||/||b|| 9.142229930943e-06
+  9 KSP unpreconditioned resid norm 3.386828651438e-11 true resid norm 3.386828651094e-11 ||r(i)||/||b|| 2.492983850897e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 4.760559876271444e-09
+Norm of B: 1.2691254007560074e-08
+Norm of E: 3.706702879873914e-07
+Norm of J: 0.006896138440001799
+
+
+n is 17
+t is 0.01800000000000001
+f norm is 1.018073920910251
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.120216621651e-05 true resid norm 1.120216621651e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 4.969919203574e-06 true resid norm 4.969919203574e-06 ||r(i)||/||b|| 4.436569773667e-01
+  2 KSP unpreconditioned resid norm 7.172378289754e-07 true resid norm 7.172378289754e-07 ||r(i)||/||b|| 6.402670832705e-02
+  3 KSP unpreconditioned resid norm 1.431825113906e-07 true resid norm 1.431825113906e-07 ||r(i)||/||b|| 1.278168066990e-02
+  4 KSP unpreconditioned resid norm 2.327767198891e-08 true resid norm 2.327767198889e-08 ||r(i)||/||b|| 2.077961667324e-03
+  5 KSP unpreconditioned resid norm 3.716263269449e-09 true resid norm 3.716263269450e-09 ||r(i)||/||b|| 3.317450569493e-04
+  6 KSP unpreconditioned resid norm 1.135036070434e-09 true resid norm 1.135036070413e-09 ||r(i)||/||b|| 1.013229092013e-04
+  7 KSP unpreconditioned resid norm 3.993197297458e-10 true resid norm 3.993197297347e-10 ||r(i)||/||b|| 3.564665280063e-05
+  8 KSP unpreconditioned resid norm 1.023234577654e-10 true resid norm 1.023234577695e-10 ||r(i)||/||b|| 9.134256338628e-06
+  9 KSP unpreconditioned resid norm 2.788521191625e-11 true resid norm 2.788521190606e-11 ||r(i)||/||b|| 2.489269607959e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 3.923892216196705e-09
+Norm of B: 1.0463718783636639e-08
+Norm of E: 8.366678619810692e-07
+Norm of J: 0.01559278029840446
+
+
+n is 18
+t is 0.01900000000000001
+f norm is 0.5352331346596299
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 7.722535393265e-06 true resid norm 7.722535393265e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 3.428131580684e-06 true resid norm 3.428131580684e-06 ||r(i)||/||b|| 4.439127056217e-01
+  2 KSP unpreconditioned resid norm 4.939998390897e-07 true resid norm 4.939998390897e-07 ||r(i)||/||b|| 6.396860796786e-02
+  3 KSP unpreconditioned resid norm 9.854861043437e-08 true resid norm 9.854861043437e-08 ||r(i)||/||b|| 1.276117303655e-02
+  4 KSP unpreconditioned resid norm 1.603406162171e-08 true resid norm 1.603406162171e-08 ||r(i)||/||b|| 2.076269101427e-03
+  5 KSP unpreconditioned resid norm 2.560746149888e-09 true resid norm 2.560746149888e-09 ||r(i)||/||b|| 3.315939674581e-04
+  6 KSP unpreconditioned resid norm 7.822343183482e-10 true resid norm 7.822343183514e-10 ||r(i)||/||b|| 1.012924225681e-04
+  7 KSP unpreconditioned resid norm 2.751306974848e-10 true resid norm 2.751306974822e-10 ||r(i)||/||b|| 3.562699080954e-05
+  8 KSP unpreconditioned resid norm 7.046070448023e-11 true resid norm 7.046070447804e-11 ||r(i)||/||b|| 9.124037753131e-06
+Iteration count is 8
+KSP converged reason: 3
+Norm of a_n: 2.70313371534276e-09
+Norm of B: 7.211952850478989e-09
+Norm of E: 1.2207587193412707e-06
+Norm of J: 0.0227630516956715
+
+
+n is 19
+t is 0.02000000000000001
+f norm is 5.729250500937444e-15
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 3.487717100520e-06 true resid norm 3.487717100520e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 1.550892283761e-06 true resid norm 1.550892283761e-06 ||r(i)||/||b|| 4.446726150837e-01
+  2 KSP unpreconditioned resid norm 2.224214723964e-07 true resid norm 2.224214723964e-07 ||r(i)||/||b|| 6.377279635530e-02
+  3 KSP unpreconditioned resid norm 4.427020017194e-08 true resid norm 4.427020017195e-08 ||r(i)||/||b|| 1.269317404366e-02
+  4 KSP unpreconditioned resid norm 7.221438669692e-09 true resid norm 7.221438669691e-09 ||r(i)||/||b|| 2.070534524894e-03
+  5 KSP unpreconditioned resid norm 1.154449527620e-09 true resid norm 1.154449527619e-09 ||r(i)||/||b|| 3.310043487893e-04
+  6 KSP unpreconditioned resid norm 3.527240124435e-10 true resid norm 3.527240124438e-10 ||r(i)||/||b|| 1.011332061282e-04
+  7 KSP unpreconditioned resid norm 1.239764783054e-10 true resid norm 1.239764783059e-10 ||r(i)||/||b|| 3.554659817087e-05
+  8 KSP unpreconditioned resid norm 3.170323163527e-11 true resid norm 3.170323163611e-11 ||r(i)||/||b|| 9.089966508861e-06
+Iteration count is 8
+KSP converged reason: 3
+Norm of a_n: 1.217764187366957e-09
+Norm of B: 3.2543227799110367e-09
+Norm of E: 1.4853700957652143e-06
+Norm of J: 0.0277052119643288
+Writing output 
+
+
+n is 20
+t is 0.02100000000000001
+f norm is 0.535233134659641
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.096142562377e-06 true resid norm 1.096142562377e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 4.793811205832e-07 true resid norm 4.793811205832e-07 ||r(i)||/||b|| 4.373346470039e-01
+  2 KSP unpreconditioned resid norm 7.108770323469e-08 true resid norm 7.108770323469e-08 ||r(i)||/||b|| 6.485260738396e-02
+  3 KSP unpreconditioned resid norm 1.436321614939e-08 true resid norm 1.436321614939e-08 ||r(i)||/||b|| 1.310341979445e-02
+  4 KSP unpreconditioned resid norm 2.303895641534e-09 true resid norm 2.303895641534e-09 ||r(i)||/||b|| 2.101821168716e-03
+  5 KSP unpreconditioned resid norm 3.649289898782e-10 true resid norm 3.649289898791e-10 ||r(i)||/||b|| 3.329211020579e-04
+  6 KSP unpreconditioned resid norm 1.109540572650e-10 true resid norm 1.109540572653e-10 ||r(i)||/||b|| 1.012222872039e-04
+  7 KSP unpreconditioned resid norm 3.916909342028e-11 true resid norm 3.916909342082e-11 ||r(i)||/||b|| 3.573357587345e-05
+Iteration count is 7
+KSP converged reason: 3
+Norm of a_n: 3.8681591862372117e-10
+Norm of B: 1.0228859166997007e-09
+Norm of E: 1.6045764122980091e-06
+Norm of J: 0.02993537298806527
+
+
+n is 21
+t is 0.022000000000000013
+f norm is 1.0180739209102603
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 5.562107106913e-06 true resid norm 5.562107106913e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 2.461026834815e-06 true resid norm 2.461026834815e-06 ||r(i)||/||b|| 4.424630427839e-01
+  2 KSP unpreconditioned resid norm 3.574194138218e-07 true resid norm 3.574194138218e-07 ||r(i)||/||b|| 6.425971434056e-02
+  3 KSP unpreconditioned resid norm 7.156040088024e-08 true resid norm 7.156040088024e-08 ||r(i)||/||b|| 1.286569990558e-02
+  4 KSP unpreconditioned resid norm 1.159455433352e-08 true resid norm 1.159455433353e-08 ||r(i)||/||b|| 2.084561499925e-03
+  5 KSP unpreconditioned resid norm 1.846469228141e-09 true resid norm 1.846469228141e-09 ||r(i)||/||b|| 3.319729722295e-04
+  6 KSP unpreconditioned resid norm 5.625238608906e-10 true resid norm 5.625238608876e-10 ||r(i)||/||b|| 1.011350285198e-04
+  7 KSP unpreconditioned resid norm 1.980894274660e-10 true resid norm 1.980894274652e-10 ||r(i)||/||b|| 3.561409797720e-05
+  8 KSP unpreconditioned resid norm 5.088268385498e-11 true resid norm 5.088268385529e-11 ||r(i)||/||b|| 9.148094935471e-06
+Iteration count is 8
+KSP converged reason: 3
+Norm of a_n: 1.9535231809260516e-09
+Norm of B: 5.198554644365457e-09
+Norm of E: 1.56670961521147e-06
+Norm of J: 0.02923522504170944
+
+
+n is 22
+t is 0.023000000000000013
+f norm is 1.4012585384440774
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 9.487504117953e-06 true resid norm 9.487504117953e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 4.202400053541e-06 true resid norm 4.202400053541e-06 ||r(i)||/||b|| 4.429405248519e-01
+  2 KSP unpreconditioned resid norm 6.088445729707e-07 true resid norm 6.088445729707e-07 ||r(i)||/||b|| 6.417331317081e-02
+  3 KSP unpreconditioned resid norm 1.217637376316e-07 true resid norm 1.217637376316e-07 ||r(i)||/||b|| 1.283411697300e-02
+  4 KSP unpreconditioned resid norm 1.975337022159e-08 true resid norm 1.975337022159e-08 ||r(i)||/||b|| 2.082040753396e-03
+  5 KSP unpreconditioned resid norm 3.147542569503e-09 true resid norm 3.147542569501e-09 ||r(i)||/||b|| 3.317566485737e-04
+  6 KSP unpreconditioned resid norm 9.590263849446e-10 true resid norm 9.590263849424e-10 ||r(i)||/||b|| 1.010831060540e-04
+  7 KSP unpreconditioned resid norm 3.375817365276e-10 true resid norm 3.375817365198e-10 ||r(i)||/||b|| 3.558172226571e-05
+  8 KSP unpreconditioned resid norm 8.663893435589e-11 true resid norm 8.663893435649e-11 ||r(i)||/||b|| 9.131899525876e-06
+Iteration count is 8
+KSP converged reason: 3
+Norm of a_n: 3.329010031265962e-09
+Norm of B: 8.865872167391402e-09
+Norm of E: 1.37548716192533e-06
+Norm of J: 0.025673336814364688
+
+
+n is 23
+t is 0.024000000000000014
+f norm is 1.6472782070926666
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.248453875215e-05 true resid norm 1.248453875215e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 5.532467404273e-06 true resid norm 5.532467404273e-06 ||r(i)||/||b|| 4.431455189581e-01
+  2 KSP unpreconditioned resid norm 8.006789383673e-07 true resid norm 8.006789383672e-07 ||r(i)||/||b|| 6.413364196010e-02
+  3 KSP unpreconditioned resid norm 1.600488023569e-07 true resid norm 1.600488023569e-07 ||r(i)||/||b|| 1.281976094867e-02
+  4 KSP unpreconditioned resid norm 2.597852017627e-08 true resid norm 2.597852017628e-08 ||r(i)||/||b|| 2.080855423818e-03
+  5 KSP unpreconditioned resid norm 4.139891164313e-09 true resid norm 4.139891164307e-09 ||r(i)||/||b|| 3.316014509222e-04
+  6 KSP unpreconditioned resid norm 1.261086295072e-09 true resid norm 1.261086295060e-09 ||r(i)||/||b|| 1.010118451387e-04
+  7 KSP unpreconditioned resid norm 4.438294747048e-10 true resid norm 4.438294746962e-10 ||r(i)||/||b|| 3.555033017298e-05
+  8 KSP unpreconditioned resid norm 1.138692820243e-10 true resid norm 1.138692820220e-10 ||r(i)||/||b|| 9.120824107529e-06
+  9 KSP unpreconditioned resid norm 3.095493052179e-11 true resid norm 3.095493051573e-11 ||r(i)||/||b|| 2.479461286498e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 4.378618481814382e-09
+Norm of B: 1.166537112641739e-08
+Norm of E: 1.0496086443187689e-06
+Norm of J: 0.019598285160856363
+
+
+n is 24
+t is 0.025000000000000015
+f norm is 1.7320508075688779
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.425962695483e-05 true resid norm 1.425962695483e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 6.320997262857e-06 true resid norm 6.320997262857e-06 ||r(i)||/||b|| 4.432792865394e-01
+  2 KSP unpreconditioned resid norm 9.141397499496e-07 true resid norm 9.141397499496e-07 ||r(i)||/||b|| 6.410684885692e-02
+  3 KSP unpreconditioned resid norm 1.826675327244e-07 true resid norm 1.826675327244e-07 ||r(i)||/||b|| 1.281012001948e-02
+  4 KSP unpreconditioned resid norm 2.966090857808e-08 true resid norm 2.966090857808e-08 ||r(i)||/||b|| 2.080062029114e-03
+  5 KSP unpreconditioned resid norm 4.727225935107e-09 true resid norm 4.727225935101e-09 ||r(i)||/||b|| 3.315111924088e-04
+  6 KSP unpreconditioned resid norm 1.439896178648e-09 true resid norm 1.439896178637e-09 ||r(i)||/||b|| 1.009771281673e-04
+  7 KSP unpreconditioned resid norm 5.066858956547e-10 true resid norm 5.066858956510e-10 ||r(i)||/||b|| 3.553289979155e-05
+  8 KSP unpreconditioned resid norm 1.299562457478e-10 true resid norm 1.299562457397e-10 ||r(i)||/||b|| 9.113579629493e-06
+  9 KSP unpreconditioned resid norm 3.530646323280e-11 true resid norm 3.530646323481e-11 ||r(i)||/||b|| 2.475973834844e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 4.999624733078327e-09
+Norm of B: 1.3323003699209712e-08
+Norm of E: 6.210065050430708e-07
+Norm of J: 0.011604924702060582
+Writing output 
+
+
+n is 25
+t is 0.026000000000000016
+f norm is 1.6472782070926615
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.463897075992e-05 true resid norm 1.463897075992e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 6.490798254554e-06 true resid norm 6.490798254554e-06 ||r(i)||/||b|| 4.433917084065e-01
+  2 KSP unpreconditioned resid norm 9.381201464584e-07 true resid norm 9.381201464584e-07 ||r(i)||/||b|| 6.408375027476e-02
+  3 KSP unpreconditioned resid norm 1.874056495993e-07 true resid norm 1.874056495993e-07 ||r(i)||/||b|| 1.280183236053e-02
+  4 KSP unpreconditioned resid norm 3.043971734458e-08 true resid norm 3.043971734457e-08 ||r(i)||/||b|| 2.079361851580e-03
+  5 KSP unpreconditioned resid norm 4.851392460459e-09 true resid norm 4.851392460455e-09 ||r(i)||/||b|| 3.314025651132e-04
+  6 KSP unpreconditioned resid norm 1.477370765230e-09 true resid norm 1.477370765248e-09 ||r(i)||/||b|| 1.009203986726e-04
+  7 KSP unpreconditioned resid norm 5.198043371778e-10 true resid norm 5.198043371747e-10 ||r(i)||/||b|| 3.550825708306e-05
+  8 KSP unpreconditioned resid norm 1.332882288070e-10 true resid norm 1.332882288065e-10 ||r(i)||/||b|| 9.105027326881e-06
+  9 KSP unpreconditioned resid norm 3.618307442494e-11 true resid norm 3.618307444630e-11 ||r(i)||/||b|| 2.471695246866e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 5.131233609925338e-09
+Norm of B: 1.3676500989893537e-08
+Norm of E: 1.3161019000374142e-07
+Norm of J: 0.002475660296647357
+
+
+n is 26
+t is 0.027000000000000017
+f norm is 1.4012585384440681
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.358542948286e-05 true resid norm 1.358542948286e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 6.025247522840e-06 true resid norm 6.025247522840e-06 ||r(i)||/||b|| 4.435080635796e-01
+  2 KSP unpreconditioned resid norm 8.702725555580e-07 true resid norm 8.702725555580e-07 ||r(i)||/||b|| 6.405925971322e-02
+  3 KSP unpreconditioned resid norm 1.737993209682e-07 true resid norm 1.737993209682e-07 ||r(i)||/||b|| 1.279306783694e-02
+  4 KSP unpreconditioned resid norm 2.823870512578e-08 true resid norm 2.823870512579e-08 ||r(i)||/||b|| 2.078602311500e-03
+  5 KSP unpreconditioned resid norm 4.500239241718e-09 true resid norm 4.500239241722e-09 ||r(i)||/||b|| 3.312548379424e-04
+  6 KSP unpreconditioned resid norm 1.369845088100e-09 true resid norm 1.369845088089e-09 ||r(i)||/||b|| 1.008319309903e-04
+  7 KSP unpreconditioned resid norm 4.819018784616e-10 true resid norm 4.819018784515e-10 ||r(i)||/||b|| 3.547196495036e-05
+  8 KSP unpreconditioned resid norm 1.235393710815e-10 true resid norm 1.235393710829e-10 ||r(i)||/||b|| 9.093519732942e-06
+  9 KSP unpreconditioned resid norm 3.349910753413e-11 true resid norm 3.349910752202e-11 ||r(i)||/||b|| 2.465811446322e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 4.760561999244392e-09
+Norm of B: 1.2691258387679372e-08
+Norm of E: 3.706722620039224e-07
+Norm of J: 0.006896175361712561
+
+
+n is 27
+t is 0.028000000000000018
+f norm is 1.0180739209102476
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.120215244944e-05 true resid norm 1.120215244944e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 4.969919619717e-06 true resid norm 4.969919619717e-06 ||r(i)||/||b|| 4.436575597544e-01
+  2 KSP unpreconditioned resid norm 7.172388055884e-07 true resid norm 7.172388055884e-07 ||r(i)||/||b|| 6.402687419452e-02
+  3 KSP unpreconditioned resid norm 1.431804881560e-07 true resid norm 1.431804881560e-07 ||r(i)||/||b|| 1.278151576692e-02
+  4 KSP unpreconditioned resid norm 2.327334132616e-08 true resid norm 2.327334132614e-08 ||r(i)||/||b|| 2.077577629047e-03
+  5 KSP unpreconditioned resid norm 3.708147144573e-09 true resid norm 3.708147144570e-09 ||r(i)||/||b|| 3.310209498849e-04
+  6 KSP unpreconditioned resid norm 1.127850122139e-09 true resid norm 1.127850122149e-09 ||r(i)||/||b|| 1.006815544815e-04
+  7 KSP unpreconditioned resid norm 3.966905351701e-10 true resid norm 3.966905351791e-10 ||r(i)||/||b|| 3.541199220145e-05
+  8 KSP unpreconditioned resid norm 1.016644799875e-10 true resid norm 1.016644799879e-10 ||r(i)||/||b|| 9.075441567744e-06
+  9 KSP unpreconditioned resid norm 2.751753355525e-11 true resid norm 2.751753356237e-11 ||r(i)||/||b|| 2.456450551495e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 3.923893737647629e-09
+Norm of B: 1.0463720783822867e-08
+Norm of E: 8.366687521670674e-07
+Norm of J: 0.015592796960657825
+
+
+n is 28
+t is 0.02900000000000002
+f norm is 0.5352331346596243
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 7.722522061402e-06 true resid norm 7.722522061402e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 3.428131507404e-06 true resid norm 3.428131507404e-06 ||r(i)||/||b|| 4.439134624864e-01
+  2 KSP unpreconditioned resid norm 4.940008099654e-07 true resid norm 4.940008099654e-07 ||r(i)||/||b|| 6.396884412082e-02
+  3 KSP unpreconditioned resid norm 9.854659982177e-08 true resid norm 9.854659982177e-08 ||r(i)||/||b|| 1.276093470996e-02
+  4 KSP unpreconditioned resid norm 1.602975005084e-08 true resid norm 1.602975005084e-08 ||r(i)||/||b|| 2.075714374577e-03
+  5 KSP unpreconditioned resid norm 2.552676681722e-09 true resid norm 2.552676681727e-09 ||r(i)||/||b|| 3.305496133816e-04
+  6 KSP unpreconditioned resid norm 7.750911209289e-10 true resid norm 7.750911209310e-10 ||r(i)||/||b|| 1.003676149797e-04
+  7 KSP unpreconditioned resid norm 2.725168587399e-10 true resid norm 2.725168587425e-10 ||r(i)||/||b|| 3.528858274223e-05
+  8 KSP unpreconditioned resid norm 6.980633812939e-11 true resid norm 6.980633813530e-11 ||r(i)||/||b|| 9.039318707058e-06
+Iteration count is 8
+KSP converged reason: 3
+Norm of a_n: 2.7031352900017054e-09
+Norm of B: 7.211953727090584e-09
+Norm of E: 1.2207591763897105e-06
+Norm of J: 0.022763059560943023
+
+
+n is 29
+t is 0.03000000000000002
+f norm is 1.1670616049619869e-14
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 3.487708332629e-06 true resid norm 3.487708332629e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 1.550892046499e-06 true resid norm 1.550892046499e-06 ||r(i)||/||b|| 4.446736649363e-01
+  2 KSP unpreconditioned resid norm 2.224226336762e-07 true resid norm 2.224226336762e-07 ||r(i)||/||b|| 6.377328963990e-02
+  3 KSP unpreconditioned resid norm 4.426827979975e-08 true resid norm 4.426827979975e-08 ||r(i)||/||b|| 1.269265534208e-02
+  4 KSP unpreconditioned resid norm 7.217212844236e-09 true resid norm 7.217212844236e-09 ||r(i)||/||b|| 2.069328096251e-03
+  5 KSP unpreconditioned resid norm 1.146566403342e-09 true resid norm 1.146566403343e-09 ||r(i)||/||b|| 3.287449218780e-04
+  6 KSP unpreconditioned resid norm 3.457436344415e-10 true resid norm 3.457436344388e-10 ||r(i)||/||b|| 9.913203784968e-05
+  7 KSP unpreconditioned resid norm 1.214162918789e-10 true resid norm 1.214162918787e-10 ||r(i)||/||b|| 3.481262774837e-05
+  8 KSP unpreconditioned resid norm 3.106471183705e-11 true resid norm 3.106471183527e-11 ||r(i)||/||b|| 8.906912182034e-06
+Iteration count is 8
+KSP converged reason: 3
+Norm of a_n: 1.2177672146218382e-09
+Norm of B: 3.2543231501388164e-09
+Norm of E: 1.4853702849597463e-06
+Norm of J: 0.02770521550984163
+Writing output 
+
+
+n is 30
+t is 0.03100000000000002
+f norm is 0.5352331346596467
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.096187645030e-06 true resid norm 1.096187645030e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 4.793821365286e-07 true resid norm 4.793821365286e-07 ||r(i)||/||b|| 4.373175876431e-01
+  2 KSP unpreconditioned resid norm 7.108820689728e-08 true resid norm 7.108820689728e-08 ||r(i)||/||b|| 6.485039967345e-02
+  3 KSP unpreconditioned resid norm 1.436581654608e-08 true resid norm 1.436581654608e-08 ||r(i)||/||b|| 1.310525311175e-02
+  4 KSP unpreconditioned resid norm 2.308732366020e-09 true resid norm 2.308732366018e-09 ||r(i)||/||b|| 2.106147041965e-03
+  5 KSP unpreconditioned resid norm 3.741052041383e-10 true resid norm 3.741052041384e-10 ||r(i)||/||b|| 3.412784351608e-04
+  6 KSP unpreconditioned resid norm 1.189832568364e-10 true resid norm 1.189832568371e-10 ||r(i)||/||b|| 1.085427822295e-04
+  7 KSP unpreconditioned resid norm 4.200838079595e-11 true resid norm 4.200838079578e-11 ||r(i)||/||b|| 3.832225348119e-05
+Iteration count is 7
+KSP converged reason: 3
+Norm of a_n: 3.8682481000375394e-10
+Norm of B: 1.0228860048019807e-09
+Norm of E: 1.6045768735531732e-06
+Norm of J: 0.02993537618739807
+
+
+n is 31
+t is 0.03200000000000002
+f norm is 1.018073920910264
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 5.562129936514e-06 true resid norm 5.562129936514e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 2.461027543900e-06 true resid norm 2.461027543900e-06 ||r(i)||/||b|| 4.424613541916e-01
+  2 KSP unpreconditioned resid norm 3.574189340045e-07 true resid norm 3.574189340045e-07 ||r(i)||/||b|| 6.425936432339e-02
+  3 KSP unpreconditioned resid norm 7.156257772247e-08 true resid norm 7.156257772247e-08 ||r(i)||/||b|| 1.286603846715e-02
+  4 KSP unpreconditioned resid norm 1.159900160991e-08 true resid norm 1.159900160991e-08 ||r(i)||/||b|| 2.085352507457e-03
+  5 KSP unpreconditioned resid norm 1.854824981600e-09 true resid norm 1.854824981603e-09 ||r(i)||/||b|| 3.334738675245e-04
+  6 KSP unpreconditioned resid norm 5.698996983770e-10 true resid norm 5.698996983722e-10 ||r(i)||/||b|| 1.024606948915e-04
+  7 KSP unpreconditioned resid norm 2.007602739891e-10 true resid norm 2.007602739847e-10 ||r(i)||/||b|| 3.609413592926e-05
+  8 KSP unpreconditioned resid norm 5.154442551856e-11 true resid norm 5.154442551044e-11 ||r(i)||/||b|| 9.267030094365e-06
+Iteration count is 8
+KSP converged reason: 3
+Norm of a_n: 1.9535246360622705e-09
+Norm of B: 5.1985547100185935e-09
+Norm of E: 1.5667093194162527e-06
+Norm of J: 0.029235224893569292
+
+
+n is 32
+t is 0.03300000000000002
+f norm is 1.4012585384440799
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 9.487524346080e-06 true resid norm 9.487524346080e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 4.202400721905e-06 true resid norm 4.202400721905e-06 ||r(i)||/||b|| 4.429396509156e-01
+  2 KSP unpreconditioned resid norm 6.088439839862e-07 true resid norm 6.088439839862e-07 ||r(i)||/||b|| 6.417311426851e-02
+  3 KSP unpreconditioned resid norm 1.217658683622e-07 true resid norm 1.217658683622e-07 ||r(i)||/||b|| 1.283431419204e-02
+  4 KSP unpreconditioned resid norm 1.975777918426e-08 true resid norm 1.975777918427e-08 ||r(i)||/||b|| 2.082501025932e-03
+  5 KSP unpreconditioned resid norm 3.155815019129e-09 true resid norm 3.155815019123e-09 ||r(i)||/||b|| 3.326278704546e-04
+  6 KSP unpreconditioned resid norm 9.663293120946e-10 true resid norm 9.663293120970e-10 ||r(i)||/||b|| 1.018526305544e-04
+  7 KSP unpreconditioned resid norm 3.402283513922e-10 true resid norm 3.402283513817e-10 ||r(i)||/||b|| 3.586060377514e-05
+  8 KSP unpreconditioned resid norm 8.729338445379e-11 true resid norm 8.729338445076e-11 ||r(i)||/||b|| 9.200860126049e-06
+Iteration count is 8
+KSP converged reason: 3
+Norm of a_n: 3.32901065211025e-09
+Norm of B: 8.865872223238586e-09
+Norm of E: 1.375487158117753e-06
+Norm of J: 0.02567333674625528
+
+
+n is 33
+t is 0.03400000000000002
+f norm is 1.647278207092668
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.248455783058e-05 true resid norm 1.248455783058e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 5.532468060820e-06 true resid norm 5.532468060820e-06 ||r(i)||/||b|| 4.431448943485e-01
+  2 KSP unpreconditioned resid norm 8.006783055412e-07 true resid norm 8.006783055412e-07 ||r(i)||/||b|| 6.413349326478e-02
+  3 KSP unpreconditioned resid norm 1.600509128060e-07 true resid norm 1.600509128059e-07 ||r(i)||/||b|| 1.281991040275e-02
+  4 KSP unpreconditioned resid norm 2.598291298660e-08 true resid norm 2.598291298660e-08 ||r(i)||/||b|| 2.081204103437e-03
+  5 KSP unpreconditioned resid norm 4.148128089714e-09 true resid norm 4.148128089719e-09 ||r(i)||/||b|| 3.322607132756e-04
+  6 KSP unpreconditioned resid norm 1.268357076817e-09 true resid norm 1.268357076817e-09 ||r(i)||/||b|| 1.015940727761e-04
+  7 KSP unpreconditioned resid norm 4.464640532247e-10 true resid norm 4.464640532178e-10 ||r(i)||/||b|| 3.576130282518e-05
+  8 KSP unpreconditioned resid norm 1.145192634832e-10 true resid norm 1.145192634849e-10 ||r(i)||/||b|| 9.172873003509e-06
+  9 KSP unpreconditioned resid norm 3.131480757555e-11 true resid norm 3.131480757412e-11 ||r(i)||/||b|| 2.508283272750e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 4.378618676681913e-09
+Norm of B: 1.1665371128125792e-08
+Norm of E: 1.0496085874503797e-06
+Norm of J: 0.019598284783316103
+
+
+n is 34
+t is 0.035000000000000024
+f norm is 1.7320508075688779
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.425964524167e-05 true resid norm 1.425964524167e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 6.320997899085e-06 true resid norm 6.320997899085e-06 ||r(i)||/||b|| 4.432787626871e-01
+  2 KSP unpreconditioned resid norm 9.141390850724e-07 true resid norm 9.141390850724e-07 ||r(i)||/||b|| 6.410672001859e-02
+  3 KSP unpreconditioned resid norm 1.826696310216e-07 true resid norm 1.826696310216e-07 ||r(i)||/||b|| 1.281025074087e-02
+  4 KSP unpreconditioned resid norm 2.966529353634e-08 true resid norm 2.966529353634e-08 ||r(i)||/||b|| 2.080366869833e-03
+  5 KSP unpreconditioned resid norm 4.735445212254e-09 true resid norm 4.735445212248e-09 ||r(i)||/||b|| 3.320871685089e-04
+  6 KSP unpreconditioned resid norm 1.447149834210e-09 true resid norm 1.447149834210e-09 ||r(i)||/||b|| 1.014856828262e-04
+  7 KSP unpreconditioned resid norm 5.093134456093e-10 true resid norm 5.093134456067e-10 ||r(i)||/||b|| 3.571711897280e-05
+  8 KSP unpreconditioned resid norm 1.306038444109e-10 true resid norm 1.306038444045e-10 ||r(i)||/||b|| 9.158982722995e-06
+  9 KSP unpreconditioned resid norm 3.566511571367e-11 true resid norm 3.566511572019e-11 ||r(i)||/||b|| 2.501122231005e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 4.9996246726430895e-09
+Norm of B: 1.3323003676711818e-08
+Norm of E: 6.210064958163474e-07
+Norm of J: 0.011604924532734798
+Writing output 
+
+
+n is 35
+t is 0.036000000000000025
+f norm is 1.6472782070926595
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.463898838310e-05 true resid norm 1.463898838310e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 6.490798879074e-06 true resid norm 6.490798879074e-06 ||r(i)||/||b|| 4.433912172898e-01
+  2 KSP unpreconditioned resid norm 9.381194554090e-07 true resid norm 9.381194554089e-07 ||r(i)||/||b|| 6.408362592131e-02
+  3 KSP unpreconditioned resid norm 1.874077376612e-07 true resid norm 1.874077376612e-07 ||r(i)||/||b|| 1.280195958606e-02
+  4 KSP unpreconditioned resid norm 3.044409570932e-08 true resid norm 3.044409570931e-08 ||r(i)||/||b|| 2.079658437632e-03
+  5 KSP unpreconditioned resid norm 4.859596855751e-09 true resid norm 4.859596855749e-09 ||r(i)||/||b|| 3.319626143948e-04
+  6 KSP unpreconditioned resid norm 1.484609883796e-09 true resid norm 1.484609883777e-09 ||r(i)||/||b|| 1.014147866591e-04
+  7 KSP unpreconditioned resid norm 5.224257780887e-10 true resid norm 5.224257780963e-10 ||r(i)||/||b|| 3.568728688244e-05
+  8 KSP unpreconditioned resid norm 1.339336514972e-10 true resid norm 1.339336515093e-10 ||r(i)||/||b|| 9.149105662511e-06
+  9 KSP unpreconditioned resid norm 3.654057213453e-11 true resid norm 3.654057214647e-11 ||r(i)||/||b|| 2.496113200599e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 5.13123333541125e-09
+Norm of B: 1.3676500956594373e-08
+Norm of E: 1.3161018602894043e-07
+Norm of J: 0.002475660221745784
+
+
+n is 36
+t is 0.037000000000000026
+f norm is 1.4012585384440641
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.358544641594e-05 true resid norm 1.358544641594e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 6.025248137965e-06 true resid norm 6.025248137965e-06 ||r(i)||/||b|| 4.435075560637e-01
+  2 KSP unpreconditioned resid norm 8.702718372050e-07 true resid norm 8.702718372050e-07 ||r(i)||/||b|| 6.405912699226e-02
+  3 KSP unpreconditioned resid norm 1.738013981552e-07 true resid norm 1.738013981552e-07 ||r(i)||/||b|| 1.279320478946e-02
+  4 KSP unpreconditioned resid norm 2.824307615570e-08 true resid norm 2.824307615571e-08 ||r(i)||/||b|| 2.078921464265e-03
+  5 KSP unpreconditioned resid norm 4.508427179152e-09 true resid norm 4.508427179153e-09 ||r(i)||/||b|| 3.318571242433e-04
+  6 KSP unpreconditioned resid norm 1.377068374537e-09 true resid norm 1.377068374531e-09 ||r(i)||/||b|| 1.013634982886e-04
+  7 KSP unpreconditioned resid norm 4.845168370330e-10 true resid norm 4.845168370226e-10 ||r(i)||/||b|| 3.566440308169e-05
+  8 KSP unpreconditioned resid norm 1.241825110885e-10 true resid norm 1.241825110951e-10 ||r(i)||/||b|| 9.140848765149e-06
+  9 KSP unpreconditioned resid norm 3.385538999500e-11 true resid norm 3.385539000016e-11 ||r(i)||/||b|| 2.492033678072e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 4.760561502380892e-09
+Norm of B: 1.269125834963185e-08
+Norm of E: 3.7067226371183614e-07
+Norm of J: 0.006896175395254202
+
+
+n is 37
+t is 0.03800000000000003
+f norm is 1.0180739209102427
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.120216848252e-05 true resid norm 1.120216848252e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 4.969920223087e-06 true resid norm 4.969920223087e-06 ||r(i)||/||b|| 4.436569786324e-01
+  2 KSP unpreconditioned resid norm 7.172380505215e-07 true resid norm 7.172380505215e-07 ||r(i)||/||b|| 6.402671515257e-02
+  3 KSP unpreconditioned resid norm 1.431825506608e-07 true resid norm 1.431825506608e-07 ||r(i)||/||b|| 1.278168158997e-02
+  4 KSP unpreconditioned resid norm 2.327770163995e-08 true resid norm 2.327770163995e-08 ||r(i)||/||b|| 2.077963893890e-03
+  5 KSP unpreconditioned resid norm 3.716311336763e-09 true resid norm 3.716311336754e-09 ||r(i)||/||b|| 3.317492807354e-04
+  6 KSP unpreconditioned resid norm 1.135051225735e-09 true resid norm 1.135051225748e-09 ||r(i)||/||b|| 1.013242415983e-04
+  7 KSP unpreconditioned resid norm 3.992969761621e-10 true resid norm 3.992969761756e-10 ||r(i)||/||b|| 3.564461441538e-05
+  8 KSP unpreconditioned resid norm 1.023048105769e-10 true resid norm 1.023048105749e-10 ||r(i)||/||b|| 9.132589885124e-06
+  9 KSP unpreconditioned resid norm 2.787235072607e-11 true resid norm 2.787235072765e-11 ||r(i)||/||b|| 2.488121007208e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 3.923892951492441e-09
+Norm of B: 1.0463720743789485e-08
+Norm of E: 8.366687528191577e-07
+Norm of J: 0.015592796974709094
+
+
+n is 38
+t is 0.03900000000000003
+f norm is 0.5352331346596216
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 7.722536507644e-06 true resid norm 7.722536507644e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 3.428132087842e-06 true resid norm 3.428132087842e-06 ||r(i)||/||b|| 4.439127072367e-01
+  2 KSP unpreconditioned resid norm 4.939999873240e-07 true resid norm 4.939999873240e-07 ||r(i)||/||b|| 6.396861793208e-02
+  3 KSP unpreconditioned resid norm 9.854863542320e-08 true resid norm 9.854863542320e-08 ||r(i)||/||b|| 1.276117443092e-02
+  4 KSP unpreconditioned resid norm 1.603408905821e-08 true resid norm 1.603408905820e-08 ||r(i)||/||b|| 2.076272354599e-03
+  5 KSP unpreconditioned resid norm 2.560794248975e-09 true resid norm 2.560794248982e-09 ||r(i)||/||b|| 3.316001480145e-04
+  6 KSP unpreconditioned resid norm 7.822499032319e-10 true resid norm 7.822499032402e-10 ||r(i)||/||b|| 1.012944260562e-04
+  7 KSP unpreconditioned resid norm 2.751082026098e-10 true resid norm 2.751082026182e-10 ||r(i)||/||b|| 3.562407278307e-05
+  8 KSP unpreconditioned resid norm 7.044215480909e-11 true resid norm 7.044215481509e-11 ||r(i)||/||b|| 9.121634419645e-06
+Iteration count is 8
+KSP converged reason: 3
+Norm of a_n: 2.7031340473193277e-09
+Norm of B: 7.21195373472625e-09
+Norm of E: 1.220759122704562e-06
+Norm of J: 0.022763059228239322
+
+
+n is 39
+t is 0.04000000000000003
+f norm is 1.4535241300088582e-14
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 3.487717694815e-06 true resid norm 3.487717694815e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 1.550892559575e-06 true resid norm 1.550892559575e-06 ||r(i)||/||b|| 4.446726183946e-01
+  2 KSP unpreconditioned resid norm 2.224215879907e-07 true resid norm 2.224215879907e-07 ||r(i)||/||b|| 6.377281863189e-02
+  3 KSP unpreconditioned resid norm 4.427021970705e-08 true resid norm 4.427021970706e-08 ||r(i)||/||b|| 1.269317748190e-02
+  4 KSP unpreconditioned resid norm 7.221465727135e-09 true resid norm 7.221465727134e-09 ||r(i)||/||b|| 2.070541930004e-03
+  5 KSP unpreconditioned resid norm 1.154499058330e-09 true resid norm 1.154499058330e-09 ||r(i)||/||b|| 3.310184938551e-04
+  6 KSP unpreconditioned resid norm 3.527415007583e-10 true resid norm 3.527415007544e-10 ||r(i)||/||b|| 1.011382031518e-04
+  7 KSP unpreconditioned resid norm 1.239549342446e-10 true resid norm 1.239549342420e-10 ||r(i)||/||b|| 3.554041499008e-05
+  8 KSP unpreconditioned resid norm 3.168499437826e-11 true resid norm 3.168499437423e-11 ||r(i)||/||b|| 9.084735963960e-06
+Iteration count is 8
+KSP converged reason: 3
+Norm of a_n: 1.217764337871918e-09
+Norm of B: 3.2543231786677393e-09
+Norm of E: 1.4853702772587032e-06
+Norm of J: 0.027705215363295684
+Writing output 
+
+
+n is 40
+t is 0.04100000000000003
+f norm is 0.5352331346596523
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.096142211930e-06 true resid norm 1.096142211930e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 4.793809526517e-07 true resid norm 4.793809526517e-07 ||r(i)||/||b|| 4.373346336218e-01
+  2 KSP unpreconditioned resid norm 7.108760921330e-08 true resid norm 7.108760921330e-08 ||r(i)||/||b|| 6.485254234316e-02
+  3 KSP unpreconditioned resid norm 1.436320706281e-08 true resid norm 1.436320706281e-08 ||r(i)||/||b|| 1.310341569414e-02
+  4 KSP unpreconditioned resid norm 2.303873336161e-09 true resid norm 2.303873336161e-09 ||r(i)||/||b|| 2.101801491711e-03
+  5 KSP unpreconditioned resid norm 3.648890252543e-10 true resid norm 3.648890252541e-10 ||r(i)||/||b|| 3.328847491528e-04
+  6 KSP unpreconditioned resid norm 1.109472056774e-10 true resid norm 1.109472056769e-10 ||r(i)||/||b|| 1.012160689274e-04
+  7 KSP unpreconditioned resid norm 3.919517282391e-11 true resid norm 3.919517282460e-11 ||r(i)||/||b|| 3.575737928712e-05
+Iteration count is 7
+KSP converged reason: 3
+Norm of a_n: 3.8681584925009805e-10
+Norm of B: 1.0228857363638336e-09
+Norm of E: 1.6045764936965296e-06
+Norm of J: 0.029935374515952646
+
+
+n is 41
+t is 0.04200000000000003
+f norm is 1.0180739209102687
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 5.562106858031e-06 true resid norm 5.562106858031e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 2.461026712469e-06 true resid norm 2.461026712469e-06 ||r(i)||/||b|| 4.424630405860e-01
+  2 KSP unpreconditioned resid norm 3.574193236896e-07 true resid norm 3.574193236896e-07 ||r(i)||/||b|| 6.425970101124e-02
+  3 KSP unpreconditioned resid norm 7.156038821541e-08 true resid norm 7.156038821541e-08 ||r(i)||/||b|| 1.286569820428e-02
+  4 KSP unpreconditioned resid norm 1.159452910670e-08 true resid norm 1.159452910671e-08 ||r(i)||/||b|| 2.084557057721e-03
+  5 KSP unpreconditioned resid norm 1.846422326021e-09 true resid norm 1.846422326024e-09 ||r(i)||/||b|| 3.319645546467e-04
+  6 KSP unpreconditioned resid norm 5.625089155399e-10 true resid norm 5.625089155416e-10 ||r(i)||/||b|| 1.011323460515e-04
+  7 KSP unpreconditioned resid norm 1.981116605111e-10 true resid norm 1.981116605100e-10 ||r(i)||/||b|| 3.561809680516e-05
+  8 KSP unpreconditioned resid norm 5.090090824350e-11 true resid norm 5.090090824077e-11 ||r(i)||/||b|| 9.151371870404e-06
+Iteration count is 8
+KSP converged reason: 3
+Norm of a_n: 1.9535231494410644e-09
+Norm of B: 5.198554563223179e-09
+Norm of E: 1.5667096529684554e-06
+Norm of J: 0.029235225737293275
+
+
+n is 42
+t is 0.04300000000000003
+f norm is 1.4012585384440832
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 9.487503917301e-06 true resid norm 9.487503917301e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 4.202399952620e-06 true resid norm 4.202399952620e-06 ||r(i)||/||b|| 4.429405235824e-01
+  2 KSP unpreconditioned resid norm 6.088444857951e-07 true resid norm 6.088444857951e-07 ||r(i)||/||b|| 6.417330533954e-02
+  3 KSP unpreconditioned resid norm 1.217637249860e-07 true resid norm 1.217637249860e-07 ||r(i)||/||b|| 1.283411591156e-02
+  4 KSP unpreconditioned resid norm 1.975334471377e-08 true resid norm 1.975334471376e-08 ||r(i)||/||b|| 2.082038108858e-03
+  5 KSP unpreconditioned resid norm 3.147494803302e-09 true resid norm 3.147494803312e-09 ||r(i)||/||b|| 3.317516209476e-04
+  6 KSP unpreconditioned resid norm 9.590103336043e-10 true resid norm 9.590103336136e-10 ||r(i)||/||b|| 1.010814163528e-04
+  7 KSP unpreconditioned resid norm 3.376033707328e-10 true resid norm 3.376033707427e-10 ||r(i)||/||b|| 3.558400330429e-05
+  8 KSP unpreconditioned resid norm 8.665694358507e-11 true resid norm 8.665694358219e-11 ||r(i)||/||b|| 9.133797923831e-06
+Iteration count is 8
+KSP converged reason: 3
+Norm of a_n: 3.3290100163835225e-09
+Norm of B: 8.86587213106372e-09
+Norm of E: 1.3754871785520248e-06
+Norm of J: 0.02567333712818722
+
+
+n is 43
+t is 0.04400000000000003
+f norm is 1.6472782070926697
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.248453857363e-05 true resid norm 1.248453857363e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 5.532467313204e-06 true resid norm 5.532467313204e-06 ||r(i)||/||b|| 4.431455180002e-01
+  2 KSP unpreconditioned resid norm 8.006788527039e-07 true resid norm 8.006788527039e-07 ||r(i)||/||b|| 6.413363601561e-02
+  3 KSP unpreconditioned resid norm 1.600487896881e-07 true resid norm 1.600487896881e-07 ||r(i)||/||b|| 1.281976011722e-02
+  4 KSP unpreconditioned resid norm 2.597849448345e-08 true resid norm 2.597849448345e-08 ||r(i)||/||b|| 2.080853395602e-03
+  5 KSP unpreconditioned resid norm 4.139842840960e-09 true resid norm 4.139842840953e-09 ||r(i)||/||b|| 3.315975850079e-04
+  6 KSP unpreconditioned resid norm 1.261069479818e-09 true resid norm 1.261069479816e-09 ||r(i)||/||b|| 1.010104996976e-04
+  7 KSP unpreconditioned resid norm 4.438506581093e-10 true resid norm 4.438506581054e-10 ||r(i)||/||b|| 3.555202745282e-05
+  8 KSP unpreconditioned resid norm 1.138871180595e-10 true resid norm 1.138871180586e-10 ||r(i)||/||b|| 9.122252887996e-06
+  9 KSP unpreconditioned resid norm 3.096727137832e-11 true resid norm 3.096727136890e-11 ||r(i)||/||b|| 2.480449812884e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 4.3786184735666675e-09
+Norm of B: 1.16653711092929e-08
+Norm of E: 1.0496086509593145e-06
+Norm of J: 0.019598285295342126
+
+
+n is 44
+t is 0.04500000000000003
+f norm is 1.7320508075688779
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.425962678577e-05 true resid norm 1.425962678577e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 6.320997176014e-06 true resid norm 6.320997176014e-06 ||r(i)||/||b|| 4.432792857047e-01
+  2 KSP unpreconditioned resid norm 9.141396648801e-07 true resid norm 9.141396648801e-07 ||r(i)||/||b|| 6.410684365120e-02
+  3 KSP unpreconditioned resid norm 1.826675199984e-07 true resid norm 1.826675199984e-07 ||r(i)||/||b|| 1.281011927890e-02
+  4 KSP unpreconditioned resid norm 2.966088278902e-08 true resid norm 2.966088278902e-08 ||r(i)||/||b|| 2.080060245238e-03
+  5 KSP unpreconditioned resid norm 4.727177307723e-09 true resid norm 4.727177307711e-09 ||r(i)||/||b|| 3.315077861944e-04
+  6 KSP unpreconditioned resid norm 1.439878940151e-09 true resid norm 1.439878940154e-09 ||r(i)||/||b|| 1.009759204631e-04
+  7 KSP unpreconditioned resid norm 5.067068324978e-10 true resid norm 5.067068324956e-10 ||r(i)||/||b|| 3.553436847317e-05
+  8 KSP unpreconditioned resid norm 1.299739900104e-10 true resid norm 1.299739900104e-10 ||r(i)||/||b|| 9.114824108863e-06
+  9 KSP unpreconditioned resid norm 3.531876318940e-11 true resid norm 3.531876319121e-11 ||r(i)||/||b|| 2.476836436311e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 4.99962472754963e-09
+Norm of B: 1.3323003690756355e-08
+Norm of E: 6.21006507789367e-07
+Norm of J: 0.011604924762785653
+Writing output 
+
+
+n is 45
+t is 0.046000000000000034
+f norm is 1.6472782070926586
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.463897059524e-05 true resid norm 1.463897059524e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 6.490798169688e-06 true resid norm 6.490798169688e-06 ||r(i)||/||b|| 4.433917075973e-01
+  2 KSP unpreconditioned resid norm 9.381200616683e-07 true resid norm 9.381200616683e-07 ||r(i)||/||b|| 6.408374520361e-02
+  3 KSP unpreconditioned resid norm 1.874056367548e-07 true resid norm 1.874056367548e-07 ||r(i)||/||b|| 1.280183162713e-02
+  4 KSP unpreconditioned resid norm 3.043969141690e-08 true resid norm 3.043969141691e-08 ||r(i)||/||b|| 2.079360103832e-03
+  5 KSP unpreconditioned resid norm 4.851343436680e-09 true resid norm 4.851343436691e-09 ||r(i)||/||b|| 3.313992199882e-04
+  6 KSP unpreconditioned resid norm 1.477352995523e-09 true resid norm 1.477352995543e-09 ||r(i)||/||b|| 1.009191859450e-04
+  7 KSP unpreconditioned resid norm 5.198249778339e-10 true resid norm 5.198249778414e-10 ||r(i)||/||b|| 3.550966746327e-05
+  8 KSP unpreconditioned resid norm 1.333058687683e-10 true resid norm 1.333058687800e-10 ||r(i)||/||b|| 9.106232430260e-06
+  9 KSP unpreconditioned resid norm 3.619532874651e-11 true resid norm 3.619532874612e-11 ||r(i)||/||b|| 2.472532375869e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 5.131233606219189e-09
+Norm of B: 1.3676500985357279e-08
+Norm of E: 1.3161019186721962e-07
+Norm of J: 0.002475660324139201
+
+
+n is 46
+t is 0.047000000000000035
+f norm is 1.4012585384440606
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.358542932023e-05 true resid norm 1.358542932023e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 6.025247438922e-06 true resid norm 6.025247438922e-06 ||r(i)||/||b|| 4.435080627116e-01
+  2 KSP unpreconditioned resid norm 8.702724708825e-07 true resid norm 8.702724708825e-07 ||r(i)||/||b|| 6.405925424723e-02
+  3 KSP unpreconditioned resid norm 1.737993079367e-07 true resid norm 1.737993079367e-07 ||r(i)||/||b|| 1.279306703085e-02
+  4 KSP unpreconditioned resid norm 2.823867897821e-08 true resid norm 2.823867897822e-08 ||r(i)||/||b|| 2.078600411705e-03
+  5 KSP unpreconditioned resid norm 4.500189621216e-09 true resid norm 4.500189621203e-09 ||r(i)||/||b|| 3.312511894270e-04
+  6 KSP unpreconditioned resid norm 1.369826555975e-09 true resid norm 1.369826555971e-09 ||r(i)||/||b|| 1.008305680801e-04
+  7 KSP unpreconditioned resid norm 4.819221177552e-10 true resid norm 4.819221177664e-10 ||r(i)||/||b|| 3.547345515601e-05
+  8 KSP unpreconditioned resid norm 1.235568789684e-10 true resid norm 1.235568789765e-10 ||r(i)||/||b|| 9.094808567627e-06
+  9 KSP unpreconditioned resid norm 3.351130631776e-11 true resid norm 3.351130631526e-11 ||r(i)||/||b|| 2.466709407951e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 4.7605619961892564e-09
+Norm of B: 1.2691258384915722e-08
+Norm of E: 3.706722612928838e-07
+Norm of J: 0.0068961753493252545
+
+
+n is 47
+t is 0.048000000000000036
+f norm is 1.018073920910238
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.120215228779e-05 true resid norm 1.120215228779e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 4.969919536262e-06 true resid norm 4.969919536262e-06 ||r(i)||/||b|| 4.436575587067e-01
+  2 KSP unpreconditioned resid norm 7.172387208992e-07 true resid norm 7.172387208992e-07 ||r(i)||/||b|| 6.402686755839e-02
+  3 KSP unpreconditioned resid norm 1.431804748135e-07 true resid norm 1.431804748135e-07 ||r(i)||/||b|| 1.278151476030e-02
+  4 KSP unpreconditioned resid norm 2.327331478428e-08 true resid norm 2.327331478428e-08 ||r(i)||/||b|| 2.077575289674e-03
+  5 KSP unpreconditioned resid norm 3.708096486120e-09 true resid norm 3.708096486112e-09 ||r(i)||/||b|| 3.310164324541e-04
+  6 KSP unpreconditioned resid norm 1.127830318691e-09 true resid norm 1.127830318694e-09 ||r(i)||/||b|| 1.006797881085e-04
+  7 KSP unpreconditioned resid norm 3.967101411550e-10 true resid norm 3.967101411478e-10 ||r(i)||/||b|| 3.541374290905e-05
+  8 KSP unpreconditioned resid norm 1.016817933653e-10 true resid norm 1.016817933694e-10 ||r(i)||/||b|| 9.076987239336e-06
+  9 KSP unpreconditioned resid norm 2.752965438259e-11 true resid norm 2.752965437378e-11 ||r(i)||/||b|| 2.457532594320e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 3.923893734581334e-09
+Norm of B: 1.0463720781866198e-08
+Norm of E: 8.366687520743699e-07
+Norm of J: 0.015592796955017129
+
+
+n is 48
+t is 0.04900000000000004
+f norm is 0.535233134659616
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 7.722521900092e-06 true resid norm 7.722521900092e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 3.428131424129e-06 true resid norm 3.428131424129e-06 ||r(i)||/||b|| 4.439134609755e-01
+  2 KSP unpreconditioned resid norm 4.940007250463e-07 true resid norm 4.940007250463e-07 ||r(i)||/||b|| 6.396883446073e-02
+  3 KSP unpreconditioned resid norm 9.854658584017e-08 true resid norm 9.854658584017e-08 ||r(i)||/||b|| 1.276093316602e-02
+  4 KSP unpreconditioned resid norm 1.602972263798e-08 true resid norm 1.602972263798e-08 ||r(i)||/||b|| 2.075710868206e-03
+  5 KSP unpreconditioned resid norm 2.552623772466e-09 true resid norm 2.552623772462e-09 ||r(i)||/||b|| 3.305427689925e-04
+  6 KSP unpreconditioned resid norm 7.750686423100e-10 true resid norm 7.750686423124e-10 ||r(i)||/||b|| 1.003647062889e-04
+  7 KSP unpreconditioned resid norm 2.725351868146e-10 true resid norm 2.725351868027e-10 ||r(i)||/||b|| 3.529095680512e-05
+  8 KSP unpreconditioned resid norm 6.982327998940e-11 true resid norm 6.982327998955e-11 ||r(i)||/||b|| 9.041512719921e-06
+Iteration count is 8
+KSP converged reason: 3
+Norm of a_n: 2.703135288050095e-09
+Norm of B: 7.211953726447597e-09
+Norm of E: 1.2207591750330763e-06
+Norm of J: 0.022763059551772262
+
+
+n is 49
+t is 0.05000000000000004
+f norm is 2.047660684877101e-14
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 3.487708171457e-06 true resid norm 3.487708171457e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 1.550891963274e-06 true resid norm 1.550891963274e-06 ||r(i)||/||b|| 4.446736616230e-01
+  2 KSP unpreconditioned resid norm 2.224225477800e-07 true resid norm 2.224225477800e-07 ||r(i)||/||b|| 6.377326795868e-02
+  3 KSP unpreconditioned resid norm 4.426826347172e-08 true resid norm 4.426826347172e-08 ||r(i)||/||b|| 1.269265124703e-02
+  4 KSP unpreconditioned resid norm 7.217182016290e-09 true resid norm 7.217182016290e-09 ||r(i)||/||b|| 2.069319352850e-03
+  5 KSP unpreconditioned resid norm 1.146504734938e-09 true resid norm 1.146504734943e-09 ||r(i)||/||b|| 3.287272554297e-04
+  6 KSP unpreconditioned resid norm 3.457107742575e-10 true resid norm 3.457107742571e-10 ||r(i)||/||b|| 9.912262071879e-05
+  7 KSP unpreconditioned resid norm 1.214296658197e-10 true resid norm 1.214296658187e-10 ||r(i)||/||b|| 3.481646394972e-05
+  8 KSP unpreconditioned resid norm 3.108020203156e-11 true resid norm 3.108020203370e-11 ||r(i)||/||b|| 8.911353962486e-06
+Iteration count is 8
+KSP converged reason: 3
+Norm of a_n: 1.2177672117621536e-09
+Norm of B: 3.2543231500144647e-09
+Norm of E: 1.4853702850574154e-06
+Norm of J: 0.027705215506213278
+Writing output 
+
+
+n is 50
+t is 0.05100000000000004
+f norm is 0.5352331346596549
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.096187795916e-06 true resid norm 1.096187795916e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 4.793822154359e-07 true resid norm 4.793822154359e-07 ||r(i)||/||b|| 4.373175994315e-01
+  2 KSP unpreconditioned resid norm 7.108828268050e-08 true resid norm 7.108828268050e-08 ||r(i)||/||b|| 6.485045988048e-02
+  3 KSP unpreconditioned resid norm 1.436581658151e-08 true resid norm 1.436581658151e-08 ||r(i)||/||b|| 1.310525134018e-02
+  4 KSP unpreconditioned resid norm 2.308738814516e-09 true resid norm 2.308738814516e-09 ||r(i)||/||b|| 2.106152634720e-03
+  5 KSP unpreconditioned resid norm 3.741050996837e-10 true resid norm 3.741050996840e-10 ||r(i)||/||b|| 3.412782928964e-04
+  6 KSP unpreconditioned resid norm 1.189481363787e-10 true resid norm 1.189481363790e-10 ||r(i)||/||b|| 1.085107285651e-04
+  7 KSP unpreconditioned resid norm 4.196685836148e-11 true resid norm 4.196685836249e-11 ||r(i)||/||b|| 3.828436926488e-05
+Iteration count is 7
+KSP converged reason: 3
+Norm of a_n: 3.8682480515410226e-10
+Norm of B: 1.0228860039140714e-09
+Norm of E: 1.6045768714391886e-06
+Norm of J: 0.02993537618013109
+
+
+n is 51
+t is 0.05200000000000004
+f norm is 1.0180739209102736
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 5.562130091083e-06 true resid norm 5.562130091083e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 2.461027624239e-06 true resid norm 2.461027624239e-06 ||r(i)||/||b|| 4.424613563399e-01
+  2 KSP unpreconditioned resid norm 3.574190147977e-07 true resid norm 3.574190147977e-07 ||r(i)||/||b|| 6.425937706323e-02
+  3 KSP unpreconditioned resid norm 7.156258788287e-08 true resid norm 7.156258788287e-08 ||r(i)||/||b|| 1.286603993632e-02
+  4 KSP unpreconditioned resid norm 1.159902322162e-08 true resid norm 1.159902322161e-08 ||r(i)||/||b|| 2.085356335014e-03
+  5 KSP unpreconditioned resid norm 1.854863013667e-09 true resid norm 1.854863013667e-09 ||r(i)||/||b|| 3.334806959370e-04
+  6 KSP unpreconditioned resid norm 5.699056869742e-10 true resid norm 5.699056869718e-10 ||r(i)||/||b|| 1.024617687180e-04
+  7 KSP unpreconditioned resid norm 2.007351149174e-10 true resid norm 2.007351149186e-10 ||r(i)||/||b|| 3.608961164724e-05
+  8 KSP unpreconditioned resid norm 5.152601302425e-11 true resid norm 5.152601302292e-11 ||r(i)||/||b|| 9.263719506583e-06
+Iteration count is 8
+KSP converged reason: 3
+Norm of a_n: 1.953524636102844e-09
+Norm of B: 5.198554709264509e-09
+Norm of E: 1.5667093208980477e-06
+Norm of J: 0.029235224894662955
+
+
+n is 52
+t is 0.05300000000000004
+f norm is 1.4012585384440852
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 9.487524500657e-06 true resid norm 9.487524500657e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 4.202400802266e-06 true resid norm 4.202400802266e-06 ||r(i)||/||b|| 4.429396521691e-01
+  2 KSP unpreconditioned resid norm 6.088440651206e-07 true resid norm 6.088440651206e-07 ||r(i)||/||b|| 6.417312177465e-02
+  3 KSP unpreconditioned resid norm 1.217658796328e-07 true resid norm 1.217658796328e-07 ||r(i)||/||b|| 1.283431517087e-02
+  4 KSP unpreconditioned resid norm 1.975780237133e-08 true resid norm 1.975780237133e-08 ||r(i)||/||b|| 2.082503435955e-03
+  5 KSP unpreconditioned resid norm 3.155857085441e-09 true resid norm 3.155857085440e-09 ||r(i)||/||b|| 3.326322988912e-04
+  6 KSP unpreconditioned resid norm 9.663399798398e-10 true resid norm 9.663399798331e-10 ||r(i)||/||b|| 1.018537532911e-04
+  7 KSP unpreconditioned resid norm 3.402053364052e-10 true resid norm 3.402053364031e-10 ||r(i)||/||b|| 3.585817737593e-05
+  8 KSP unpreconditioned resid norm 8.727554296721e-11 true resid norm 8.727554296394e-11 ||r(i)||/||b|| 9.198979455379e-06
+Iteration count is 8
+KSP converged reason: 3
+Norm of a_n: 3.3290106527738063e-09
+Norm of B: 8.865872222586612e-09
+Norm of E: 1.375487158354217e-06
+Norm of J: 0.02567333674695173
+
+
+n is 53
+t is 0.05400000000000004
+f norm is 1.6472782070926715
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.248455798481e-05 true resid norm 1.248455798481e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 5.532468141010e-06 true resid norm 5.532468141010e-06 ||r(i)||/||b|| 4.431448952973e-01
+  2 KSP unpreconditioned resid norm 8.006783866348e-07 true resid norm 8.006783866348e-07 ||r(i)||/||b|| 6.413349896801e-02
+  3 KSP unpreconditioned resid norm 1.600509245460e-07 true resid norm 1.600509245460e-07 ||r(i)||/||b|| 1.281991118474e-02
+  4 KSP unpreconditioned resid norm 2.598293680283e-08 true resid norm 2.598293680282e-08 ||r(i)||/||b|| 2.081205985381e-03
+  5 KSP unpreconditioned resid norm 4.148171780716e-09 true resid norm 4.148171780703e-09 ||r(i)||/||b|| 3.322642087730e-04
+  6 KSP unpreconditioned resid norm 1.268369716492e-09 true resid norm 1.268369716495e-09 ||r(i)||/||b|| 1.015950839460e-04
+  7 KSP unpreconditioned resid norm 4.464420151349e-10 true resid norm 4.464420151145e-10 ||r(i)||/||b|| 3.575953715444e-05
+  8 KSP unpreconditioned resid norm 1.145017180963e-10 true resid norm 1.145017181058e-10 ||r(i)||/||b|| 9.171467523732e-06
+  9 KSP unpreconditioned resid norm 3.130284434822e-11 true resid norm 3.130284434994e-11 ||r(i)||/||b|| 2.507325000054e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 4.378618678237059e-09
+Norm of B: 1.1665371128543576e-08
+Norm of E: 1.0496085882140494e-06
+Norm of J: 0.01959828479077493
+
+
+n is 54
+t is 0.05500000000000004
+f norm is 1.7320508075688779
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.425964539627e-05 true resid norm 1.425964539627e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 6.320997979419e-06 true resid norm 6.320997979419e-06 ||r(i)||/||b|| 4.432787635148e-01
+  2 KSP unpreconditioned resid norm 9.141391662293e-07 true resid norm 9.141391662293e-07 ||r(i)||/||b|| 6.410672501494e-02
+  3 KSP unpreconditioned resid norm 1.826696430073e-07 true resid norm 1.826696430073e-07 ||r(i)||/||b|| 1.281025144251e-02
+  4 KSP unpreconditioned resid norm 2.966531762349e-08 true resid norm 2.966531762347e-08 ||r(i)||/||b|| 2.080368536460e-03
+  5 KSP unpreconditioned resid norm 4.735489620144e-09 true resid norm 4.735489620132e-09 ||r(i)||/||b|| 3.320902791433e-04
+  6 KSP unpreconditioned resid norm 1.447163364248e-09 true resid norm 1.447163364243e-09 ||r(i)||/||b|| 1.014866305596e-04
+  7 KSP unpreconditioned resid norm 5.092918576637e-10 true resid norm 5.092918576615e-10 ||r(i)||/||b|| 3.571560466677e-05
+  8 KSP unpreconditioned resid norm 1.305864380653e-10 true resid norm 1.305864380623e-10 ||r(i)||/||b|| 9.157761952229e-06
+  9 KSP unpreconditioned resid norm 3.565320527869e-11 true resid norm 3.565320526015e-11 ||r(i)||/||b|| 2.500286947491e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 4.999624674643611e-09
+Norm of B: 1.332300367760559e-08
+Norm of E: 6.210064961877457e-07
+Norm of J: 0.011604924536053928
+Writing output 
+
+
+n is 55
+t is 0.05600000000000004
+f norm is 1.647278207092657
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.463898853776e-05 true resid norm 1.463898853776e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 6.490798959402e-06 true resid norm 6.490798959402e-06 ||r(i)||/||b|| 4.433912180927e-01
+  2 KSP unpreconditioned resid norm 9.381195365768e-07 true resid norm 9.381195365768e-07 ||r(i)||/||b|| 6.408363078891e-02
+  3 KSP unpreconditioned resid norm 1.874077498270e-07 true resid norm 1.874077498270e-07 ||r(i)||/||b|| 1.280196028186e-02
+  4 KSP unpreconditioned resid norm 3.044411996654e-08 true resid norm 3.044411996654e-08 ||r(i)||/||b|| 2.079660072690e-03
+  5 KSP unpreconditioned resid norm 4.859641722295e-09 true resid norm 4.859641722300e-09 ||r(i)||/||b|| 3.319656757545e-04
+  6 KSP unpreconditioned resid norm 1.484624010692e-09 true resid norm 1.484624010683e-09 ||r(i)||/||b|| 1.014157506070e-04
+  7 KSP unpreconditioned resid norm 5.224045105915e-10 true resid norm 5.224045105983e-10 ||r(i)||/||b|| 3.568583370708e-05
+  8 KSP unpreconditioned resid norm 1.339163521066e-10 true resid norm 1.339163521139e-10 ||r(i)||/||b|| 9.147923831516e-06
+  9 KSP unpreconditioned resid norm 3.652870549585e-11 true resid norm 3.652870550611e-11 ||r(i)||/||b|| 2.495302555357e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 5.131233337518229e-09
+Norm of B: 1.367650095769875e-08
+Norm of E: 1.316101860846749e-07
+Norm of J: 0.0024756602231564948
+
+
+n is 56
+t is 0.057000000000000044
+f norm is 1.401258538444057
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.358544657052e-05 true resid norm 1.358544657052e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 6.025248218231e-06 true resid norm 6.025248218231e-06 ||r(i)||/||b|| 4.435075569252e-01
+  2 KSP unpreconditioned resid norm 8.702719183723e-07 true resid norm 8.702719183724e-07 ||r(i)||/||b|| 6.405913223792e-02
+  3 KSP unpreconditioned resid norm 1.738014104866e-07 true resid norm 1.738014104866e-07 ||r(i)||/||b|| 1.279320555157e-02
+  4 KSP unpreconditioned resid norm 2.824310054273e-08 true resid norm 2.824310054273e-08 ||r(i)||/||b|| 2.078923235693e-03
+  5 KSP unpreconditioned resid norm 4.508472396217e-09 true resid norm 4.508472396215e-09 ||r(i)||/||b|| 3.318604488128e-04
+  6 KSP unpreconditioned resid norm 1.377082973648e-09 true resid norm 1.377082973646e-09 ||r(i)||/||b|| 1.013645717495e-04
+  7 KSP unpreconditioned resid norm 4.844958343355e-10 true resid norm 4.844958343320e-10 ||r(i)||/||b|| 3.566285670603e-05
+  8 KSP unpreconditioned resid norm 1.241653051638e-10 true resid norm 1.241653051655e-10 ||r(i)||/||b|| 9.139582163969e-06
+  9 KSP unpreconditioned resid norm 3.384356326864e-11 true resid norm 3.384356326510e-11 ||r(i)||/||b|| 2.491163105270e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 4.7605615051581945e-09
+Norm of B: 1.2691258350827443e-08
+Norm of E: 3.706722630749725e-07
+Norm of J: 0.006896175394593649
+
+
+n is 57
+t is 0.058000000000000045
+f norm is 1.0180739209102359
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.120216863701e-05 true resid norm 1.120216863701e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 4.969920303280e-06 true resid norm 4.969920303280e-06 ||r(i)||/||b|| 4.436569796728e-01
+  2 KSP unpreconditioned resid norm 7.172381317146e-07 true resid norm 7.172381317146e-07 ||r(i)||/||b|| 6.402672151757e-02
+  3 KSP unpreconditioned resid norm 1.431825631896e-07 true resid norm 1.431825631896e-07 ||r(i)||/||b|| 1.278168253213e-02
+  4 KSP unpreconditioned resid norm 2.327772615768e-08 true resid norm 2.327772615768e-08 ||r(i)||/||b|| 2.077966053892e-03
+  5 KSP unpreconditioned resid norm 3.716356892934e-09 true resid norm 3.716356892942e-09 ||r(i)||/||b|| 3.317533428898e-04
+  6 KSP unpreconditioned resid norm 1.135066280133e-09 true resid norm 1.135066280135e-09 ||r(i)||/||b|| 1.013255840825e-04
+  7 KSP unpreconditioned resid norm 3.992762298064e-10 true resid norm 3.992762298132e-10 ||r(i)||/||b|| 3.564276192862e-05
+  8 KSP unpreconditioned resid norm 1.022876970949e-10 true resid norm 1.022876970926e-10 ||r(i)||/||b|| 9.131062065494e-06
+  9 KSP unpreconditioned resid norm 2.786056359371e-11 true resid norm 2.786056360113e-11 ||r(i)||/||b|| 2.487068754624e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 3.9238929538001594e-09
+Norm of B: 1.0463720745022244e-08
+Norm of E: 8.366687533146794e-07
+Norm of J: 0.0155927969744404
+
+
+n is 58
+t is 0.059000000000000045
+f norm is 0.5352331346596101
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 7.722536662100e-06 true resid norm 7.722536662100e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 3.428132168002e-06 true resid norm 3.428132168002e-06 ||r(i)||/||b|| 4.439127087381e-01
+  2 KSP unpreconditioned resid norm 4.940000686505e-07 true resid norm 4.940000686505e-07 ||r(i)||/||b|| 6.396862718372e-02
+  3 KSP unpreconditioned resid norm 9.854864828429e-08 true resid norm 9.854864828429e-08 ||r(i)||/||b|| 1.276117584109e-02
+  4 KSP unpreconditioned resid norm 1.603411377462e-08 true resid norm 1.603411377462e-08 ||r(i)||/||b|| 2.076275513628e-03
+  5 KSP unpreconditioned resid norm 2.560840279199e-09 true resid norm 2.560840279194e-09 ||r(i)||/||b|| 3.316061018864e-04
+  6 KSP unpreconditioned resid norm 7.822655558777e-10 true resid norm 7.822655558841e-10 ||r(i)||/||b|| 1.012964509088e-04
+  7 KSP unpreconditioned resid norm 2.750877735149e-10 true resid norm 2.750877735157e-10 ||r(i)||/||b|| 3.562142668299e-05
+  8 KSP unpreconditioned resid norm 7.042515227491e-11 true resid norm 7.042515227548e-11 ||r(i)||/||b|| 9.119432559136e-06
+Iteration count is 8
+KSP converged reason: 3
+Norm of a_n: 2.703134048619019e-09
+Norm of B: 7.211953735010562e-09
+Norm of E: 1.2207591237606511e-06
+Norm of J: 0.0227630592348528
+
+
+n is 59
+t is 0.060000000000000046
+f norm is 2.3341232099239737e-14
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 3.487717848932e-06 true resid norm 3.487717848932e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 1.550892639621e-06 true resid norm 1.550892639621e-06 ||r(i)||/||b|| 4.446726216962e-01
+  2 KSP unpreconditioned resid norm 2.224216698278e-07 true resid norm 2.224216698278e-07 ||r(i)||/||b|| 6.377283927824e-02
+  3 KSP unpreconditioned resid norm 4.427023371387e-08 true resid norm 4.427023371387e-08 ||r(i)||/||b|| 1.269318093705e-02
+  4 KSP unpreconditioned resid norm 7.221491249767e-09 true resid norm 7.221491249767e-09 ||r(i)||/||b|| 2.070549156371e-03
+  5 KSP unpreconditioned resid norm 1.154546931263e-09 true resid norm 1.154546931263e-09 ||r(i)||/||b|| 3.310322053766e-04
+  6 KSP unpreconditioned resid norm 3.527593279845e-10 true resid norm 3.527593279822e-10 ||r(i)||/||b|| 1.011433101133e-04
+  7 KSP unpreconditioned resid norm 1.239355599540e-10 true resid norm 1.239355599538e-10 ||r(i)||/||b|| 3.553485841516e-05
+  8 KSP unpreconditioned resid norm 3.166832983611e-11 true resid norm 3.166832983587e-11 ||r(i)||/||b|| 9.079957498730e-06
+Iteration count is 8
+KSP converged reason: 3
+Norm of a_n: 1.2177643389564968e-09
+Norm of B: 3.2543231785446192e-09
+Norm of E: 1.4853702775233118e-06
+Norm of J: 0.027705215366146313
+Writing output 
+
+
+n is 60
+t is 0.06100000000000005
+f norm is 0.5352331346596606
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.096142064948e-06 true resid norm 1.096142064948e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 4.793808758528e-07 true resid norm 4.793808758528e-07 ||r(i)||/||b|| 4.373346222010e-01
+  2 KSP unpreconditioned resid norm 7.108753378871e-08 true resid norm 7.108753378871e-08 ||r(i)||/||b|| 6.485248223007e-02
+  3 KSP unpreconditioned resid norm 1.436320062442e-08 true resid norm 1.436320062442e-08 ||r(i)||/||b|| 1.310341157749e-02
+  4 KSP unpreconditioned resid norm 2.303852966133e-09 true resid norm 2.303852966132e-09 ||r(i)||/||b|| 2.101783190156e-03
+  5 KSP unpreconditioned resid norm 3.648526555705e-10 true resid norm 3.648526555700e-10 ||r(i)||/||b|| 3.328516140717e-04
+  6 KSP unpreconditioned resid norm 1.109419954302e-10 true resid norm 1.109419954300e-10 ||r(i)||/||b|| 1.012113292406e-04
+  7 KSP unpreconditioned resid norm 3.921995924410e-11 true resid norm 3.921995924466e-11 ||r(i)||/||b|| 3.577999649754e-05
+Iteration count is 7
+KSP converged reason: 3
+Norm of a_n: 3.868158476792118e-10
+Norm of B: 1.0228857358955546e-09
+Norm of E: 1.6045764932370233e-06
+Norm of J: 0.02993537451206444
+
+
+n is 61
+t is 0.06200000000000005
+f norm is 1.018073920910278
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 5.562106708436e-06 true resid norm 5.562106708436e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 2.461026634393e-06 true resid norm 2.461026634393e-06 ||r(i)||/||b|| 4.424630384491e-01
+  2 KSP unpreconditioned resid norm 3.574192454451e-07 true resid norm 3.574192454451e-07 ||r(i)||/||b|| 6.425968867210e-02
+  3 KSP unpreconditioned resid norm 7.156037683650e-08 true resid norm 7.156037683650e-08 ||r(i)||/||b|| 1.286569650452e-02
+  4 KSP unpreconditioned resid norm 1.159450510920e-08 true resid norm 1.159450510920e-08 ||r(i)||/||b|| 2.084552799323e-03
+  5 KSP unpreconditioned resid norm 1.846377856706e-09 true resid norm 1.846377856705e-09 ||r(i)||/||b|| 3.319565685256e-04
+  6 KSP unpreconditioned resid norm 5.624945041866e-10 true resid norm 5.624945041922e-10 ||r(i)||/||b|| 1.011297577839e-04
+  7 KSP unpreconditioned resid norm 1.981321389105e-10 true resid norm 1.981321389090e-10 ||r(i)||/||b|| 3.562177953337e-05
+  8 KSP unpreconditioned resid norm 5.091769279120e-11 true resid norm 5.091769279342e-11 ||r(i)||/||b|| 9.154389777563e-06
+Iteration count is 8
+KSP converged reason: 3
+Norm of a_n: 1.9535231481784584e-09
+Norm of B: 5.198554563311489e-09
+Norm of E: 1.5667096532876614e-06
+Norm of J: 0.02923522574096339
+
+
+n is 62
+t is 0.06300000000000004
+f norm is 1.4012585384440852
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 9.487503768185e-06 true resid norm 9.487503768185e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 4.202399874702e-06 true resid norm 4.202399874702e-06 ||r(i)||/||b|| 4.429405223315e-01
+  2 KSP unpreconditioned resid norm 6.088444074466e-07 true resid norm 6.088444074466e-07 ||r(i)||/||b|| 6.417329809009e-02
+  3 KSP unpreconditioned resid norm 1.217637130247e-07 true resid norm 1.217637130247e-07 ||r(i)||/||b|| 1.283411485253e-02
+  4 KSP unpreconditioned resid norm 1.975332029275e-08 true resid norm 1.975332029276e-08 ||r(i)||/||b|| 2.082035567564e-03
+  5 KSP unpreconditioned resid norm 3.147449357956e-09 true resid norm 3.147449357946e-09 ||r(i)||/||b|| 3.317468361384e-04
+  6 KSP unpreconditioned resid norm 9.589947290778e-10 true resid norm 9.589947290802e-10 ||r(i)||/||b|| 1.010797731956e-04
+  7 KSP unpreconditioned resid norm 3.376232217692e-10 true resid norm 3.376232217647e-10 ||r(i)||/||b|| 3.558609619707e-05
+  8 KSP unpreconditioned resid norm 8.667350966457e-11 true resid norm 8.667350966389e-11 ||r(i)||/||b|| 9.135544162262e-06
+Iteration count is 8
+KSP converged reason: 3
+Norm of a_n: 3.3290100154559445e-09
+Norm of B: 8.865872131376993e-09
+Norm of E: 1.3754871789226235e-06
+Norm of J: 0.025673337129778026
+
+
+n is 63
+t is 0.06400000000000004
+f norm is 1.6472782070926715
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.248453842506e-05 true resid norm 1.248453842506e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 5.532467235526e-06 true resid norm 5.532467235526e-06 ||r(i)||/||b|| 4.431455170519e-01
+  2 KSP unpreconditioned resid norm 8.006787744741e-07 true resid norm 8.006787744741e-07 ||r(i)||/||b|| 6.413363051270e-02
+  3 KSP unpreconditioned resid norm 1.600487774394e-07 true resid norm 1.600487774394e-07 ||r(i)||/||b|| 1.281975928867e-02
+  4 KSP unpreconditioned resid norm 2.597846982612e-08 true resid norm 2.597846982614e-08 ||r(i)||/||b|| 2.080851445337e-03
+  5 KSP unpreconditioned resid norm 4.139796820073e-09 true resid norm 4.139796820068e-09 ||r(i)||/||b|| 3.315939027237e-04
+  6 KSP unpreconditioned resid norm 1.261053112194e-09 true resid norm 1.261053112179e-09 ||r(i)||/||b|| 1.010091898670e-04
+  7 KSP unpreconditioned resid norm 4.438700683250e-10 true resid norm 4.438700683186e-10 ||r(i)||/||b|| 3.555358261606e-05
+  8 KSP unpreconditioned resid norm 1.139035179779e-10 true resid norm 1.139035179742e-10 ||r(i)||/||b|| 9.123566614650e-06
+  9 KSP unpreconditioned resid norm 3.097859068571e-11 true resid norm 3.097859068859e-11 ||r(i)||/||b|| 2.481356509458e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 4.378618471353995e-09
+Norm of B: 1.1665371108766139e-08
+Norm of E: 1.0496086496839658e-06
+Norm of J: 0.019598285289488888
+
+
+n is 64
+t is 0.06500000000000004
+f norm is 1.7320508075688779
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.425962663696e-05 true resid norm 1.425962663696e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 6.320997098242e-06 true resid norm 6.320997098242e-06 ||r(i)||/||b|| 4.432792848768e-01
+  2 KSP unpreconditioned resid norm 9.141395866227e-07 true resid norm 9.141395866227e-07 ||r(i)||/||b|| 6.410683883217e-02
+  3 KSP unpreconditioned resid norm 1.826675075775e-07 true resid norm 1.826675075775e-07 ||r(i)||/||b|| 1.281011854153e-02
+  4 KSP unpreconditioned resid norm 2.966085801467e-08 true resid norm 2.966085801467e-08 ||r(i)||/||b|| 2.080058529568e-03
+  5 KSP unpreconditioned resid norm 4.727130982287e-09 true resid norm 4.727130982297e-09 ||r(i)||/||b|| 3.315045409425e-04
+  6 KSP unpreconditioned resid norm 1.439862159869e-09 true resid norm 1.439862159874e-09 ||r(i)||/||b|| 1.009747447484e-04
+  7 KSP unpreconditioned resid norm 5.067260059475e-10 true resid norm 5.067260059572e-10 ||r(i)||/||b|| 3.553571344174e-05
+  8 KSP unpreconditioned resid norm 1.299903029655e-10 true resid norm 1.299903029526e-10 ||r(i)||/||b|| 9.115968199028e-06
+  9 KSP unpreconditioned resid norm 3.533004427581e-11 true resid norm 3.533004427623e-11 ||r(i)||/||b|| 2.477627582804e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 4.999624725472459e-09
+Norm of B: 1.3323003689855564e-08
+Norm of E: 6.210065079510347e-07
+Norm of J: 0.011604924760179873
+Writing output 
+
+
+n is 65
+t is 0.06600000000000004
+f norm is 1.647278207092657
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.463897044641e-05 true resid norm 1.463897044641e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 6.490798091939e-06 true resid norm 6.490798091939e-06 ||r(i)||/||b|| 4.433917067938e-01
+  2 KSP unpreconditioned resid norm 9.381199834096e-07 true resid norm 9.381199834096e-07 ||r(i)||/||b|| 6.408374050919e-02
+  3 KSP unpreconditioned resid norm 1.874056241723e-07 true resid norm 1.874056241723e-07 ||r(i)||/||b|| 1.280183089776e-02
+  4 KSP unpreconditioned resid norm 3.043966650458e-08 true resid norm 3.043966650458e-08 ||r(i)||/||b|| 2.079358423190e-03
+  5 KSP unpreconditioned resid norm 4.851296741133e-09 true resid norm 4.851296741135e-09 ||r(i)||/||b|| 3.313960335458e-04
+  6 KSP unpreconditioned resid norm 1.477335721913e-09 true resid norm 1.477335721930e-09 ||r(i)||/||b|| 1.009180069964e-04
+  7 KSP unpreconditioned resid norm 5.198438770713e-10 true resid norm 5.198438770680e-10 ||r(i)||/||b|| 3.551095884584e-05
+  8 KSP unpreconditioned resid norm 1.333220856130e-10 true resid norm 1.333220856221e-10 ||r(i)||/||b|| 9.107340308538e-06
+  9 KSP unpreconditioned resid norm 3.620656799833e-11 true resid norm 3.620656798809e-11 ||r(i)||/||b|| 2.473300162783e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 5.131233604228361e-09
+Norm of B: 1.3676500984291541e-08
+Norm of E: 1.3161019199540978e-07
+Norm of J: 0.0024756603230463585
+
+
+n is 66
+t is 0.06700000000000005
+f norm is 1.401258538444057
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.358542917149e-05 true resid norm 1.358542917149e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 6.025247361234e-06 true resid norm 6.025247361234e-06 ||r(i)||/||b|| 4.435080618490e-01
+  2 KSP unpreconditioned resid norm 8.702723926142e-07 true resid norm 8.702723926142e-07 ||r(i)||/||b|| 6.405924918741e-02
+  3 KSP unpreconditioned resid norm 1.737992951614e-07 true resid norm 1.737992951614e-07 ||r(i)||/||b|| 1.279306623056e-02
+  4 KSP unpreconditioned resid norm 2.823865386443e-08 true resid norm 2.823865386443e-08 ||r(i)||/||b|| 2.078598585880e-03
+  5 KSP unpreconditioned resid norm 4.500142387265e-09 true resid norm 4.500142387283e-09 ||r(i)||/||b|| 3.312477162465e-04
+  6 KSP unpreconditioned resid norm 1.369808592171e-09 true resid norm 1.369808592173e-09 ||r(i)||/||b|| 1.008292468999e-04
+  7 KSP unpreconditioned resid norm 4.819406530834e-10 true resid norm 4.819406530715e-10 ||r(i)||/||b|| 3.547481989623e-05
+  8 KSP unpreconditioned resid norm 1.235729763006e-10 true resid norm 1.235729762927e-10 ||r(i)||/||b|| 9.095993562872e-06
+  9 KSP unpreconditioned resid norm 3.352249535838e-11 true resid norm 3.352249536831e-11 ||r(i)||/||b|| 2.467533041847e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 4.760561993925276e-09
+Norm of B: 1.2691258383780099e-08
+Norm of E: 3.706722615125329e-07
+Norm of J: 0.006896175349835767
+
+
+n is 67
+t is 0.06800000000000005
+f norm is 1.0180739209102359
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.120215213912e-05 true resid norm 1.120215213912e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 4.969919458634e-06 true resid norm 4.969919458634e-06 ||r(i)||/||b|| 4.436575576649e-01
+  2 KSP unpreconditioned resid norm 7.172386425701e-07 true resid norm 7.172386425701e-07 ||r(i)||/||b|| 6.402686141578e-02
+  3 KSP unpreconditioned resid norm 1.431804617494e-07 true resid norm 1.431804617494e-07 ||r(i)||/||b|| 1.278151376371e-02
+  4 KSP unpreconditioned resid norm 2.327328932013e-08 true resid norm 2.327328932012e-08 ||r(i)||/||b|| 2.077573044097e-03
+  5 KSP unpreconditioned resid norm 3.708048330121e-09 true resid norm 3.708048330137e-09 ||r(i)||/||b|| 3.310121380326e-04
+  6 KSP unpreconditioned resid norm 1.127811219107e-09 true resid norm 1.127811219108e-09 ||r(i)||/||b|| 1.006780844521e-04
+  7 KSP unpreconditioned resid norm 3.967281094360e-10 true resid norm 3.967281094457e-10 ||r(i)||/||b|| 3.541534738313e-05
+  8 KSP unpreconditioned resid norm 1.016977170225e-10 true resid norm 1.016977170211e-10 ||r(i)||/||b|| 9.078408841277e-06
+  9 KSP unpreconditioned resid norm 2.754077381062e-11 true resid norm 2.754077381329e-11 ||r(i)||/||b|| 2.458525243297e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 3.923893732543138e-09
+Norm of B: 1.046372078070533e-08
+Norm of E: 8.366687517574419e-07
+Norm of J: 0.015592796955202165
+
+
+n is 68
+t is 0.06900000000000005
+f norm is 0.5352331346596103
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 7.722521751386e-06 true resid norm 7.722521751386e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 3.428131346505e-06 true resid norm 3.428131346505e-06 ||r(i)||/||b|| 4.439134594720e-01
+  2 KSP unpreconditioned resid norm 4.940006464935e-07 true resid norm 4.940006464935e-07 ||r(i)||/||b|| 6.396882552061e-02
+  3 KSP unpreconditioned resid norm 9.854657220351e-08 true resid norm 9.854657220351e-08 ||r(i)||/||b|| 1.276093164591e-02
+  4 KSP unpreconditioned resid norm 1.602969640815e-08 true resid norm 1.602969640814e-08 ||r(i)||/||b|| 2.075707511639e-03
+  5 KSP unpreconditioned resid norm 2.552573630486e-09 true resid norm 2.552573630491e-09 ||r(i)||/||b|| 3.305362824045e-04
+  6 KSP unpreconditioned resid norm 7.750471687484e-10 true resid norm 7.750471687447e-10 ||r(i)||/||b|| 1.003619275796e-04
+  7 KSP unpreconditioned resid norm 2.725520195756e-10 true resid norm 2.725520195735e-10 ||r(i)||/||b|| 3.529313718341e-05
+  8 KSP unpreconditioned resid norm 6.983887533136e-11 true resid norm 6.983887533220e-11 ||r(i)||/||b|| 9.043532356471e-06
+Iteration count is 8
+KSP converged reason: 3
+Norm of a_n: 2.7031352861460763e-09
+Norm of B: 7.21195372615128e-09
+Norm of E: 1.2207591746838376e-06
+Norm of J: 0.0227630595457439
+
+
+n is 69
+t is 0.07000000000000005
+f norm is 2.928259764792213e-14
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 3.487708022769e-06 true resid norm 3.487708022769e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 1.550891885636e-06 true resid norm 1.550891885636e-06 ||r(i)||/||b|| 4.446736583198e-01
+  2 KSP unpreconditioned resid norm 2.224224683626e-07 true resid norm 2.224224683626e-07 ||r(i)||/||b|| 6.377324790681e-02
+  3 KSP unpreconditioned resid norm 4.426824775317e-08 true resid norm 4.426824775317e-08 ||r(i)||/||b|| 1.269264728130e-02
+  4 KSP unpreconditioned resid norm 7.217152785936e-09 true resid norm 7.217152785937e-09 ||r(i)||/||b|| 2.069311060106e-03
+  5 KSP unpreconditioned resid norm 1.146446863687e-09 true resid norm 1.146446863688e-09 ||r(i)||/||b|| 3.287106765254e-04
+  6 KSP unpreconditioned resid norm 3.456800900745e-10 true resid norm 3.456800900696e-10 ||r(i)||/||b|| 9.911382713601e-05
+  7 KSP unpreconditioned resid norm 1.214421013278e-10 true resid norm 1.214421013277e-10 ||r(i)||/||b|| 3.482003095869e-05
+  8 KSP unpreconditioned resid norm 3.109451961727e-11 true resid norm 3.109451961820e-11 ||r(i)||/||b|| 8.915459498099e-06
+Iteration count is 8
+KSP converged reason: 3
+Norm of a_n: 1.217767209469125e-09
+Norm of B: 3.254323150042121e-09
+Norm of E: 1.4853702847338943e-06
+Norm of J: 0.027705215503947413
+Writing output 
+
+
+n is 70
+t is 0.07100000000000005
+f norm is 0.5352331346596604
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.096187935630e-06 true resid norm 1.096187935630e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 4.793822892316e-07 true resid norm 4.793822892316e-07 ||r(i)||/||b|| 4.373176110134e-01
+  2 KSP unpreconditioned resid norm 7.108835314296e-08 true resid norm 7.108835314296e-08 ||r(i)||/||b|| 6.485051589451e-02
+  3 KSP unpreconditioned resid norm 1.436581788662e-08 true resid norm 1.436581788662e-08 ||r(i)||/||b|| 1.310525086044e-02
+  4 KSP unpreconditioned resid norm 2.308746660557e-09 true resid norm 2.308746660558e-09 ||r(i)||/||b|| 2.106159523850e-03
+  5 KSP unpreconditioned resid norm 3.741085464823e-10 true resid norm 3.741085464833e-10 ||r(i)||/||b|| 3.412813937495e-04
+  6 KSP unpreconditioned resid norm 1.189186123012e-10 true resid norm 1.189186123011e-10 ||r(i)||/||b|| 1.084837813260e-04
+  7 KSP unpreconditioned resid norm 4.192946445199e-11 true resid norm 4.192946445230e-11 ||r(i)||/||b|| 3.825025170359e-05
+Iteration count is 7
+KSP converged reason: 3
+Norm of a_n: 3.8682480094143896e-10
+Norm of B: 1.0228860031285443e-09
+Norm of E: 1.6045768698394104e-06
+Norm of J: 0.02993537617465299
+
+
+n is 71
+t is 0.07200000000000005
+f norm is 1.0180739209102778
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 5.562130234016e-06 true resid norm 5.562130234016e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 2.461027699339e-06 true resid norm 2.461027699339e-06 ||r(i)||/||b|| 4.424613584716e-01
+  2 KSP unpreconditioned resid norm 3.574190896682e-07 true resid norm 3.574190896682e-07 ||r(i)||/||b|| 6.425938887269e-02
+  3 KSP unpreconditioned resid norm 7.156259816104e-08 true resid norm 7.156259816104e-08 ||r(i)||/||b|| 1.286604145358e-02
+  4 KSP unpreconditioned resid norm 1.159904439134e-08 true resid norm 1.159904439133e-08 ||r(i)||/||b|| 2.085360087471e-03
+  5 KSP unpreconditioned resid norm 1.854900108397e-09 true resid norm 1.854900108398e-09 ||r(i)||/||b|| 3.334873565265e-04
+  6 KSP unpreconditioned resid norm 5.699126374951e-10 true resid norm 5.699126374903e-10 ||r(i)||/||b|| 1.024630156994e-04
+  7 KSP unpreconditioned resid norm 2.007122835285e-10 true resid norm 2.007122835267e-10 ||r(i)||/||b|| 3.608550592706e-05
+  8 KSP unpreconditioned resid norm 5.150915013743e-11 true resid norm 5.150915013505e-11 ||r(i)||/||b|| 9.260687536591e-06
+Iteration count is 8
+KSP converged reason: 3
+Norm of a_n: 1.9535246360175973e-09
+Norm of B: 5.19855470858168e-09
+Norm of E: 1.5667093220364568e-06
+Norm of J: 0.029235224895532555
+
+
+n is 72
+t is 0.07300000000000005
+f norm is 1.401258538444089
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 9.487524643562e-06 true resid norm 9.487524643562e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 4.202400877377e-06 true resid norm 4.202400877377e-06 ||r(i)||/||b|| 4.429396534141e-01
+  2 KSP unpreconditioned resid norm 6.088441402843e-07 true resid norm 6.088441402843e-07 ||r(i)||/||b|| 6.417312873042e-02
+  3 KSP unpreconditioned resid norm 1.217658908976e-07 true resid norm 1.217658908976e-07 ||r(i)||/||b|| 1.283431616489e-02
+  4 KSP unpreconditioned resid norm 1.975782492746e-08 true resid norm 1.975782492745e-08 ||r(i)||/||b|| 2.082505782039e-03
+  5 KSP unpreconditioned resid norm 3.155897745041e-09 true resid norm 3.155897745035e-09 ||r(i)||/||b|| 3.326365794662e-04
+  6 KSP unpreconditioned resid norm 9.663510885800e-10 true resid norm 9.663510885806e-10 ||r(i)||/||b|| 1.018549226364e-04
+  7 KSP unpreconditioned resid norm 3.401844144546e-10 true resid norm 3.401844144708e-10 ||r(i)||/||b|| 3.585597163130e-05
+  8 KSP unpreconditioned resid norm 8.725918791568e-11 true resid norm 8.725918791866e-11 ||r(i)||/||b|| 9.197255469357e-06
+Iteration count is 8
+KSP converged reason: 3
+Norm of a_n: 3.32901065295577e-09
+Norm of B: 8.86587222198806e-09
+Norm of E: 1.3754871582807726e-06
+Norm of J: 0.025673336747524877
+
+
+n is 73
+t is 0.07400000000000005
+f norm is 1.6472782070926735
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.248455812738e-05 true resid norm 1.248455812738e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 5.532468215961e-06 true resid norm 5.532468215961e-06 ||r(i)||/||b|| 4.431448962401e-01
+  2 KSP unpreconditioned resid norm 8.006784617545e-07 true resid norm 8.006784617545e-07 ||r(i)||/||b|| 6.413350425263e-02
+  3 KSP unpreconditioned resid norm 1.600509362311e-07 true resid norm 1.600509362311e-07 ||r(i)||/||b|| 1.281991197430e-02
+  4 KSP unpreconditioned resid norm 2.598295991648e-08 true resid norm 2.598295991648e-08 ||r(i)||/||b|| 2.081207812994e-03
+  5 KSP unpreconditioned resid norm 4.148213885143e-09 true resid norm 4.148213885131e-09 ||r(i)||/||b|| 3.322675774991e-04
+  6 KSP unpreconditioned resid norm 1.268382589441e-09 true resid norm 1.268382589440e-09 ||r(i)||/||b|| 1.015961138952e-04
+  7 KSP unpreconditioned resid norm 4.464219699450e-10 true resid norm 4.464219699441e-10 ||r(i)||/||b|| 3.575793114897e-05
+  8 KSP unpreconditioned resid norm 1.144856288981e-10 true resid norm 1.144856289057e-10 ||r(i)||/||b|| 9.170178690959e-06
+  9 KSP unpreconditioned resid norm 3.129188521762e-11 true resid norm 3.129188520468e-11 ||r(i)||/||b|| 2.506447155391e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 4.378618679742656e-09
+Norm of B: 1.1665371128922747e-08
+Norm of E: 1.0496085894260023e-06
+Norm of J: 0.019598284797591955
+
+
+n is 74
+t is 0.07500000000000005
+f norm is 1.7320508075688779
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.425964553917e-05 true resid norm 1.425964553917e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 6.320998054500e-06 true resid norm 6.320998054500e-06 ||r(i)||/||b|| 4.432787643378e-01
+  2 KSP unpreconditioned resid norm 9.141392414045e-07 true resid norm 9.141392414045e-07 ||r(i)||/||b|| 6.410672964438e-02
+  3 KSP unpreconditioned resid norm 1.826696549141e-07 true resid norm 1.826696549141e-07 ||r(i)||/||b|| 1.281025214913e-02
+  4 KSP unpreconditioned resid norm 2.966534097828e-08 true resid norm 2.966534097826e-08 ||r(i)||/||b|| 2.080370153435e-03
+  5 KSP unpreconditioned resid norm 4.735532364589e-09 true resid norm 4.735532364589e-09 ||r(i)||/||b|| 3.320932733973e-04
+  6 KSP unpreconditioned resid norm 1.447177036527e-09 true resid norm 1.447177036519e-09 ||r(i)||/||b|| 1.014875883515e-04
+  7 KSP unpreconditioned resid norm 5.092722177417e-10 true resid norm 5.092722177201e-10 ||r(i)||/||b|| 3.571422699962e-05
+  8 KSP unpreconditioned resid norm 1.305704740785e-10 true resid norm 1.305704740747e-10 ||r(i)||/||b|| 9.156642338412e-06
+  9 KSP unpreconditioned resid norm 3.564229395662e-11 true resid norm 3.564229393855e-11 ||r(i)||/||b|| 2.499521733597e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 4.9996246763706565e-09
+Norm of B: 1.3323003678419874e-08
+Norm of E: 6.210064963431836e-07
+Norm of J: 0.011604924539088013
+Writing output 
+
+
+n is 75
+t is 0.07600000000000005
+f norm is 1.6472782070926553
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.463898868071e-05 true resid norm 1.463898868071e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 6.490799034478e-06 true resid norm 6.490799034478e-06 ||r(i)||/||b|| 4.433912188914e-01
+  2 KSP unpreconditioned resid norm 9.381196117614e-07 true resid norm 9.381196117614e-07 ||r(i)||/||b|| 6.408363529904e-02
+  3 KSP unpreconditioned resid norm 1.874077618991e-07 true resid norm 1.874077618991e-07 ||r(i)||/||b|| 1.280196098150e-02
+  4 KSP unpreconditioned resid norm 3.044414347667e-08 true resid norm 3.044414347668e-08 ||r(i)||/||b|| 2.079661658377e-03
+  5 KSP unpreconditioned resid norm 4.859684885231e-09 true resid norm 4.859684885227e-09 ||r(i)||/||b|| 3.319686210039e-04
+  6 KSP unpreconditioned resid norm 1.484638228543e-09 true resid norm 1.484638228534e-09 ||r(i)||/||b|| 1.014167208484e-04
+  7 KSP unpreconditioned resid norm 5.223851637305e-10 true resid norm 5.223851637186e-10 ||r(i)||/||b|| 3.568451175913e-05
+  8 KSP unpreconditioned resid norm 1.339004858397e-10 true resid norm 1.339004858301e-10 ||r(i)||/||b|| 9.146839904762e-06
+  9 KSP unpreconditioned resid norm 3.651783425815e-11 true resid norm 3.651783427063e-11 ||r(i)||/||b|| 2.494559908961e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 5.131233339383621e-09
+Norm of B: 1.3676500958705553e-08
+Norm of E: 1.3161018617621087e-07
+Norm of J: 0.0024756602244457547
+
+
+n is 76
+t is 0.07700000000000005
+f norm is 1.401258538444054
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.358544671341e-05 true resid norm 1.358544671341e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 6.025248293251e-06 true resid norm 6.025248293251e-06 ||r(i)||/||b|| 4.435075577828e-01
+  2 KSP unpreconditioned resid norm 8.702719935582e-07 true resid norm 8.702719935582e-07 ||r(i)||/||b|| 6.405913709848e-02
+  3 KSP unpreconditioned resid norm 1.738014227140e-07 true resid norm 1.738014227140e-07 ||r(i)||/||b|| 1.279320631706e-02
+  4 KSP unpreconditioned resid norm 2.824312417738e-08 true resid norm 2.824312417738e-08 ||r(i)||/||b|| 2.078924953532e-03
+  5 KSP unpreconditioned resid norm 4.508515892243e-09 true resid norm 4.508515892238e-09 ||r(i)||/||b|| 3.318636469855e-04
+  6 KSP unpreconditioned resid norm 1.377097636694e-09 true resid norm 1.377097636709e-09 ||r(i)||/||b|| 1.013656500047e-04
+  7 KSP unpreconditioned resid norm 4.844767355823e-10 true resid norm 4.844767355755e-10 ||r(i)||/||b|| 3.566145050625e-05
+  8 KSP unpreconditioned resid norm 1.241495259858e-10 true resid norm 1.241495259859e-10 ||r(i)||/||b|| 9.138420591157e-06
+  9 KSP unpreconditioned resid norm 3.383272905613e-11 true resid norm 3.383272905119e-11 ||r(i)||/||b|| 2.490365592307e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 4.760561506348363e-09
+Norm of B: 1.269125835191759e-08
+Norm of E: 3.706722637821091e-07
+Norm of J: 0.00689617539399013
+
+
+n is 77
+t is 0.07800000000000006
+f norm is 1.018073920910231
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 1.120216877980e-05 true resid norm 1.120216877980e-05 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 4.969920378236e-06 true resid norm 4.969920378236e-06 ||r(i)||/||b|| 4.436569807089e-01
+  2 KSP unpreconditioned resid norm 7.172382069285e-07 true resid norm 7.172382069285e-07 ||r(i)||/||b|| 6.402672741568e-02
+  3 KSP unpreconditioned resid norm 1.431825756071e-07 true resid norm 1.431825756072e-07 ||r(i)||/||b|| 1.278168347770e-02
+  4 KSP unpreconditioned resid norm 2.327774992689e-08 true resid norm 2.327774992689e-08 ||r(i)||/||b|| 2.077968149245e-03
+  5 KSP unpreconditioned resid norm 3.716400732149e-09 true resid norm 3.716400732159e-09 ||r(i)||/||b|| 3.317572521190e-04
+  6 KSP unpreconditioned resid norm 1.135081393704e-09 true resid norm 1.135081393713e-09 ||r(i)||/||b|| 1.013269319563e-04
+  7 KSP unpreconditioned resid norm 3.992573804704e-10 true resid norm 3.992573804723e-10 ||r(i)||/||b|| 3.564107882327e-05
+  8 KSP unpreconditioned resid norm 1.022720066392e-10 true resid norm 1.022720066483e-10 ||r(i)||/||b|| 9.129661287798e-06
+  9 KSP unpreconditioned resid norm 2.784976688611e-11 true resid norm 2.784976688590e-11 ||r(i)||/||b|| 2.486104917124e-06
+Iteration count is 9
+KSP converged reason: 3
+Norm of a_n: 3.923892955626557e-09
+Norm of B: 1.046372074614624e-08
+Norm of E: 8.366687527041033e-07
+Norm of J: 0.015592796974195447
+
+
+n is 78
+t is 0.07900000000000006
+f norm is 0.5352331346596046
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 7.722536804863e-06 true resid norm 7.722536804863e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 3.428132242935e-06 true resid norm 3.428132242935e-06 ||r(i)||/||b|| 4.439127102349e-01
+  2 KSP unpreconditioned resid norm 4.940001439979e-07 true resid norm 4.940001439979e-07 ||r(i)||/||b|| 6.396863575798e-02
+  3 KSP unpreconditioned resid norm 9.854866102882e-08 true resid norm 9.854866102882e-08 ||r(i)||/||b|| 1.276117725548e-02
+  4 KSP unpreconditioned resid norm 1.603413776300e-08 true resid norm 1.603413776299e-08 ||r(i)||/||b|| 2.076278581527e-03
+  5 KSP unpreconditioned resid norm 2.560884634653e-09 true resid norm 2.560884634645e-09 ||r(i)||/||b|| 3.316118393935e-04
+  6 KSP unpreconditioned resid norm 7.822813010603e-10 true resid norm 7.822813010595e-10 ||r(i)||/||b|| 1.012984878967e-04
+  7 KSP unpreconditioned resid norm 2.750692511387e-10 true resid norm 2.750692511414e-10 ||r(i)||/||b|| 3.561902754134e-05
+  8 KSP unpreconditioned resid norm 7.040957365714e-11 true resid norm 7.040957365338e-11 ||r(i)||/||b|| 9.117415097205e-06
+Iteration count is 8
+KSP converged reason: 3
+Norm of a_n: 2.703134049742653e-09
+Norm of B: 7.211953735264383e-09
+Norm of E: 1.2207591245137437e-06
+Norm of J: 0.022763059240920636
+
+
+n is 79
+t is 0.08000000000000006
+f norm is 2.9070482600177163e-14
+  Residual norms for ksp_132304590431760 solve.
+  0 KSP unpreconditioned resid norm 3.487717991392e-06 true resid norm 3.487717991392e-06 ||r(i)||/||b|| 1.000000000000e+00
+  1 KSP unpreconditioned resid norm 1.550892714478e-06 true resid norm 1.550892714478e-06 ||r(i)||/||b|| 4.446726249961e-01
+  2 KSP unpreconditioned resid norm 2.224217456870e-07 true resid norm 2.224217456870e-07 ||r(i)||/||b|| 6.377285842377e-02
+  3 KSP unpreconditioned resid norm 4.427024759484e-08 true resid norm 4.427024759484e-08 ||r(i)||/||b|| 1.269318439854e-02
+  4 KSP unpreconditioned resid norm 7.221516120940e-09 true resid norm 7.221516120940e-09 ||r(i)||/||b|| 2.070556202871e-03
+  5 KSP unpreconditioned resid norm 1.154593293682e-09 true resid norm 1.154593293686e-09 ||r(i)||/||b|| 3.310454849089e-04
+  6 KSP unpreconditioned resid norm 3.527773907409e-10 true resid norm 3.527773907399e-10 ||r(i)||/||b|| 1.011484849436e-04

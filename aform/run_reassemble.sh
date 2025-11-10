@@ -1,0 +1,1 @@
+python3 -u aform_debug.py --reuse > output_interior_reassemble.log
