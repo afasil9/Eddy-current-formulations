@@ -121,7 +121,7 @@ high_expr = fem.Expression(
     V_in * ufl.sin(omega * t), V1.element.interpolation_points
 )
 high_func.interpolate(high_expr)
-par_print(comm, f"L2_norm(high_func) is {L2_norm(high_func)}")
+# par_print(comm, f"L2_norm(high_func) is {L2_norm(high_func)}")
 
 # high_func.x.array[:] = 10.0
 
@@ -133,7 +133,7 @@ bc_lower = fem.dirichletbc(low_func, bdofs3)
 
 # bdofs0 = fem.locate_dofs_topological(V=V, entity_dim=fdim, entities=ft.find(boundary_tags["cube_boundary"]))
 
-boundary_tags_total = (1,)
+boundary_tags_total = (1,2,4)
 boundary_facets_V = np.concatenate([ft.find(tag) for tag in boundary_tags_total])
 bdofs0 = fem.locate_dofs_topological(V=V, entity_dim=fdim, entities=boundary_facets_V)
 
@@ -341,6 +341,9 @@ par_print(comm, "about to solve")
 ksp.solve(b, sol)
 
 
+print(sol.norm())
+      
+
 reason = ksp.getConvergedReason()
 par_print(comm, f"Converged reason: {reason}")
 
@@ -363,14 +366,10 @@ u_n1.x.array[:] = uh1.x.array
 u_n.x.scatter_forward()
 u_n1.x.scatter_forward()
 
-par_print(comm, f"L2 norm of solution fields {L2_norm(u_n)}")
-par_print(comm, f"L2 norm of solution fields {L2_norm(u_n1)}")
-
-
 # Output fields globally
 
 vector_vis = fem.functionspace(
-    domain, ("Discontinuous Lagrange", degree + 1, (domain.geometry.dim,))
+    domain, ("Discontinuous Lagrange", degree, (domain.geometry.dim,))
 )
 
 A_vis = Function(vector_vis)
@@ -402,7 +401,7 @@ parent_cells = subdomain_copper_to_domain.sub_topology_to_topology(
 )
 
 Submesh_DG = functionspace(
-    submesh_copper, ("DG", degree + 1, (submesh_copper.geometry.dim,))
+    submesh_copper, ("DG", degree, (submesh_copper.geometry.dim,))
 )
 
 #u_n on submesh
@@ -501,8 +500,9 @@ par_print(comm, f"u_n_submesh_prev norm is {L2_norm(u_n_submesh_prev)}")
 
 par_print(comm, "\n")
 
-par_print(comm, f"(grad(u_n1) - u_n_submesh) norm is {L2_norm(-grad(u_n1) - u_n_submesh)}")
+par_print(comm, f"grad(u_n1) norm is {L2_norm(grad(u_n1))}")
 par_print(comm, f"(u_n_submesh /dt) norm is {L2_norm(u_n_submesh / d_t)}")
+par_print(comm, f"(grad(u_n1) - u_n_submesh) norm is {L2_norm(-grad(u_n1) - u_n_submesh)}")
 par_print(comm, f"(grad(u_n1) - (u_n_submesh /dt)) norm is {L2_norm(-grad(u_n1) - (u_n_submesh / d_t))}")
 
 par_print(comm, "\n")
@@ -518,7 +518,6 @@ par_print(comm, f"E max is {max_E_vis}")
 
 max_u_n1 = comm.allreduce(np.max(u_n1.x.array), op=MPI.MAX)
 par_print(comm, f"u_n1 max is {max_u_n1}")
-
 
 output_freq = 1
 last_steps = 10
@@ -647,6 +646,14 @@ for n in range(10):
         da_dt_submesh_vis.interpolate(da_dt_submesh_expr)
         da_dt_submesh_file.write(t)
 
+        grad_u_n1_submesh = grad(u_n1)
+        grad_u_n1_expr = fem.Expression(
+            grad_u_n1_submesh, Submesh_DG.element.interpolation_points
+        )
+        grad_u_n1_vis.interpolate(grad_u_n1_expr)
+        grad_u_n1_vis.x.scatter_forward()
+        grad_u_n1_file.write(t)
+
     par_print(comm, "\n")
     
     par_print(comm, f"B norm is {L2_norm(B)}")
@@ -696,3 +703,8 @@ B_file.close()
 E_file.close()
 J_file.close()
 u_n1_file.close()
+
+# %%
+
+from IPython import embed
+embed()

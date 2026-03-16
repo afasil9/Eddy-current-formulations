@@ -219,7 +219,7 @@ is_u1 = PETSc.IS().createStride(u1_map.size_local, offset_u1, 1, comm=domain.com
 ksp = PETSc.KSP().create(domain.comm)
 ksp.setOperators(A_mat, P)
 ksp.setType("gmres")
-ksp.setTolerances(rtol=1e-15, atol=1e-15, max_it=100)
+ksp.setTolerances(rtol=1e-8, atol=1e-8, max_it=100)
 ksp.setNormType(PETSc.KSP.NormType.UNPRECONDITIONED)
 # ksp.setNormType(2)
 

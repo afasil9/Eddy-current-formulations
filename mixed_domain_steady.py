@@ -25,6 +25,7 @@ from utils import my_monitor, interpolate_by_tags, L2_norm
 from dolfinx import default_scalar_type
 from dolfinx.mesh import create_submesh
 from utils import convert_facet_tags
+from dolfinx.mesh import locate_entities_boundary
 
 
 degree = 1
@@ -374,3 +375,74 @@ par_print(comm, f"B norm is {L2_norm(B)}")
 par_print(comm, f"E norm is {L2_norm(E)}")
 par_print(comm, f"J norm is {L2_norm(J)}")
 par_print(comm, f"u_n1 norm is {L2_norm(u_n1)}")
+
+exit()
+
+W_comp = fem.functionspace(domain, ("Lagrange", degree))
+phi = ufl.TrialFunction(W_comp)
+q = ufl.TestFunction(W_comp)
+
+def all_boundary(x):
+    return np.full(x.shape[1], True)
+domain.topology.create_connectivity(tdim - 1, tdim)
+bndry_facets = locate_entities_boundary(domain, tdim - 1, all_boundary)
+bndry_dofs_W = fem.locate_dofs_topological(W_comp, tdim - 1, bndry_facets)
+
+zero_W = fem.Function(W_comp)
+zero_W.x.array[:] = 0.0
+bc_W = fem.dirichletbc(zero_W, bndry_dofs_W)
+
+# Matrix is domain-only -> no entity_maps
+a_comp = form(ufl.inner(ufl.grad(phi), ufl.grad(q)) * dx)
+
+# RHS uses u_n1 (submesh) + q (domain) -> MUST pass entity_maps
+L_comp = form(
+    ufl.inner(sigma * ufl.grad(u_n1), ufl.grad(q)) * dx(vol_ids["copper"]),
+    entity_maps=entity_maps,
+)
+
+A_comp = assemble_matrix(a_comp, bcs=[bc_W])
+A_comp.assemble()
+
+b_comp = assemble_vector(L_comp)
+apply_lifting(b_comp, [a_comp], bcs=[[bc_W]])
+b_comp.ghostUpdate(addv=PETSc.InsertMode.ADD, mode=PETSc.ScatterMode.REVERSE)
+set_bc(b_comp, [bc_W])
+
+compat_vec_norm = b_comp.norm()
+print(f"Compatibility vector norm ||(J,grad q)|| = {compat_vec_norm:.6e}")
+
+phi_h = fem.Function(W_comp)
+ksp_comp = PETSc.KSP().create(domain.comm)
+ksp_comp.setOperators(A_comp)
+ksp_comp.setType("preonly")
+ksp_comp.getPC().setType("lu")
+ksp_comp.getPC().setFactorSolverType("mumps")
+ksp_comp.solve(b_comp, phi_h.x.petsc_vec)
+phi_h.x.scatter_forward()
+
+print(f"Compatibility KSP converged with reason {ksp_comp.getConvergedReason()}")
+print(f"Compatibility KSP iteration count: {ksp_comp.getIterationNumber()}")
+print(f"Compatibility KSP residual norm: {ksp_comp.getResidualNorm():.6e}")
+
+def global_scalar(frm):
+    local_val = fem.assemble_scalar(frm)
+    return domain.comm.allreduce(local_val, op=MPI.SUM)
+
+grad_part_sq = global_scalar(form(ufl.inner(ufl.grad(phi_h), ufl.grad(phi_h)) * dx))
+j_norm_sq = global_scalar(
+    form(
+        ufl.inner(sigma * ufl.grad(u_n1), sigma * ufl.grad(u_n1)) * dx(vol_ids["copper"]),
+        entity_maps=entity_maps,
+    )
+)
+
+grad_part = np.sqrt(max(grad_part_sq, 0.0))
+j_norm = np.sqrt(max(j_norm_sq, 0.0))
+ratio = grad_part / max(j_norm, 1e-30)
+
+print(f"||J_grad_part|| = {grad_part:.6e}")
+print(f"||J||           = {j_norm:.6e}")
+print(f"relative incompatible part = {ratio:.6e}")
+
+
